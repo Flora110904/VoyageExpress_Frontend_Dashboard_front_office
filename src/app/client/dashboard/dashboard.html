@@ -1,0 +1,515 @@
+<!-- Topbar Start -->
+<div class="container-fluid bg-light d-none d-lg-block">
+  <div class="row align-items-center top-bar">
+    <div class="col-lg-3 col-md-12 text-center text-lg-start">
+      <a routerLink="/" class="navbar-brand m-0 p-0">
+        <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
+      </a>
+    </div>
+    <div class="col-lg-9 col-md-12 text-end">
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="fa fa-map-marker-alt text-primary me-2"></i>
+        <p class="m-0">Lomé, Togo</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="far fa-envelope-open text-primary me-2"></i>
+        <p class="m-0">contact&#64;voyageexpress.tg</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center">
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://facebook.com/voyageexpress" target="_blank">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://twitter.com/voyageexpress" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-0" href="https://instagram.com/voyageexpress" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Topbar End -->
+
+<!-- Navbar Start -->
+<div class="container-fluid nav-bar bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
+    <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
+      <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav me-auto">
+        <a routerLink="/" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-home me-2"></i>Accueil
+        </a>
+        <a routerLink="/client/recherche" class="nav-item nav-link active" routerLinkActive="active">
+          <i class="fa fa-search me-2"></i>Rechercher
+        </a>
+        <a routerLink="/client/mes-reservations" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-ticket-alt me-2"></i>Réservations
+        </a>
+        <a routerLink="/client/historique" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-history me-2"></i>Historique
+        </a>
+        <a routerLink="/client/profil" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-user me-2"></i>Profil
+        </a>
+      </div>
+
+      <!-- Auth Buttons -->
+      <div class="d-flex align-items-center mt-4 mt-lg-0 me-lg-n4">
+        <a routerLink="/auth/login" class="btn btn-outline-primary me-2">
+          <i class="fa fa-sign-in-alt me-1"></i>Se Connecter
+        </a>
+        <a routerLink="/auth/register" class="btn btn-primary">
+          <i class="fa fa-user-plus me-1"></i>S'Inscrire
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- Navbar End -->
+
+<!-- Hero Section -->
+<div class="hero-client position-relative" style="background: linear-gradient(135deg, #4a90e2 0%, #7b68ee 50%, #ff6b6b 100%); min-height: 80vh; display: flex; align-items: center; padding-top: 120px;">
+  <div class="hero-background position-absolute top-0 start-0 w-100 h-100" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80'); background-size: cover; background-position: center; opacity: 0.15;"></div>
+  <div class="container position-relative z-index-2">
+    <div class="row align-items-center">
+      <div class="col-lg-6 text-white">
+        <h1 class="display-2 fw-bold mb-4 animate-fade-in">
+          👤 Bienvenue dans votre
+          <span class="text-warning">Espace Client</span>
+        </h1>
+        <p class="lead mb-4 fs-5">
+          Réservez vos billets, gérez vos réservations et profitez d'avantages exclusifs
+          avec VoyageExpress. Votre partenaire de confiance pour tous vos voyages.
+        </p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a routerLink="/client/recherche" class="btn btn-warning btn-lg px-5 py-3 fw-bold animate-pulse">
+            <i class="fa fa-search me-2"></i>Réserver Maintenant
+          </a>
+          <a routerLink="/client/mes-reservations" class="btn btn-outline-light btn-lg px-5 py-3">
+            <i class="fa fa-ticket-alt me-2"></i>Mes Réservations
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-image-container">
+          <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+               alt="Espace Client VoyageExpress" class="img-fluid rounded-4 shadow-lg animate-float">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Actions Rapides Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-4 fw-bold text-primary mb-3">🚀 Actions Rapides</h2>
+      <p class="lead text-muted">Accédez rapidement à tous vos outils de voyage</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card service-card-client h-100 border-0 shadow-lg text-center p-4 position-relative overflow-hidden">
+          <div class="service-icon mb-4 position-relative">
+            <img src="https://images.unsplash.com/photo-1488646953014-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                 alt="Rechercher" class="img-fluid rounded-circle position-absolute top-50 start-50 translate-middle" style="width: 100px; height: 100px; object-fit: cover; z-index: 1;">
+            <div class="icon-overlay position-absolute top-50 start-50 translate-middle bg-primary text-white rounded-circle d-flex align-items-center justify-content-center animate-pulse" style="width: 120px; height: 120px; z-index: 2;">
+              <i class="fa fa-search fa-2x"></i>
+            </div>
+          </div>
+          <h5 class="card-title text-primary mb-3">🔍 Recherche Avancée</h5>
+          <p class="card-text text-muted">Trouvez vos destinations et réservez vos voyages en quelques clics avec notre moteur de recherche intelligent</p>
+          <a routerLink="/client/recherche" class="btn btn-primary btn-lg position-relative z-index-3">
+            <i class="fa fa-search me-2"></i>Commencer la Recherche
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card service-card-client h-100 border-0 shadow-lg text-center p-4 position-relative overflow-hidden">
+          <div class="service-icon mb-4 position-relative">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                 alt="Réservations" class="img-fluid rounded-circle position-absolute top-50 start-50 translate-middle" style="width: 100px; height: 100px; object-fit: cover; z-index: 1;">
+            <div class="icon-overlay position-absolute top-50 start-50 translate-middle bg-success text-white rounded-circle d-flex align-items-center justify-content-center animate-pulse" style="width: 120px; height: 120px; z-index: 2;">
+              <i class="fa fa-ticket-alt fa-2x"></i>
+            </div>
+          </div>
+          <h5 class="card-title text-success mb-3">🎫 Mes Réservations</h5>
+          <p class="card-text text-muted">Gérez vos réservations en cours, modifiez-les et suivez leur statut en temps réel</p>
+          <a routerLink="/client/mes-reservations" class="btn btn-success btn-lg position-relative z-index-3">
+            <i class="fa fa-ticket-alt me-2"></i>Voir mes Réservations
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card service-card-client h-100 border-0 shadow-lg text-center p-4 position-relative overflow-hidden">
+          <div class="service-icon mb-4 position-relative">
+            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                 alt="Historique" class="img-fluid rounded-circle position-absolute top-50 start-50 translate-middle" style="width: 100px; height: 100px; object-fit: cover; z-index: 1;">
+            <div class="icon-overlay position-absolute top-50 start-50 translate-middle bg-warning text-white rounded-circle d-flex align-items-center justify-content-center animate-pulse" style="width: 120px; height: 120px; z-index: 2;">
+              <i class="fa fa-history fa-2x"></i>
+            </div>
+          </div>
+          <h5 class="card-title text-warning mb-3">📚 Historique & Statistiques</h5>
+          <p class="card-text text-muted">Consultez votre historique de voyages et découvrez vos statistiques de voyageur</p>
+          <a routerLink="/client/historique" class="btn btn-warning btn-lg position-relative z-index-3">
+            <i class="fa fa-history me-2"></i>Voir l'Historique
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Populaires Section -->
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-4 fw-bold text-primary mb-3">🌟 Services Populaires</h2>
+      <p class="lead text-muted">Découvrez nos services les plus demandés par nos voyageurs</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="card service-card-popular h-100 border-0 shadow-lg overflow-hidden">
+          <div class="card-img-wrapper position-relative">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                 class="card-img-top" alt="Transport Bus">
+            <div class="card-img-overlay d-flex align-items-end">
+              <div class="service-info bg-white bg-opacity-90 p-3 rounded-3 w-100">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <h5 class="card-title mb-0">🚌 Transport Bus</h5>
+                  <span class="badge bg-success fs-6">Plus populaire</span>
+                </div>
+                <p class="card-text small mb-2">Réservez vos billets de bus pour tous les trajets nationaux et régionaux</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="price-info">
+                    <span class="text-primary fw-bold fs-5">À partir de 5,000 FCFA</span>
+                    <small class="text-muted d-block">par trajet</small>
+                  </div>
+                  <div class="features d-flex gap-1">
+                    <span class="badge bg-info">WiFi</span>
+                    <span class="badge bg-warning">Climatisé</span>
+                  </div>
+                </div>
+                <a routerLink="/client/recherche" class="btn btn-primary btn-sm w-100 mt-2">
+                  <i class="fa fa-bus me-1"></i>Réserver Bus
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card service-card-popular h-100 border-0 shadow-lg overflow-hidden">
+          <div class="card-img-wrapper position-relative">
+            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                 class="card-img-top" alt="Transport Aérien">
+            <div class="card-img-overlay d-flex align-items-end">
+              <div class="service-info bg-white bg-opacity-90 p-3 rounded-3 w-100">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <h5 class="card-title mb-0">✈️ Transport Aérien</h5>
+                  <span class="badge bg-info fs-6">International</span>
+                </div>
+                <p class="card-text small mb-2">Vols nationaux et internationaux au départ de Lomé</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="price-info">
+                    <span class="text-primary fw-bold fs-5">À partir de 50,000 FCFA</span>
+                    <small class="text-muted d-block">aller simple</small>
+                  </div>
+                  <div class="features d-flex gap-1">
+                    <span class="badge bg-info">Bagage inclus</span>
+                    <span class="badge bg-success">Repas</span>
+                  </div>
+                </div>
+                <a routerLink="/client/recherche" class="btn btn-info btn-sm w-100 mt-2">
+                  <i class="fa fa-plane me-1"></i>Réserver Vol
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card service-card-popular h-100 border-0 shadow-lg overflow-hidden">
+          <div class="card-img-wrapper position-relative">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                 class="card-img-top" alt="Hébergement">
+            <div class="card-img-overlay d-flex align-items-end">
+              <div class="service-info bg-white bg-opacity-90 p-3 rounded-3 w-100">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <h5 class="card-title mb-0">🏨 Hébergement</h5>
+                  <span class="badge bg-warning fs-6">Confort</span>
+                </div>
+                <p class="card-text small mb-2">Hôtels, motels et appartements de qualité pour votre séjour</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="price-info">
+                    <span class="text-primary fw-bold fs-5">À partir de 15,000 FCFA</span>
+                    <small class="text-muted d-block">par nuit</small>
+                  </div>
+                  <div class="features d-flex gap-1">
+                    <span class="badge bg-success">WiFi</span>
+                    <span class="badge bg-info">Petit-déj</span>
+                  </div>
+                </div>
+                <a routerLink="/client/recherche" class="btn btn-warning btn-sm w-100 mt-2">
+                  <i class="fa fa-bed me-1"></i>Réserver Hôtel
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Destinations Recommandées Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-4 fw-bold text-primary mb-3">🌍 Destinations Recommandées</h2>
+      <p class="lead text-muted">Découvrez les destinations les plus populaires de nos voyageurs</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6">
+        <div class="card destination-card-client h-100 border-0 shadow-lg overflow-hidden">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                 class="card-img-top" alt="Lomé, Togo">
+          </div>
+          <div class="card-body text-center">
+            <div class="destination-rating mb-2">
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <span class="ms-2 text-muted">(4.9/5)</span>
+            </div>
+            <h5 class="card-title text-primary mb-2">🏖️ Lomé</h5>
+            <p class="card-text text-muted small mb-3">Capitale vibrante du Togo avec ses plages et sa culture riche</p>
+            <div class="destination-price mb-3">
+              <span class="text-primary fw-bold fs-5">À partir de 5,000 FCFA</span>
+              <small class="text-muted d-block">par trajet</small>
+            </div>
+            <a routerLink="/client/recherche" class="btn btn-primary btn-sm">
+              <i class="fa fa-search me-1"></i>Découvrir
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="card destination-card-client h-100 border-0 shadow-lg overflow-hidden">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                 class="card-img-top" alt="Kpalimé, Togo">
+          </div>
+          <div class="card-body text-center">
+            <div class="destination-rating mb-2">
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star-half-alt text-warning"></i>
+              <span class="ms-2 text-muted">(4.8/5)</span>
+            </div>
+            <h5 class="card-title text-success mb-2">⛰️ Kpalimé</h5>
+            <p class="card-text text-muted small mb-3">Région montagneuse avec cascades et plantations de café</p>
+            <div class="destination-price mb-3">
+              <span class="text-primary fw-bold fs-5">À partir de 25,000 FCFA</span>
+              <small class="text-muted d-block">par trajet</small>
+            </div>
+            <a routerLink="/client/recherche" class="btn btn-success btn-sm">
+              <i class="fa fa-search me-1"></i>Découvrir
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="card destination-card-client h-100 border-0 shadow-lg overflow-hidden">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                 class="card-img-top" alt="Lac Togo">
+          </div>
+          <div class="card-body text-center">
+            <div class="destination-rating mb-2">
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <span class="ms-2 text-muted">(4.9/5)</span>
+            </div>
+            <h5 class="card-title text-info mb-2">🌊 Lac Togo</h5>
+            <p class="card-text text-muted small mb-3">Paradis aquatique avec activités nautiques et tranquillité</p>
+            <div class="destination-price mb-3">
+              <span class="text-primary fw-bold fs-5">À partir de 30,000 FCFA</span>
+              <small class="text-muted d-block">par trajet</small>
+            </div>
+            <a routerLink="/client/recherche" class="btn btn-info btn-sm">
+              <i class="fa fa-search me-1"></i>Découvrir
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="card destination-card-client h-100 border-0 shadow-lg overflow-hidden">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                 class="card-img-top" alt="Kara, Togo">
+          </div>
+          <div class="card-body text-center">
+            <div class="destination-rating mb-2">
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star text-warning"></i>
+              <i class="fa fa-star-half-alt text-warning"></i>
+              <span class="ms-2 text-muted">(4.7/5)</span>
+            </div>
+            <h5 class="card-title text-warning mb-2">🏛️ Kara</h5>
+            <p class="card-text text-muted small mb-3">Capitale régionale avec marchés traditionnels et artisanat</p>
+            <div class="destination-price mb-3">
+              <span class="text-primary fw-bold fs-5">À partir de 20,000 FCFA</span>
+              <small class="text-muted d-block">par trajet</small>
+            </div>
+            <a routerLink="/client/recherche" class="btn btn-warning btn-sm">
+              <i class="fa fa-search me-1"></i>Découvrir
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Informations Utiles Section -->
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="info-card bg-white rounded-4 shadow-lg p-5 h-100">
+          <div class="d-flex align-items-center mb-4">
+            <div class="info-icon me-4">
+              <i class="fa fa-lightbulb text-primary fa-3x"></i>
+            </div>
+            <div>
+              <h4 class="mb-2">💡 Conseils Voyage</h4>
+              <p class="text-muted mb-0">Optimisez vos voyages avec nos conseils d'experts</p>
+            </div>
+          </div>
+
+          <div class="tips-list">
+            <div class="tip-item d-flex align-items-start mb-4">
+              <div class="tip-icon me-3 mt-1">
+                <i class="fa fa-check-circle text-success fa-lg"></i>
+              </div>
+              <div>
+                <h6 class="mb-2">Réservez à l'avance</h6>
+                <p class="text-muted mb-0">Les meilleurs prix sont disponibles 2-3 semaines avant le départ. Économisez jusqu'à 30% !</p>
+              </div>
+            </div>
+
+            <div class="tip-item d-flex align-items-start mb-4">
+              <div class="tip-icon me-3 mt-1">
+                <i class="fa fa-check-circle text-success fa-lg"></i>
+              </div>
+              <div>
+                <h6 class="mb-2">Documents requis</h6>
+                <p class="text-muted mb-0">Carte d'identité ou passeport valide obligatoire pour tous les voyages internationaux.</p>
+              </div>
+            </div>
+
+            <div class="tip-item d-flex align-items-start">
+              <div class="tip-icon me-3 mt-1">
+                <i class="fa fa-check-circle text-success fa-lg"></i>
+              </div>
+              <div>
+                <h6 class="mb-2">Assurance voyage recommandée</h6>
+                <p class="text-muted mb-0">Protégez-vous contre les imprévus avec notre assurance voyage partenaire.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="contact-card bg-white rounded-4 shadow-lg p-5 h-100">
+          <div class="d-flex align-items-center mb-4">
+            <div class="contact-icon me-4">
+              <i class="fa fa-headset text-info fa-3x"></i>
+            </div>
+            <div>
+              <h4 class="mb-2">📞 Support 24/7</h4>
+              <p class="text-muted mb-0">Notre équipe est là pour vous accompagner</p>
+            </div>
+          </div>
+
+          <div class="contact-methods">
+            <div class="contact-method d-flex align-items-center mb-4 p-3 bg-light rounded-3">
+              <i class="fa fa-phone text-primary me-3 fa-lg"></i>
+              <div>
+                <h6 class="mb-1">Téléphone</h6>
+                <p class="mb-0 text-primary fw-bold">+228 98 33 76 62</p>
+                <small class="text-muted">Support technique & Réservations</small>
+              </div>
+            </div>
+
+            <div class="contact-method d-flex align-items-center mb-4 p-3 bg-light rounded-3">
+              <i class="fa fa-envelope text-info me-3 fa-lg"></i>
+              <div>
+                <h6 class="mb-1">Email</h6>
+                <p class="mb-0 text-primary fw-bold">contact&#64;voyageexpress.tg</p>
+                <small class="text-muted">Réponse garantie sous 24h</small>
+              </div>
+            </div>
+
+            <div class="contact-method d-flex align-items-center p-3 bg-light rounded-3">
+              <i class="fa fa-clock text-warning me-3 fa-lg"></i>
+              <div>
+                <h6 class="mb-1">Disponibilité</h6>
+                <p class="mb-0 text-primary fw-bold">24h/24, 7j/7</p>
+                <small class="text-muted">Support d'urgence disponible</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="py-5 bg-primary text-white">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h2 class="display-5 fw-bold mb-4">📧 Restez Informé !</h2>
+        <p class="lead mb-4">
+          Recevez nos meilleures offres, conseils voyage et actualités directement dans votre boîte mail
+        </p>
+        <div class="newsletter-form d-flex gap-2 justify-content-center flex-wrap">
+          <input type="email" class="form-control form-control-lg" placeholder="Votre adresse email" style="max-width: 300px;">
+          <button type="submit" class="btn btn-warning btn-lg px-4">
+            <i class="fa fa-paper-plane me-2"></i>M'abonner
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

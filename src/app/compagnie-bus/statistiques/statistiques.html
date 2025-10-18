@@ -1,0 +1,89 @@
+<div class="container-fluid py-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h2 class="mb-1">📊 Statistiques Détaillées</h2>
+        <p class="text-muted">Analyse des performances de votre station</p>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-outline-primary">Aujourd'hui</button>
+        <button class="btn btn-outline-primary">Cette semaine</button>
+        <button class="btn btn-primary">Ce mois</button>
+      </div>
+    </div>
+
+    <!-- Graphiques principaux -->
+    <div class="row g-4 mb-4">
+      <div class="col-md-8">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white">
+            <h5 class="mb-0">Évolution des Réservations</h5>
+          </div>
+          <div class="card-body">
+            <div style="height: 300px;" class="d-flex align-items-center justify-content-center bg-light rounded">
+              <div class="text-center">
+                <i class="fa fa-chart-line fa-3x text-muted mb-3"></i>
+                <p class="text-muted">Graphique d'évolution (Chart.js à intégrer)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white">
+            <h5 class="mb-0">Répartition par Destination</h5>
+          </div>
+          <div class="card-body">
+            <div style="height: 300px;" class="d-flex align-items-center justify-content-center bg-light rounded">
+              <div class="text-center">
+                <i class="fa fa-pie-chart fa-3x text-muted mb-3"></i>
+                <p class="text-muted">Graphique circulaire (Chart.js à intégrer)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Métriques détaillées -->
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="card border-0 shadow-sm text-center">
+          <div class="card-body p-4">
+            <i class="fa fa-users fa-2x text-primary mb-3"></i>
+            <h3>2,847</h3>
+            <p class="text-muted mb-0">Passagers transportés</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card border-0 shadow-sm text-center">
+          <div class="card-body p-4">
+            <i class="fa fa-clock fa-2x text-success mb-3"></i>
+            <h3>98.2%</h3>
+            <p class="text-muted mb-0">Ponctualité moyenne</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card border-0 shadow-sm text-center">
+          <div class="card-body p-4">
+            <i class="fa fa-star fa-2x text-warning mb-3"></i>
+            <h3>4.8/5</h3>
+            <p class="text-muted mb-0">Note satisfaction</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card border-0 shadow-sm text-center">
+          <div class="card-body p-4">
+            <i class="fa fa-wrench fa-2x text-info mb-3"></i>
+            <h3>3</h3>
+            <p class="text-muted mb-0">Bus en maintenance</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

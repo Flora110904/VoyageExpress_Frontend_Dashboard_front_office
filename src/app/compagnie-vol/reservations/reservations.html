@@ -1,0 +1,141 @@
+<!-- Topbar Start -->
+<div class="container-fluid bg-light d-none d-lg-block">
+  <div class="row align-items-center top-bar">
+    <div class="col-lg-3 col-md-12 text-center text-lg-start">
+      <a routerLink="/" class="navbar-brand m-0 p-0">
+        <h1 class="text-primary m-0">VoyageExpress Vol</h1>
+      </a>
+    </div>
+    <div class="col-lg-9 col-md-12 text-end">
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="fa fa-map-marker-alt text-primary me-2"></i>
+        <p class="m-0">Dakar, Sénégal</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="far fa-envelope-open text-primary me-2"></i>
+        <p class="m-0">contact&#64;voyageexpress.sn</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center">
+        <a class="btn btn-sm-square bg-white text-primary me-1" href=""><i class="fab fa-facebook-f"></i></a>
+        <a class="btn btn-sm-square bg-white text-primary me-1" href=""><i class="fab fa-twitter"></i></a>
+        <a class="btn btn-sm-square bg-white text-primary me-0" href=""><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Topbar End -->
+
+<!-- Navbar Start -->
+<div class="container-fluid nav-bar bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
+    <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
+      <h1 class="text-primary m-0">VoyageExpress Vol</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav me-auto">
+        <a routerLink="/compagnieVol" class="nav-item nav-link" routerLinkActive="active">Dashboard</a>
+        <a routerLink="/compagnieVol/statistiques" class="nav-item nav-link" routerLinkActive="active">Statistiques</a>
+        <a routerLink="/compagnieVol/reservations" class="nav-item nav-link active" routerLinkActive="active">Réservations</a>
+        <a routerLink="/compagnieVol/vols" class="nav-item nav-link" routerLinkActive="active">Vols</a>
+        <a routerLink="/compagnieVol/avions" class="nav-item nav-link" routerLinkActive="active">Avions</a>
+      </div>
+      <div class="mt-4 mt-lg-0 me-lg-n4 py-3 px-4 bg-primary d-flex align-items-center">
+        <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white" style="width: 45px; height: 45px;">
+          <i class="fa fa-phone-alt text-primary"></i>
+        </div>
+        <div class="ms-3">
+          <p class="mb-1 text-white">Support 24/7</p>
+          <h5 class="m-0 text-secondary">+221 33 XXX XX XX</h5>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- Navbar End -->
+<div class="container-fluid py-5">
+  <div class="container">
+    <h2 class="mb-4">🎫 Réservations de Vols</h2>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="table-primary">
+          <tr>
+            <th>N° Billet</th>
+            <th>Passager</th>
+            <th>Vol</th>
+            <th>Départ → Arrivée</th>
+            <th>Date</th>
+            <th>Classe</th>
+            <th>Montant</th>
+            <th>Statut</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>#VOL12345</strong></td>
+            <td>Marie Ndiaye</td>
+            <td>AF-001</td>
+            <td>Dakar (DSS) → Paris (CDG)</td>
+            <td>2025-11-15 22:30</td>
+            <td>Économique</td>
+            <td>450,000 FCFA</td>
+            <td><span class="badge bg-success">Confirmé</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-light footer pt-5 mt-5">
+  <div class="container py-5">
+    <div class="row g-5">
+      <div class="col-lg-3 col-md-6">
+        <h4 class="text-light mb-4">Adresse</h4>
+        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Dakar, Sénégal</p>
+        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+221 33 XXX XX XX</p>
+        <p class="mb-2"><i class="fa fa-envelope me-3"></i>contact&#64;voyageexpress.sn</p>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h4 class="text-light mb-4">Liens Rapides</h4>
+        <a class="btn btn-link" routerLink="/">Accueil</a>
+        <a class="btn btn-link" routerLink="/about">À propos</a>
+        <a class="btn btn-link" routerLink="/services">Services</a>
+        <a class="btn btn-link" routerLink="/contact">Contact</a>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h4 class="text-light mb-4">Nos Services</h4>
+        <a class="btn btn-link" routerLink="/compagnieBus">Transport Bus</a>
+        <a class="btn btn-link" routerLink="/compagnieVol">Transport Aérien</a>
+        <a class="btn btn-link" routerLink="/etablisement">Hébergement</a>
+        <a class="btn btn-link" routerLink="/client">Espace Client</a>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h4 class="text-light mb-4">Newsletter</h4>
+        <p>Inscrivez-vous pour recevoir nos meilleures offres.</p>
+        <div class="position-relative mx-auto" style="max-width: 400px;">
+          <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Votre email">
+          <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">S'inscrire</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="copyright">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+          &copy; <a class="border-bottom" href="#">VoyageExpress</a>, Tous droits réservés.
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          Designed By <a class="border-bottom" href="#">VoyageExpress Team</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Footer End -->
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>

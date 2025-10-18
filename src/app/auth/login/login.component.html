@@ -1,0 +1,183 @@
+<!-- Topbar Start -->
+<div class="container-fluid bg-light d-none d-lg-block">
+  <div class="row align-items-center top-bar">
+    <div class="col-lg-3 col-md-12 text-center text-lg-start">
+      <a routerLink="/" class="navbar-brand m-0 p-0">
+        <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
+      </a>
+    </div>
+    <div class="col-lg-9 col-md-12 text-end">
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="fa fa-map-marker-alt text-primary me-2"></i>
+        <p class="m-0">Lomé, Togo</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="far fa-envelope-open text-primary me-2"></i>
+        <p class="m-0">contact&#64;voyageexpress.tg</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center">
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://facebook.com/voyageexpress" target="_blank">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://twitter.com/voyageexpress" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-0" href="https://instagram.com/voyageexpress" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Topbar End -->
+
+<!-- Navbar Start -->
+<div class="container-fluid nav-bar bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
+    <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
+      <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav me-auto">
+        <a routerLink="/" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-home me-2"></i>Accueil
+        </a>
+        <a routerLink="/about" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-info-circle me-2"></i>À Propos
+        </a>
+        <a routerLink="/services" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-list me-2"></i>Services
+        </a>
+        <a routerLink="/contact" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-phone me-2"></i>Contact
+        </a>
+      </div>
+
+      <!-- Auth Buttons -->
+      <div class="d-flex align-items-center mt-4 mt-lg-0 me-lg-n4">
+        <a routerLink="/auth/login" class="btn btn-outline-primary me-2 active">
+          <i class="fa fa-sign-in-alt me-1"></i>Se Connecter
+        </a>
+        <a routerLink="/auth/register" class="btn btn-primary">
+          <i class="fa fa-user-plus me-1"></i>S'Inscrire
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- Navbar End -->
+
+<!-- Login Section -->
+<div class="login-container d-flex align-items-center justify-content-center min-vh-100" style="background: linear-gradient(135deg, #4a90e2 0%, #7b68ee 50%, #ff6b6b 100%);">
+  <div class="login-card bg-white rounded-4 shadow-lg p-5" style="max-width: 450px; width: 100%;">
+    <!-- Header -->
+    <div class="text-center mb-4">
+      <div class="login-logo mb-3">
+        <i class="fa fa-plane fa-3x text-primary"></i>
+      </div>
+      <h2 class="fw-bold text-primary mb-2">Bienvenue sur VoyageExpress</h2>
+      <p class="text-muted">Connectez-vous à votre compte</p>
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <!-- Email Field -->
+      <div class="mb-4">
+        <label for="email" class="form-label fw-semibold">
+          <i class="fa fa-envelope me-2 text-primary"></i>Adresse Email
+        </label>
+        <input
+          type="email"
+          class="form-control form-control-lg"
+          id="email"
+          formControlName="email"
+          placeholder="votre.email@exemple.com"
+          [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="invalid-feedback">
+          <span *ngIf="loginForm.get('email')?.errors?.['required']">L'adresse email est requise</span>
+          <span *ngIf="loginForm.get('email')?.errors?.['email']">Veuillez entrer une adresse email valide</span>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="mb-4">
+        <label for="password" class="form-label fw-semibold">
+          <i class="fa fa-lock me-2 text-primary"></i>Mot de Passe
+        </label>
+        <div class="input-group input-group-lg">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            class="form-control border-end-0"
+            id="password"
+            formControlName="password"
+            placeholder="Votre mot de passe"
+            [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <button
+            class="btn btn-outline-secondary border-start-0"
+            type="button"
+            (click)="togglePasswordVisibility()">
+            <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+          </button>
+        </div>
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="invalid-feedback">
+          <span *ngIf="loginForm.get('password')?.errors?.['required']">Le mot de passe est requis</span>
+          <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Le mot de passe doit contenir au moins 6 caractères</span>
+        </div>
+      </div>
+
+      <!-- Remember Me & Forgot Password -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="rememberMe">
+          <label class="form-check-label text-muted" for="rememberMe">
+            Se souvenir de moi
+          </label>
+        </div>
+        <a href="#" class="text-decoration-none text-primary">Mot de passe oublié ?</a>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg w-100 mb-4"
+        [disabled]="isLoading">
+        <span *ngIf="!isLoading" class="d-flex align-items-center justify-content-center">
+          <i class="fa fa-sign-in-alt me-2"></i>Se Connecter
+        </span>
+        <span *ngIf="isLoading" class="d-flex align-items-center justify-content-center">
+          <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+          Connexion en cours...
+        </span>
+      </button>
+
+      <!-- Divider -->
+      <div class="text-center mb-4">
+        <span class="bg-white px-3 text-muted">ou</span>
+        <hr class="d-inline-block w-25 mx-2">
+      </div>
+
+      <!-- Social Login Buttons -->
+      <div class="d-grid gap-2 mb-4">
+        <button type="button" class="btn btn-outline-danger btn-lg">
+          <i class="fab fa-google me-2"></i>Continuer avec Google
+        </button>
+        <button type="button" class="btn btn-outline-primary btn-lg">
+          <i class="fab fa-facebook-f me-2"></i>Continuer avec Facebook
+        </button>
+      </div>
+
+      <!-- Register Link -->
+      <div class="text-center">
+        <p class="text-muted mb-0">
+          Pas encore de compte ?
+          <a href="#" (click)="goToRegister()" class="text-decoration-none fw-bold text-primary">
+            Créer un compte
+          </a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

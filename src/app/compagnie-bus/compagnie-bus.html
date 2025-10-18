@@ -1,0 +1,195 @@
+<!-- Topbar Start -->
+<div class="container-fluid bg-light d-none d-lg-block">
+  <div class="row align-items-center top-bar">
+    <div class="col-lg-3 col-md-12 text-center text-lg-start">
+      <a routerLink="/" class="navbar-brand m-0 p-0">
+        <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
+      </a>
+    </div>
+    <div class="col-lg-9 col-md-12 text-end">
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="fa fa-map-marker-alt text-primary me-2"></i>
+        <p class="m-0">Lomé, Togo</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="far fa-envelope-open text-primary me-2"></i>
+        <p class="m-0">contact&#64;voyageexpress.tg</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center">
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://facebook.com/voyageexpress" target="_blank">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://twitter.com/voyageexpress" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-0" href="https://instagram.com/voyageexpress" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Topbar End -->
+
+<!-- Navbar Start -->
+<div class="container-fluid nav-bar bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
+    <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
+      <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav me-auto">
+        <a routerLink="/" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-home me-2"></i>Accueil
+        </a>
+        <a routerLink="/compagnieBus" class="nav-item nav-link active" routerLinkActive="active">
+          <i class="fa fa-tachometer-alt me-2"></i>Dashboard
+        </a>
+        <a routerLink="/compagnieBus/reservations" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-ticket-alt me-2"></i>Réservations
+        </a>
+        <a routerLink="/compagnieBus/itineraires" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-route me-2"></i>Itinéraires
+        </a>
+        <a routerLink="/compagnieBus/vehicules" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-bus me-2"></i>Flotte
+        </a>
+        <a routerLink="/compagnieBus/statistiques" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-chart-line me-2"></i>Statistiques
+        </a>
+      </div>
+
+      <!-- Auth Buttons -->
+      <div class="d-flex align-items-center mt-4 mt-lg-0 me-lg-n4">
+        <a routerLink="/auth/login" class="btn btn-outline-primary me-2">
+          <i class="fa fa-sign-in-alt me-1"></i>Se Connecter
+        </a>
+        <a routerLink="/auth/register" class="btn btn-primary">
+          <i class="fa fa-user-plus me-1"></i>S'Inscrire
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- Navbar End -->
+
+<div class="container-fluid py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h6 class="text-secondary text-uppercase">Gestion Station</h6>
+      <h1 class="mb-3">🚌 Accueil Station de Bus</h1>
+      <p class="lead">Gérez efficacement votre station de bus avec notre plateforme complète de gestion des réservations, itinéraires et flotte de véhicules.</p>
+    </div>
+
+    <!-- Statistiques rapides -->
+    <div class="row g-4 mb-5">
+      <div class="col-md-3">
+        <div class="bg-primary text-white p-4 rounded-lg shadow-sm">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-ticket-alt fa-2x me-3"></i>
+            <div>
+              <h3 class="mb-0">1,247</h3>
+              <small>Réservations ce mois</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="bg-success text-white p-4 rounded-lg shadow-sm">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-dollar-sign fa-2x me-3"></i>
+            <div>
+              <h3 class="mb-0">245K</h3>
+              <small>Revenus (FCFA)</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="bg-warning text-white p-4 rounded-lg shadow-sm">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-percentage fa-2x me-3"></i>
+            <div>
+              <h3 class="mb-0">87%</h3>
+              <small>Taux occupation</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="bg-info text-white p-4 rounded-lg shadow-sm">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-bus fa-2x me-3"></i>
+            <div>
+              <h3 class="mb-0">24</h3>
+              <small>Bus actifs</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions rapides -->
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-center mb-3">
+              <i class="fa fa-chart-line text-primary fa-2x me-3"></i>
+              <div>
+                <h5 class="mb-0">Analyse & Statistiques</h5>
+                <p class="text-muted mb-0">Consultez les performances détaillées</p>
+              </div>
+            </div>
+            <a routerLink="/compagnieBus/statistiques" class="btn btn-primary">Voir statistiques</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-center mb-3">
+              <i class="fa fa-calendar-check text-success fa-2x me-3"></i>
+              <div>
+                <h5 class="mb-0">Gestion Réservations</h5>
+                <p class="text-muted mb-0">Gérez vos réservations de bus</p>
+              </div>
+            </div>
+            <a routerLink="/compagnieBus/reservations" class="btn btn-success">Voir réservations</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-center mb-3">
+              <i class="fa fa-route text-warning fa-2x me-3"></i>
+              <div>
+                <h5 class="mb-0">Itinéraires</h5>
+                <p class="text-muted mb-0">Gérez vos trajets et arrêts</p>
+              </div>
+            </div>
+            <a routerLink="/compagnieBus/itineraires" class="btn btn-warning">Gérer itinéraires</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-center mb-3">
+              <i class="fa fa-bus-alt text-info fa-2x me-3"></i>
+              <div>
+                <h5 class="mb-0">Flotte de Bus</h5>
+                <p class="text-muted mb-0">Gérez votre flotte de véhicules</p>
+              </div>
+            </div>
+            <a routerLink="/compagnieBus/vehicules" class="btn btn-info">Voir flotte</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

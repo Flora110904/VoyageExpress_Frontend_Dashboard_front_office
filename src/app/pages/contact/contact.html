@@ -1,0 +1,457 @@
+<!-- Topbar Start -->
+<div class="container-fluid bg-light d-none d-lg-block">
+  <div class="row align-items-center top-bar">
+    <div class="col-lg-3 col-md-12 text-center text-lg-start">
+      <a routerLink="/" class="navbar-brand m-0 p-0">
+        <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
+      </a>
+    </div>
+    <div class="col-lg-9 col-md-12 text-end">
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="fa fa-map-marker-alt text-primary me-2"></i>
+        <p class="m-0">Lomé, Togo</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="far fa-envelope-open text-primary me-2"></i>
+        <p class="m-0">contact&#64;voyageexpress.tg</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center">
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://facebook.com/voyageexpress" target="_blank">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://twitter.com/voyageexpress" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-0" href="https://instagram.com/voyageexpress" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Topbar End -->
+
+<!-- Navbar Start -->
+<div class="container-fluid nav-bar bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
+    <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
+      <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav me-auto">
+        <a routerLink="/" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-home me-2"></i>Accueil
+        </a>
+        <a routerLink="/about" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-info-circle me-2"></i>À Propos
+        </a>
+        <a routerLink="/services" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-list me-2"></i>Services
+        </a>
+        <a routerLink="/contact" class="nav-item nav-link active" routerLinkActive="active">
+          <i class="fa fa-phone me-2"></i>Contact
+        </a>
+      </div>
+
+      <!-- Auth Buttons -->
+      <div class="d-flex align-items-center mt-4 mt-lg-0 me-lg-n4">
+        <a routerLink="/auth/login" class="btn btn-outline-primary me-2">
+          <i class="fa fa-sign-in-alt me-1"></i>Se Connecter
+        </a>
+        <a routerLink="/auth/register" class="btn btn-primary">
+          <i class="fa fa-user-plus me-1"></i>S'Inscrire
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- Navbar End -->
+
+<!-- Hero Section -->
+<div class="hero-contact position-relative" style="background: linear-gradient(135deg, #4a90e2 0%, #7b68ee 50%, #ff6b6b 100%); min-height: 70vh; display: flex; align-items: center; padding-top: 80px;">
+  <div class="hero-background position-absolute top-0 start-0 w-100 h-100" style="background-image: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80'); background-size: cover; background-position: center; opacity: 0.2;"></div>
+  <div class="container position-relative z-index-2">
+    <div class="row align-items-center">
+      <div class="col-lg-6 text-white">
+        <h1 class="display-3 fw-bold mb-4 animate-fade-in">
+          📞 Contactez
+          <span class="text-warning">VoyageExpress</span>
+        </h1>
+        <p class="lead mb-4 fs-5">
+          Besoin d'aide ? Notre équipe d'experts est disponible 24h/24 et 7j/7
+          pour répondre à toutes vos questions concernant vos réservations et services.
+        </p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="tel:+22898337662" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
+            <i class="fa fa-phone me-2"></i>Appeler Maintenant
+          </a>
+          <a href="mailto:contact@voyageexpress.tg" class="btn btn-outline-light btn-lg px-5 py-3">
+            <i class="fa fa-envelope me-2"></i>Envoyer un Email
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-image-container">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+               alt="Support VoyageExpress" class="img-fluid rounded-4 shadow-lg animate-float">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Informations de Contact Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-4 fw-bold text-primary mb-3">📍 Nos Coordonnées</h2>
+      <p class="lead text-muted">Retrouvez toutes nos informations de contact</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="contact-card text-center p-5 bg-white rounded-4 shadow-lg h-100">
+          <div class="contact-icon mb-4 position-relative">
+            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                 alt="Téléphone" class="img-fluid rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+            <div class="icon-overlay position-absolute top-50 start-50 translate-middle bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+              <i class="fa fa-phone fa-2x"></i>
+            </div>
+          </div>
+          <h5 class="mb-3">📞 Téléphone</h5>
+          <p class="text-muted mb-3">
+            Notre équipe est disponible 24h/24 pour répondre à vos questions et vous accompagner dans vos réservations.
+          </p>
+          <div class="contact-info">
+            <h4 class="text-primary mb-2">+228 98 33 76 62</h4>
+            <p class="mb-3">Support technique & Réservations</p>
+            <a href="tel:+22898337662" class="btn btn-primary btn-lg">
+              <i class="fa fa-phone me-2"></i>Nous Appeler
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="contact-card text-center p-5 bg-white rounded-4 shadow-lg h-100">
+          <div class="contact-icon mb-4 position-relative">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                 alt="Email" class="img-fluid rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+            <div class="icon-overlay position-absolute top-50 start-50 translate-middle bg-success text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+              <i class="fa fa-envelope fa-2x"></i>
+            </div>
+          </div>
+          <h5 class="mb-3">✉️ Email</h5>
+          <p class="text-muted mb-3">
+            Pour toute demande d'information, réclamation ou suggestion, n'hésitez pas à nous contacter par email.
+          </p>
+          <div class="contact-info">
+            <h4 class="text-success mb-2">contact&#64;voyageexpress.tg</h4>
+            <p class="mb-3">Réponse sous 24h garantie</p>
+            <a href="mailto:contact@voyageexpress.tg" class="btn btn-success btn-lg">
+              <i class="fa fa-envelope me-2"></i>Nous Écrire
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="contact-card text-center p-5 bg-white rounded-4 shadow-lg h-100">
+          <div class="contact-icon mb-4 position-relative">
+            <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                 alt="Localisation" class="img-fluid rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+            <div class="icon-overlay position-absolute top-50 start-50 translate-middle bg-warning text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+              <i class="fa fa-map-marker-alt fa-2x"></i>
+            </div>
+          </div>
+          <h5 class="mb-3">📍 Adresse</h5>
+          <p class="text-muted mb-3">
+            Venez nous rendre visite dans nos bureaux à Lomé pour un service personnalisé et des conseils d'experts.
+          </p>
+          <div class="contact-info">
+            <h4 class="text-warning mb-2">Lomé, Togo</h4>
+            <p class="mb-3">Quartier Administratif</p>
+            <button class="btn btn-warning btn-lg">
+              <i class="fa fa-map me-2"></i>Voir sur la Carte
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Formulaire de Contact Section -->
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-4 fw-bold text-primary mb-3">💬 Envoyez-nous un Message</h2>
+      <p class="lead text-muted">Nous sommes là pour répondre à toutes vos questions</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="contact-form-card bg-white rounded-4 shadow-lg p-5">
+          <form class="contact-form">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <label for="name" class="form-label fw-semibold">
+                  <i class="fa fa-user me-2 text-primary"></i>Nom Complet
+                </label>
+                <input type="text" class="form-control form-control-lg" id="name" placeholder="Votre nom complet" required>
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label fw-semibold">
+                  <i class="fa fa-envelope me-2 text-primary"></i>Email
+                </label>
+                <input type="email" class="form-control form-control-lg" id="email" placeholder="votre.email@exemple.com" required>
+              </div>
+              <div class="col-md-6">
+                <label for="phone" class="form-label fw-semibold">
+                  <i class="fa fa-phone me-2 text-primary"></i>Téléphone
+                </label>
+                <input type="tel" class="form-control form-control-lg" id="phone" placeholder="+228 98 33 76 62">
+              </div>
+              <div class="col-md-6">
+                <label for="subject" class="form-label fw-semibold">
+                  <i class="fa fa-tag me-2 text-primary"></i>Sujet
+                </label>
+                <select class="form-select form-select-lg" id="subject" required>
+                  <option value="">Sélectionnez un sujet</option>
+                  <option value="reservation">Réservation</option>
+                  <option value="support">Support Technique</option>
+                  <option value="reclamation">Réclamation</option>
+                  <option value="partenariat">Partenariat</option>
+                  <option value="autre">Autre</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label for="message" class="form-label fw-semibold">
+                  <i class="fa fa-comment me-2 text-primary"></i>Message
+                </label>
+                <textarea class="form-control form-control-lg" id="message" rows="6" placeholder="Décrivez votre demande en détail..." required></textarea>
+              </div>
+              <div class="col-12">
+                <div class="d-flex align-items-center mb-3">
+                  <input class="form-check-input me-2" type="checkbox" id="newsletter" checked>
+                  <label class="form-check-label" for="newsletter">
+                    Je souhaite recevoir la newsletter VoyageExpress avec les meilleures offres
+                  </label>
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-lg w-100 py-3">
+                  <i class="fa fa-paper-plane me-2"></i>Envoyer le Message
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Horaires et Disponibilité Section -->
+<section class="py-5 bg-primary text-white">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-4 fw-bold mb-3">🕐 Nos Horaires</h2>
+      <p class="lead">Nous sommes disponibles pour vous accompagner 24h/24</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="schedule-card text-center p-4 bg-white bg-opacity-10 rounded-4">
+          <div class="schedule-icon mb-3">
+            <i class="fa fa-calendar-alt fa-3x text-warning"></i>
+          </div>
+          <h5 class="mb-3">Lundi - Vendredi</h5>
+          <p class="mb-2">Service Client : 8h00 - 18h00</p>
+          <p class="mb-2">Support Technique : 24h/24</p>
+          <p class="mb-0">Réservations : 24h/24</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="schedule-card text-center p-4 bg-white bg-opacity-10 rounded-4">
+          <div class="schedule-icon mb-3">
+            <i class="fa fa-calendar-check-o fa-3x text-success"></i>
+          </div>
+          <h5 class="mb-3">Samedi</h5>
+          <p class="mb-2">Service Client : 9h00 - 17h00</p>
+          <p class="mb-2">Support d'Urgence : 24h/24</p>
+          <p class="mb-0">Réservations : 24h/24</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="schedule-card text-center p-4 bg-white bg-opacity-10 rounded-4">
+          <div class="schedule-icon mb-3">
+            <i class="fa fa-calendar-times-o fa-3x text-info"></i>
+          </div>
+          <h5 class="mb-3">Dimanche & Jours Fériés</h5>
+          <p class="mb-2">Service Client : 10h00 - 16h00</p>
+          <p class="mb-2">Support d'Urgence : 24h/24</p>
+          <p class="mb-0">Réservations : 24h/24</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bureaux et Agences Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-4 fw-bold text-primary mb-3">🏢 Nos Bureaux</h2>
+      <p class="lead text-muted">Venez nous rencontrer dans nos agences</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="office-card bg-white rounded-4 shadow-lg p-4 h-100">
+          <div class="d-flex align-items-center mb-4">
+            <div class="office-icon me-4">
+              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                   alt="Siège Lomé" class="img-fluid rounded-circle" style="width: 60px; height: 60px; object-fit: cover;">
+            </div>
+            <div>
+              <h5 class="mb-1">Siège Social - Lomé</h5>
+              <p class="text-muted mb-0">Bureau Principal</p>
+            </div>
+          </div>
+          <div class="office-info">
+            <div class="d-flex align-items-center mb-2">
+              <i class="fa fa-map-marker-alt text-primary me-3"></i>
+              <span>Quartier Administratif, Lomé, Togo</span>
+            </div>
+            <div class="d-flex align-items-center mb-2">
+              <i class="fa fa-phone text-success me-3"></i>
+              <span>+228 98 33 76 62</span>
+            </div>
+            <div class="d-flex align-items-center mb-3">
+              <i class="fa fa-envelope text-warning me-3"></i>
+              <span>contact&#64;voyageexpress.tg</span>
+            </div>
+            <div class="d-flex align-items-center">
+              <i class="fa fa-clock-o text-info me-3"></i>
+              <span>Lundi - Vendredi: 8h00 - 18h00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="office-card bg-white rounded-4 shadow-lg p-4 h-100">
+          <div class="d-flex align-items-center mb-4">
+            <div class="office-icon me-4">
+              <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                   alt="Agence Kara" class="img-fluid rounded-circle" style="width: 60px; height: 60px; object-fit: cover;">
+            </div>
+            <div>
+              <h5 class="mb-1">Agence Régionale - Kara</h5>
+              <p class="text-muted mb-0">Nord Togo</p>
+            </div>
+          </div>
+          <div class="office-info">
+            <div class="d-flex align-items-center mb-2">
+              <i class="fa fa-map-marker-alt text-primary me-3"></i>
+              <span>Centre-Ville, Kara, Togo</span>
+            </div>
+            <div class="d-flex align-items-center mb-2">
+              <i class="fa fa-phone text-success me-3"></i>
+              <span>+228 96 12 34 56</span>
+            </div>
+            <div class="d-flex align-items-center mb-3">
+              <i class="fa fa-envelope text-warning me-3"></i>
+              <span>kara&#64;voyageexpress.tg</span>
+            </div>
+            <div class="d-flex align-items-center">
+              <i class="fa fa-clock-o text-info me-3"></i>
+              <span>Lundi - Samedi: 9h00 - 17h00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-4 fw-bold text-primary mb-3">❓ Questions Fréquentes</h2>
+      <p class="lead text-muted">Trouvez rapidement les réponses à vos questions</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="faq-card bg-white rounded-4 shadow-lg p-4 h-100">
+          <h5 class="mb-3 text-primary">💳 Comment réserver un billet ?</h5>
+          <p class="text-muted">
+            La réservation se fait en quelques clics sur notre plateforme. Sélectionnez votre destination,
+            vos dates, puis finalisez votre paiement en ligne de manière sécurisée.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="faq-card bg-white rounded-4 shadow-lg p-4 h-100">
+          <h5 class="mb-3 text-success">🔒 Mes données sont-elles sécurisées ?</h5>
+          <p class="text-muted">
+            Absolument ! Nous utilisons les technologies de chiffrement les plus avancées pour protéger
+            vos informations personnelles et vos données de paiement.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="faq-card bg-white rounded-4 shadow-lg p-4 h-100">
+          <h5 class="mb-3 text-warning">⏰ Puis-je annuler ma réservation ?</h5>
+          <p class="text-muted">
+            Oui, vous pouvez annuler votre réservation jusqu'à 24h avant le départ. Les conditions
+            d'annulation varient selon le type de service choisi.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="faq-card bg-white rounded-4 shadow-lg p-4 h-100">
+          <h5 class="mb-3 text-info">📞 Comment contacter le support ?</h5>
+          <p class="text-muted">
+            Notre support est disponible 24h/24 par téléphone au +228 98 33 76 62 ou par email
+            à contact&#64;voyageexpress.tg. Réponse garantie sous 24h.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="py-5 bg-gradient-primary">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center text-white">
+        <h2 class="display-5 fw-bold mb-4">🚀 Besoin d'Aide Immédiate ?</h2>
+        <p class="lead mb-4">
+          Notre équipe d'experts est prête à vous accompagner dans tous vos projets de voyage.
+          Contactez-nous dès maintenant !
+        </p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <a href="tel:+22898337662" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
+            <i class="fa fa-phone me-2"></i>Appeler Maintenant
+          </a>
+          <a href="mailto:contact@voyageexpress.tg" class="btn btn-outline-light btn-lg px-5 py-3">
+            <i class="fa fa-envelope me-2"></i>Nous Écrire
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

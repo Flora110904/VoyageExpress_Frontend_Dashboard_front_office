@@ -1,0 +1,309 @@
+/* Styles pour la page Services modernisée */
+
+/* Hero Section */
+.hero-services {
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-background {
+  z-index: 1;
+}
+
+.hero-image-container {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1.5s ease-in;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Service Cards */
+.service-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.service-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-image img {
+  transform: scale(1.1);
+}
+
+.service-overlay {
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(5px);
+}
+
+.service-icon {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.service-content {
+  background: white;
+}
+
+.service-features {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+/* Additional Services */
+.additional-service {
+  background: white;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.additional-service:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.service-benefits .badge {
+  font-size: 0.7rem;
+  padding: 0.4em 0.8em;
+}
+
+/* Advantage Cards */
+.advantage-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.advantage-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.advantage-icon {
+  transition: transform 0.3s ease;
+}
+
+.advantage-card:hover .advantage-icon {
+  transform: scale(1.1);
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+  background: white;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.testimonial-avatar img {
+  border: 3px solid #f8f9fa;
+  transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover .testimonial-avatar img {
+  transform: scale(1.1);
+}
+
+.testimonial-rating {
+  transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover .testimonial-rating {
+  transform: scale(1.1);
+}
+
+/* Background Gradients */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* List Styling */
+.list-unstyled li {
+  padding: 0.5rem 0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.list-unstyled li:hover {
+  background: rgba(102, 126, 234, 0.05);
+  padding-left: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-services {
+    min-height: 60vh;
+    text-align: center;
+  }
+
+  .hero-image-container {
+    margin-top: 2rem;
+  }
+
+  .display-3 {
+    font-size: calc(1.425rem + 2.1vw);
+  }
+
+  .display-4 {
+    font-size: calc(1.375rem + 1.5vw);
+  }
+
+  .display-5 {
+    font-size: calc(1.325rem + 0.9vw);
+  }
+
+  .service-card {
+    margin-bottom: 2rem;
+  }
+
+  .additional-service {
+    margin-bottom: 2rem;
+  }
+
+  .advantage-card {
+    margin-bottom: 2rem;
+  }
+}
+
+/* Button Enhancements */
+.btn {
+  border-radius: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Card Hover Effects */
+.card, .service-card, .additional-service, .advantage-card, .testimonial-card {
+  border: none;
+}
+
+.card:hover, .service-card:hover, .additional-service:hover, .advantage-card:hover, .testimonial-card:hover {
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+/* Image Loading Animation */
+img {
+  transition: opacity 0.3s ease;
+}
+
+img[src*="unsplash"] {
+  opacity: 0;
+  animation: fadeInImage 0.5s ease-in forwards;
+}
+
+@keyframes fadeInImage {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Icon Animations */
+.fa {
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .fa,
+.additional-service:hover .fa,
+.advantage-card:hover .fa {
+  transform: scale(1.2);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #764ba2;
+}
+
+/* Text Enhancements */
+.text-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Badge Styling */
+.badge {
+  font-size: 0.75rem;
+  padding: 0.5em 0.75em;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* Service Icons */
+.service-icon i {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.service-benefits {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}

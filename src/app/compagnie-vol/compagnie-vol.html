@@ -1,0 +1,195 @@
+<!-- Topbar Start -->
+<div class="container-fluid bg-light d-none d-lg-block">
+  <div class="row align-items-center top-bar">
+    <div class="col-lg-3 col-md-12 text-center text-lg-start">
+      <a routerLink="/" class="navbar-brand m-0 p-0">
+        <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
+      </a>
+    </div>
+    <div class="col-lg-9 col-md-12 text-end">
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="fa fa-map-marker-alt text-primary me-2"></i>
+        <p class="m-0">Lomé, Togo</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="far fa-envelope-open text-primary me-2"></i>
+        <p class="m-0">contact&#64;voyageexpress.tg</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center">
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://facebook.com/voyageexpress" target="_blank">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://twitter.com/voyageexpress" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-0" href="https://instagram.com/voyageexpress" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Topbar End -->
+
+<!-- Navbar Start -->
+<div class="container-fluid nav-bar bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
+    <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
+      <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav me-auto">
+        <a routerLink="/" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-home me-2"></i>Accueil
+        </a>
+        <a routerLink="/compagnieVol" class="nav-item nav-link active" routerLinkActive="active">
+          <i class="fa fa-tachometer-alt me-2"></i>Dashboard
+        </a>
+        <a routerLink="/compagnieVol/vols" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-plane me-2"></i>Vols
+        </a>
+        <a routerLink="/compagnieVol/reservations" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-ticket-alt me-2"></i>Réservations
+        </a>
+        <a routerLink="/compagnieVol/avions" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-plane me-2"></i>Flotte
+        </a>
+        <a routerLink="/compagnieVol/statistiques" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-chart-line me-2"></i>Statistiques
+        </a>
+      </div>
+
+      <!-- Auth Buttons -->
+      <div class="d-flex align-items-center mt-4 mt-lg-0 me-lg-n4">
+        <a routerLink="/auth/login" class="btn btn-outline-primary me-2">
+          <i class="fa fa-sign-in-alt me-1"></i>Se Connecter
+        </a>
+        <a routerLink="/auth/register" class="btn btn-primary">
+          <i class="fa fa-user-plus me-1"></i>S'Inscrire
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- Navbar End -->
+
+<div class="container-fluid py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h6 class="text-secondary text-uppercase">Gestion Aérienne</h6>
+      <h1 class="mb-3">✈️ Accueil Compagnie Aérienne</h1>
+      <p class="lead">Optimisez les opérations de votre compagnie aérienne avec notre plateforme complète de gestion des vols, réservations et flotte d'avions.</p>
+    </div>
+
+    <!-- Métriques clés -->
+    <div class="row g-4 mb-5">
+      <div class="col-md-3">
+        <div class="bg-primary text-white p-4 rounded-lg shadow-sm">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-plane fa-2x me-3"></i>
+            <div>
+              <h3 class="mb-0">456</h3>
+              <small>Vols ce mois</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="bg-success text-white p-4 rounded-lg shadow-sm">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-users fa-2x me-3"></i>
+            <div>
+              <h3 class="mb-0">12,847</h3>
+              <small>Passagers</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="bg-warning text-white p-4 rounded-lg shadow-sm">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-percentage fa-2x me-3"></i>
+            <div>
+              <h3 class="mb-0">92%</h3>
+              <small>Taux remplissage</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="bg-info text-white p-4 rounded-lg shadow-sm">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-fighter-jet fa-2x me-3"></i>
+            <div>
+              <h3 class="mb-0">15</h3>
+              <small>Avions actifs</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions rapides -->
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-center mb-3">
+              <i class="fa fa-chart-bar text-primary fa-2x me-3"></i>
+              <div>
+                <h5 class="mb-0">Statistiques</h5>
+                <p class="text-muted mb-0">Analyse des performances aériennes</p>
+              </div>
+            </div>
+            <a routerLink="/compagnieVol/statistiques" class="btn btn-primary">Voir statistiques</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-center mb-3">
+              <i class="fa fa-ticket-alt text-success fa-2x me-3"></i>
+              <div>
+                <h5 class="mb-0">Réservations</h5>
+                <p class="text-muted mb-0">Gestion des billets d'avion</p>
+              </div>
+            </div>
+            <a routerLink="/compagnieVol/reservations" class="btn btn-success">Voir réservations</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-center mb-3">
+              <i class="fa fa-plane-departure text-warning fa-2x me-3"></i>
+              <div>
+                <h5 class="mb-0">Planning Vols</h5>
+                <p class="text-muted mb-0">Gestion des horaires de vol</p>
+              </div>
+            </div>
+            <a routerLink="/compagnieVol/vols" class="btn btn-warning">Gérer vols</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-center mb-3">
+              <i class="fa fa-fighter-jet text-info fa-2x me-3"></i>
+              <div>
+                <h5 class="mb-0">Flotte Aérienne</h5>
+                <p class="text-muted mb-0">Gestion des avions</p>
+              </div>
+            </div>
+            <a routerLink="/compagnieVol/avions" class="btn btn-info">Voir flotte</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

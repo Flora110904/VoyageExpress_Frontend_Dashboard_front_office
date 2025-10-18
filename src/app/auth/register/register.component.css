@@ -1,0 +1,269 @@
+/* Styles pour le composant Register - Thème Tourisme/Voyage */
+
+.register-container {
+  background-attachment: fixed;
+  position: relative;
+}
+
+.register-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.register-card {
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.register-logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Styling */
+.form-control, .form-select {
+  border-radius: 12px;
+  border: 2px solid rgba(74, 144, 226, 0.1);
+  padding: 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(248, 249, 250, 0.8);
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+  background: white;
+}
+
+.form-control.is-invalid, .form-select.is-invalid {
+  border-color: #dc3545;
+  background: rgba(220, 53, 69, 0.05);
+}
+
+.form-label {
+  color: var(--dark-text);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+/* Input Group */
+.input-group .btn-outline-secondary {
+  border-color: rgba(74, 144, 226, 0.1);
+  background: rgba(248, 249, 250, 0.8);
+  color: var(--dark-text);
+}
+
+.input-group .btn-outline-secondary:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 12px;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  transition: all 0.3s ease;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Password Strength Indicator */
+.password-strength {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.progress {
+  background-color: rgba(74, 144, 226, 0.1);
+  border-radius: 2px;
+}
+
+.progress-bar {
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+/* Form Check */
+.form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.form-check-label {
+  font-size: 0.9rem;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.form-check-label a {
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.form-check-label a:hover {
+  text-decoration: underline;
+}
+
+/* Links */
+.text-decoration-none {
+  transition: all 0.3s ease;
+}
+
+.text-decoration-none:hover {
+  color: var(--primary-color) !important;
+}
+
+/* Spinner */
+.spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .register-card {
+    margin: 1rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .display-4 {
+    font-size: calc(1.375rem + 1.5vw);
+  }
+
+  .btn-lg {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .col-md-6 {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Custom Variables */
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #7b68ee;
+  --accent-color: #ff6b6b;
+  --success-color: #51cf66;
+  --warning-color: #ffd43b;
+  --info-color: #74c0fc;
+  --light-bg: #f8f9fa;
+  --dark-text: #2c3e50;
+  --light-text: #6c757d;
+}
+
+/* Focus Effects */
+.btn:focus,
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25) !important;
+}
+
+/* Loading State */
+.btn:disabled {
+  cursor: not-allowed;
+}
+
+/* Error States */
+.invalid-feedback {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+/* Checkbox Custom Styling */
+.form-check-input {
+  width: 1.2em;
+  height: 1.2em;
+  margin-top: 0.15em;
+  border-radius: 0.25em;
+  border: 2px solid rgba(74, 144, 226, 0.3);
+}
+
+.form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Icon Spacing */
+.fa {
+  margin-right: 0.5rem;
+}
+
+/* Form Select Custom Styling */
+.form-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 1rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 3rem;
+}
+
+.form-select:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%234a90e2' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+}
+
+/* Terms and Conditions */
+.form-check {
+  padding: 1rem;
+  background: rgba(74, 144, 226, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(74, 144, 226, 0.1);
+}

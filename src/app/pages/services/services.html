@@ -1,0 +1,541 @@
+<!-- Topbar Start -->
+<div class="container-fluid bg-light d-none d-lg-block">
+  <div class="row align-items-center top-bar">
+    <div class="col-lg-3 col-md-12 text-center text-lg-start">
+      <a routerLink="/" class="navbar-brand m-0 p-0">
+        <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
+      </a>
+    </div>
+    <div class="col-lg-9 col-md-12 text-end">
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="fa fa-map-marker-alt text-primary me-2"></i>
+        <p class="m-0">Lomé, Togo</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="far fa-envelope-open text-primary me-2"></i>
+        <p class="m-0">contact&#64;voyageexpress.tg</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center">
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://facebook.com/voyageexpress" target="_blank">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://twitter.com/voyageexpress" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-0" href="https://instagram.com/voyageexpress" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Topbar End -->
+
+<!-- Navbar Start -->
+<div class="container-fluid nav-bar bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
+    <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
+      <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav me-auto">
+        <a routerLink="/" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-home me-2"></i>Accueil
+        </a>
+        <a routerLink="/about" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-info-circle me-2"></i>À Propos
+        </a>
+        <a routerLink="/services" class="nav-item nav-link active" routerLinkActive="active">
+          <i class="fa fa-list me-2"></i>Services
+        </a>
+        <a routerLink="/contact" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-phone me-2"></i>Contact
+        </a>
+      </div>
+
+      <!-- Auth Buttons -->
+      <div class="d-flex align-items-center mt-4 mt-lg-0 me-lg-n4">
+        <a routerLink="/auth/login" class="btn btn-outline-primary me-2">
+          <i class="fa fa-sign-in-alt me-1"></i>Se Connecter
+        </a>
+        <a routerLink="/auth/register" class="btn btn-primary">
+          <i class="fa fa-user-plus me-1"></i>S'Inscrire
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- Navbar End -->
+
+<!-- Hero Section -->
+<div class="hero-services position-relative" style="background: linear-gradient(135deg, #4a90e2 0%, #7b68ee 50%, #ff6b6b 100%); min-height: 70vh; display: flex; align-items: center; padding-top: 80px;">
+  <div class="hero-background position-absolute top-0 start-0 w-100 h-100" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80'); background-size: cover; background-position: center; opacity: 0.2;"></div>
+  <div class="container position-relative z-index-2">
+    <div class="row align-items-center">
+      <div class="col-lg-6 text-white">
+        <h1 class="display-3 fw-bold mb-4 animate-fade-in">
+          🚀 Nos Services
+          <span class="text-warning">d'Exception</span>
+        </h1>
+        <p class="lead mb-4 fs-5">
+          Découvrez notre gamme complète de services de transport et de voyage conçus pour répondre
+          à tous vos besoins de déplacement au Togo et en Afrique de l'Ouest.
+        </p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a routerLink="/client/recherche" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
+            <i class="fa fa-search me-2"></i>Réserver Maintenant
+          </a>
+          <a routerLink="/about" class="btn btn-outline-light btn-lg px-5 py-3">
+            <i class="fa fa-info-circle me-2"></i>En Savoir Plus
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-image-container">
+          <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+               alt="Services VoyageExpress" class="img-fluid rounded-4 shadow-lg animate-float">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Services Principaux Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-4 fw-bold text-primary mb-3">🌟 Services Principaux</h2>
+      <p class="lead text-muted">Des solutions complètes pour tous vos besoins de transport</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Réservation de Bus -->
+      <div class="col-lg-6 col-md-6">
+        <div class="service-card position-relative overflow-hidden h-100">
+          <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                 alt="Bus VoyageExpress" class="img-fluid w-100 h-100">
+            <div class="service-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+              <div class="service-icon text-center text-white">
+                <i class="fa fa-bus fa-3x mb-3"></i>
+                <h4 class="mb-0">Réservation de Bus</h4>
+              </div>
+            </div>
+          </div>
+          <div class="service-content p-4">
+            <h5 class="mb-3">🚌 Transport par Bus Moderne</h5>
+            <p class="text-muted mb-4">
+              Voyagez confortablement dans nos bus modernes équipés de WiFi, climatisation et sièges ergonomiques.
+              Réservation flexible avec options de remboursement.
+            </p>
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2 d-flex align-items-center">
+                <i class="fa fa-check text-success me-2"></i>
+                Flotte moderne et entretenue
+              </li>
+              <li class="mb-2 d-flex align-items-center">
+                <i class="fa fa-check text-success me-2"></i>
+                WiFi gratuit à bord
+              </li>
+              <li class="mb-2 d-flex align-items-center">
+                <i class="fa fa-check text-success me-2"></i>
+                Climatisation et confort
+              </li>
+              <li class="mb-2 d-flex align-items-center">
+                <i class="fa fa-check text-success me-2"></i>
+                Suivi GPS en temps réel
+              </li>
+            </ul>
+            <div class="service-features d-flex justify-content-between align-items-center">
+              <div class="text-center">
+                <h6 class="text-primary mb-1">À partir de</h6>
+                <h4 class="mb-0">5,000 FCFA</h4>
+              </div>
+              <a routerLink="/client/recherche" class="btn btn-primary">Réserver</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Réservation de Vols -->
+      <div class="col-lg-6 col-md-6">
+        <div class="service-card position-relative overflow-hidden h-100">
+          <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                 alt="Avion VoyageExpress" class="img-fluid w-100 h-100">
+            <div class="service-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+              <div class="service-icon text-center text-white">
+                <i class="fa fa-plane fa-3x mb-3"></i>
+                <h4 class="mb-0">Réservation de Vols</h4>
+              </div>
+            </div>
+          </div>
+          <div class="service-content p-4">
+            <h5 class="mb-3">✈️ Vols Nationaux & Internationaux</h5>
+            <p class="text-muted mb-4">
+              Réservez vos vols en toute simplicité avec nos compagnies partenaires.
+              Comparaison de prix et options flexibles pour tous vos voyages aériens.
+            </p>
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2 d-flex align-items-center">
+                <i class="fa fa-check text-success me-2"></i>
+                Comparaison multi-compagnies
+              </li>
+              <li class="mb-2 d-flex align-items-center">
+                <i class="fa fa-check text-success me-2"></i>
+                Options low-cost disponibles
+              </li>
+              <li class="mb-2 d-flex align-items-center">
+                <i class="fa fa-check text-success me-2"></i>
+                Réservation flexible
+              </li>
+              <li class="mb-2 d-flex align-items-center">
+                <i class="fa fa-check text-success me-2"></i>
+                Support 24/7
+              </li>
+            </ul>
+            <div class="service-features d-flex justify-content-between align-items-center">
+              <div class="text-center">
+                <h6 class="text-primary mb-1">À partir de</h6>
+                <h4 class="mb-0">25,000 FCFA</h4>
+              </div>
+              <a routerLink="/client/recherche" class="btn btn-success">Réserver</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hébergement -->
+      <div class="col-lg-6 col-md-6">
+        <div class="service-card position-relative overflow-hidden h-100">
+          <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                 alt="Hôtel VoyageExpress" class="img-fluid w-100 h-100">
+            <div class="service-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+              <div class="service-icon text-center text-white">
+                <i class="fa fa-hotel fa-3x mb-3"></i>
+                <h4 class="mb-0">Hébergement</h4>
+              </div>
+            </div>
+          </div>
+          <div class="service-content p-4">
+            <h5 class="mb-3">🏨 Réservation d'Hôtels</h5>
+            <p class="text-muted mb-4">
+              Trouvez l'hébergement parfait pour votre séjour avec notre sélection d'hôtels,
+              resorts et logements de qualité à travers le Togo et l'Afrique de l'Ouest.
+            </p>
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2 d-flex align-items-center">
+                <i class="fa fa-check text-success me-2"></i>
+                Hôtels partenaires sélectionnés
+              </li>
+              <li class="mb-2 d-flex align-items-center">
+                <i class="fa fa-check text-success me-2"></i>
+                Réservation instantanée
+              </li>
+              <li class="mb-2 d-flex align-items-center">
+                <i class="fa fa-check text-success me-2"></i>
+                Meilleurs tarifs garantis
+              </li>
+              <li class="mb-2 d-flex align-items-center">
+                <i class="fa fa-check text-success me-2"></i>
+                Annulation gratuite
+              </li>
+            </ul>
+            <div class="service-features d-flex justify-content-between align-items-center">
+              <div class="text-center">
+                <h6 class="text-primary mb-1">À partir de</h6>
+                <h4 class="mb-0">15,000 FCFA</h4>
+              </div>
+              <a routerLink="/client/recherche" class="btn btn-info">Réserver</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services Premium -->
+      <div class="col-lg-6 col-md-6">
+        <div class="service-card position-relative overflow-hidden h-100">
+          <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                 alt="Service Premium" class="img-fluid w-100 h-100">
+            <div class="service-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+              <div class="service-icon text-center text-white">
+                <i class="fa fa-star fa-3x mb-3"></i>
+                <h4 class="mb-0">Premium</h4>
+              </div>
+            </div>
+          </div>
+          <div class="service-content p-4">
+            <h5 class="mb-3">⭐ Services Premium</h5>
+            <p class="text-muted mb-4">
+              Bénéficiez d'avantages exclusifs avec notre formule Premium : embarquement prioritaire,
+              sièges VIP, assistance personnalisée et offres spéciales.
+            </p>
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2 d-flex align-items-center">
+                <i class="fa fa-check text-success me-2"></i>
+                Embarquement prioritaire
+              </li>
+              <li class="mb-2 d-flex align-items-center">
+                <i class="fa fa-check text-success me-2"></i>
+                Sièges VIP confortables
+              </li>
+              <li class="mb-2 d-flex align-items-center">
+                <i class="fa fa-check text-success me-2"></i>
+                Assistance personnalisée
+              </li>
+              <li class="mb-2 d-flex align-items-center">
+                <i class="fa fa-check text-success me-2"></i>
+                Réductions exclusives
+              </li>
+            </ul>
+            <div class="service-features d-flex justify-content-between align-items-center">
+              <div class="text-center">
+                <h6 class="text-primary mb-1">À partir de</h6>
+                <h4 class="mb-0">+20%</h4>
+              </div>
+              <a routerLink="/contact" class="btn btn-warning">Devenir Premium</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Additionnels Section -->
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-4 fw-bold text-primary mb-3">🛠️ Services Additionnels</h2>
+      <p class="lead text-muted">Des services complémentaires pour enrichir votre expérience de voyage</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="additional-service text-center p-4 h-100 border-0 shadow-lg">
+          <div class="service-icon mb-4 position-relative">
+            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                 alt="Assurance Voyage" class="img-fluid rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+          </div>
+          <h5 class="mb-3 text-primary">🛡️ Assurance Voyage</h5>
+          <p class="text-muted mb-4">
+            Protégez votre voyage avec notre assurance complète couvrant annulation,
+            perte de bagages et assistance médicale d'urgence.
+          </p>
+          <div class="service-benefits">
+            <div class="d-flex justify-content-center gap-3 mb-3">
+              <span class="badge bg-success">Annulation</span>
+              <span class="badge bg-info">Bagages</span>
+            </div>
+            <a routerLink="/contact" class="btn btn-outline-primary">En Savoir Plus</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="additional-service text-center p-4 h-100 border-0 shadow-lg">
+          <div class="service-icon mb-4 position-relative">
+            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                 alt="Location de Véhicules" class="img-fluid rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+          </div>
+          <h5 class="mb-3 text-success">🚗 Location de Véhicules</h5>
+          <p class="text-muted mb-4">
+            Louez un véhicule à votre arrivée pour explorer librement votre destination.
+            Voitures économiques, berlines et 4x4 disponibles.
+          </p>
+          <div class="service-benefits">
+            <div class="d-flex justify-content-center gap-3 mb-3">
+              <span class="badge bg-warning">Économique</span>
+              <span class="badge bg-danger">4x4</span>
+            </div>
+            <a routerLink="/contact" class="btn btn-outline-success">Réserver</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="additional-service text-center p-4 h-100 border-0 shadow-lg">
+          <div class="service-icon mb-4 position-relative">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                 alt="Excursions" class="img-fluid rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+          </div>
+          <h5 class="mb-3 text-warning">🎯 Excursions Guidées</h5>
+          <p class="text-muted mb-4">
+            Découvrez les trésors cachés du Togo avec nos excursions guidées par des experts locaux.
+            Expériences culturelles authentiques garanties.
+          </p>
+          <div class="service-benefits">
+            <div class="d-flex justify-content-center gap-3 mb-3">
+              <span class="badge bg-primary">Culture</span>
+              <span class="badge bg-info">Nature</span>
+            </div>
+            <a routerLink="/contact" class="btn btn-outline-warning">Découvrir</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Avantages VoyageExpress Section -->
+<section class="py-5 bg-primary text-white">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-4 fw-bold mb-3">💎 Pourquoi Choisir VoyageExpress ?</h2>
+      <p class="lead">Découvrez les avantages exclusifs qui font de nous le leader du transport au Togo</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6">
+        <div class="advantage-card text-center p-4">
+          <div class="advantage-icon mb-3">
+            <i class="fa fa-clock fa-3x text-warning"></i>
+          </div>
+          <h5 class="mb-3">Réservation Rapide</h5>
+          <p class="mb-0">
+            Réservez en moins de 2 minutes avec notre plateforme intuitive et sécurisée.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="advantage-card text-center p-4">
+          <div class="advantage-icon mb-3">
+            <i class="fa fa-shield-alt fa-3x text-success"></i>
+          </div>
+          <h5 class="mb-3">Sécurité Garantie</h5>
+          <p class="mb-0">
+            Tous nos partenaires respectent les normes de sécurité les plus strictes.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="advantage-card text-center p-4">
+          <div class="advantage-icon mb-3">
+            <i class="fa fa-headset fa-3x text-info"></i>
+          </div>
+          <h5 class="mb-3">Support 24/7</h5>
+          <p class="mb-0">
+            Notre équipe d'experts est disponible à tout moment pour vous accompagner.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="advantage-card text-center p-4">
+          <div class="advantage-icon mb-3">
+            <i class="fa fa-tags fa-3x text-danger"></i>
+          </div>
+          <h5 class="mb-3">Meilleurs Prix</h5>
+          <p class="mb-0">
+            Bénéficiez des tarifs les plus compétitifs du marché avec nos offres exclusives.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Témoignages Clients Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-4 fw-bold text-primary mb-3">⭐ Avis de Nos Clients</h2>
+      <p class="lead text-muted">Découvrez ce que disent nos voyageurs satisfaits</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="testimonial-card text-center p-4 bg-white rounded-4 shadow-lg">
+          <div class="testimonial-avatar mb-3">
+            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b17c?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                 alt="Client" class="img-fluid rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+          </div>
+          <div class="testimonial-rating mb-3">
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+          </div>
+          <p class="testimonial-text mb-3">
+            "VoyageExpress a révolutionné mes déplacements au Togo. Service impeccable et prix très abordables !"
+          </p>
+          <h6 class="mb-1">Marie Koffi</h6>
+          <small class="text-muted">Lomé, Togo</small>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="testimonial-card text-center p-4 bg-white rounded-4 shadow-lg">
+          <div class="testimonial-avatar mb-3">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                 alt="Client" class="img-fluid rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+          </div>
+          <div class="testimonial-rating mb-3">
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star-half-alt text-warning"></i>
+          </div>
+          <p class="testimonial-text mb-3">
+            "Réservation ultra-simple et support client exceptionnel. Je recommande vivement VoyageExpress !"
+          </p>
+          <h6 class="mb-1">Ahmed Diallo</h6>
+          <small class="text-muted">Kara, Togo</small>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="testimonial-card text-center p-4 bg-white rounded-4 shadow-lg">
+          <div class="testimonial-avatar mb-3">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                 alt="Client" class="img-fluid rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+          </div>
+          <div class="testimonial-rating mb-3">
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-star text-warning"></i>
+          </div>
+          <p class="testimonial-text mb-3">
+            "Grâce à VoyageExpress, j'ai découvert des destinations magnifiques au Togo à des prix défiant toute concurrence !"
+          </p>
+          <h6 class="mb-1">Fatou Sow</h6>
+          <small class="text-muted">Sokodé, Togo</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="py-5 bg-gradient-primary">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center text-white">
+        <h2 class="display-5 fw-bold mb-4">🚀 Prêt à Vivre une Expérience Exceptionnelle ?</h2>
+        <p class="lead mb-4">
+          Rejoignez des milliers de voyageurs satisfaits et découvrez le Togo comme jamais auparavant
+          avec VoyageExpress, votre partenaire de confiance pour tous vos déplacements.
+        </p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <a routerLink="/client/recherche" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
+            <i class="fa fa-search me-2"></i>Commencer Maintenant
+          </a>
+          <a routerLink="/contact" class="btn btn-outline-light btn-lg px-5 py-3">
+            <i class="fa fa-phone me-2"></i>Nous Contacter
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,392 @@
+/* Styles pour la page Contact modernisée - Thème Tourisme/Voyage */
+
+/* Variables de couleurs pour le thème tourisme */
+:root {
+  --primary-color: #4a90e2; /* Bleu océan */
+  --secondary-color: #7b68ee; /* Violet voyage */
+  --accent-color: #ff6b6b; /* Orange coucher de soleil */
+  --success-color: #51cf66; /* Vert nature */
+  --warning-color: #ffd43b; /* Jaune soleil */
+  --info-color: #74c0fc; /* Bleu ciel */
+  --light-bg: #f8f9fa; /* Blanc cassé */
+  --dark-text: #2c3e50; /* Gris foncé */
+  --light-text: #6c757d; /* Gris moyen */
+}
+
+/* Hero Section */
+.hero-contact {
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+}
+
+.hero-contact .hero-background {
+  z-index: 1;
+}
+
+.hero-contact .hero-image-container {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1.5s ease-in;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Contact Cards */
+.contact-card {
+  background: white;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.contact-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(74, 144, 226, 0.15);
+}
+
+.contact-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.icon-overlay {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+}
+
+.contact-card:hover .icon-overlay {
+  transform: scale(1.1);
+}
+
+.contact-info h4 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+/* Schedule Cards */
+.schedule-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.schedule-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.schedule-icon {
+  transition: transform 0.3s ease;
+}
+
+.schedule-card:hover .schedule-icon {
+  transform: scale(1.1);
+}
+
+/* Office Cards */
+.office-card {
+  transition: all 0.3s ease;
+  border-radius: 15px;
+}
+
+.office-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(74, 144, 226, 0.1);
+}
+
+.office-icon img {
+  transition: transform 0.3s ease;
+  border: 3px solid rgba(74, 144, 226, 0.1);
+}
+
+.office-card:hover .office-icon img {
+  transform: scale(1.1);
+  border-color: var(--primary-color);
+}
+
+.office-info {
+  padding-left: 1rem;
+}
+
+/* FAQ Cards */
+.faq-card {
+  transition: all 0.3s ease;
+  background: white;
+  border-radius: 15px;
+}
+
+.faq-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(74, 144, 226, 0.1);
+}
+
+/* Contact Form */
+.contact-form-card {
+  transition: all 0.3s ease;
+  border-radius: 20px;
+}
+
+.contact-form-card:hover {
+  transform: translateY(-5px);
+}
+
+.contact-form .form-control,
+.contact-form .form-select {
+  border-radius: 12px;
+  border: 2px solid rgba(74, 144, 226, 0.1);
+  padding: 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(248, 249, 250, 0.8);
+}
+
+.contact-form .form-control:focus,
+.contact-form .form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+  background: white;
+}
+
+.contact-form .form-label {
+  color: var(--dark-text);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+/* Form Check */
+.contact-form .form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.contact-form .form-check-label {
+  font-size: 0.9rem;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+/* Background Gradients */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+}
+
+/* Button enhancements */
+.btn {
+  border-radius: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, var(--success-color) 0%, #40c057 100%);
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, var(--warning-color) 0%, #fab005 100%);
+}
+
+.btn-info {
+  background: linear-gradient(135deg, var(--info-color) 0%, #339af0 100%);
+}
+
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Card shadows and effects */
+.card, .contact-card, .office-card, .faq-card, .schedule-card {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  border: none;
+  border-radius: 15px;
+}
+
+.card:hover, .contact-card:hover, .office-card:hover, .faq-card:hover, .schedule-card:hover {
+  box-shadow: 0 15px 35px rgba(74, 144, 226, 0.15);
+}
+
+/* Text enhancements */
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.text-success {
+  color: var(--success-color) !important;
+}
+
+.text-warning {
+  color: var(--warning-color) !important;
+}
+
+.text-info {
+  color: var(--info-color) !important;
+}
+
+.text-muted {
+  color: var(--light-text) !important;
+}
+
+/* Icon animations */
+.fa {
+  transition: transform 0.3s ease;
+}
+
+.contact-card:hover .fa,
+.office-card:hover .fa,
+.faq-card:hover .fa {
+  transform: scale(1.2);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
+/* Background patterns */
+.bg-light {
+  background-color: var(--light-bg) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-contact {
+    min-height: 60vh;
+    text-align: center;
+    padding-top: 100px;
+  }
+
+  .hero-image-container {
+    margin-top: 2rem;
+  }
+
+  .display-3 {
+    font-size: calc(1.425rem + 2.1vw);
+  }
+
+  .display-4 {
+    font-size: calc(1.375rem + 1.5vw);
+  }
+
+  .display-5 {
+    font-size: calc(1.325rem + 0.9vw);
+  }
+
+  .contact-card {
+    margin-bottom: 2rem;
+  }
+
+  .office-card {
+    margin-bottom: 2rem;
+  }
+
+  .faq-card {
+    margin-bottom: 2rem;
+  }
+}
+
+/* Form Select Custom Styling */
+.form-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 1rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 3rem;
+}
+
+.form-select:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%234a90e2' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+}
+
+/* Textarea styling */
+textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Image loading animations */
+img {
+  transition: opacity 0.3s ease;
+}
+
+img[src*="unsplash"] {
+  opacity: 0;
+  animation: fadeInImage 0.5s ease-in forwards;
+}
+
+@keyframes fadeInImage {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Contact form specific styling */
+.contact-form .form-floating {
+  position: relative;
+}
+
+.contact-form .form-floating label {
+  padding: 1rem;
+}
+
+/* Icon spacing in contact info */
+.office-info .fa,
+.contact-info .fa {
+  width: 20px;
+  text-align: center;
+}
