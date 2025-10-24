@@ -1,9 +1,9 @@
 <!-- Topbar Start -->
 <div class="container-fluid bg-light d-none d-lg-block">
-  <div class="row align-items-center top-bar">
+    <div class="row align-items-center top-bar">
     <div class="col-lg-3 col-md-12 text-center text-lg-start">
       <a routerLink="/" class="navbar-brand m-0 p-0">
-        <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
+        <h1 class="text-primary m-0">VoyageExpress</h1>
       </a>
     </div>
     <div class="col-lg-9 col-md-12 text-end">
@@ -35,7 +35,7 @@
 <div class="container-fluid nav-bar bg-light">
   <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
     <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
-      <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
+      <h1 class="text-primary m-0">VoyageExpress</h1>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
       <span class="fa fa-bars"></span>
@@ -45,19 +45,19 @@
         <a routerLink="/" class="nav-item nav-link" routerLinkActive="active">
           <i class="fa fa-home me-2"></i>Accueil
         </a>
-        <a routerLink="/etablissement" class="nav-item nav-link active" routerLinkActive="active">
+        <a routerLink="" class="nav-item nav-link active" routerLinkActive="active">
           <i class="fa fa-tachometer-alt me-2"></i>Dashboard
         </a>
-        <a routerLink="/etablissement/chambres" class="nav-item nav-link" routerLinkActive="active">
+        <a routerLink="chambres" class="nav-item nav-link" routerLinkActive="active">
           <i class="fa fa-bed me-2"></i>Chambres
         </a>
-        <a routerLink="/etablissement/reservations" class="nav-item nav-link" routerLinkActive="active">
+        <a routerLink="reservations" class="nav-item nav-link" routerLinkActive="active">
           <i class="fa fa-calendar-check me-2"></i>Réservations
         </a>
-        <a routerLink="/etablissement/tarifs" class="nav-item nav-link" routerLinkActive="active">
+        <a routerLink="types" class="nav-item nav-link" routerLinkActive="active">
           <i class="fa fa-tags me-2"></i>Tarifs
         </a>
-        <a routerLink="/etablissement/statistiques" class="nav-item nav-link" routerLinkActive="active">
+        <a routerLink="statistiques" class="nav-item nav-link" routerLinkActive="active">
           <i class="fa fa-chart-line me-2"></i>Statistiques
         </a>
       </div>
@@ -85,47 +85,47 @@
     </div>
 
     <!-- Métriques clés -->
-    <div class="row g-4 mb-5">
+    <div class="row g-4 mb-5 dashboard-metrics">
       <div class="col-md-3">
-        <div class="bg-primary text-white p-4 rounded-lg shadow-sm">
+        <div class="metric-card metric-primary">
           <div class="d-flex align-items-center">
-            <i class="fa fa-bed fa-2x me-3"></i>
+            <div class="metric-icon"><i class="fa fa-bed"></i></div>
             <div>
-              <h3 class="mb-0">89</h3>
-              <small>Chambres totales</small>
+              <div class="metric-number">89</div>
+              <div class="metric-label">Chambres totales</div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-3">
-        <div class="bg-success text-white p-4 rounded-lg shadow-sm">
+        <div class="metric-card metric-success">
           <div class="d-flex align-items-center">
-            <i class="fa fa-check-circle fa-2x me-3"></i>
+            <div class="metric-icon"><i class="fa fa-check-circle"></i></div>
             <div>
-              <h3 class="mb-0">67</h3>
-              <small>Chambres occupées</small>
+              <div class="metric-number">67</div>
+              <div class="metric-label">Chambres occupées</div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-3">
-        <div class="bg-warning text-white p-4 rounded-lg shadow-sm">
+        <div class="metric-card metric-warning">
           <div class="d-flex align-items-center">
-            <i class="fa fa-percentage fa-2x me-3"></i>
+            <div class="metric-icon"><i class="fa fa-percentage"></i></div>
             <div>
-              <h3 class="mb-0">75%</h3>
-              <small>Taux occupation</small>
+              <div class="metric-number">75%</div>
+              <div class="metric-label">Taux occupation</div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-3">
-        <div class="bg-info text-white p-4 rounded-lg shadow-sm">
+        <div class="metric-card metric-info">
           <div class="d-flex align-items-center">
-            <i class="fa fa-dollar-sign fa-2x me-3"></i>
+            <div class="metric-icon"><i class="fa fa-dollar-sign"></i></div>
             <div>
-              <h3 class="mb-0">2.4M</h3>
-              <small>Revenus (FCFA)</small>
+              <div class="metric-number">2.4M</div>
+              <div class="metric-label">Revenus (FCFA)</div>
             </div>
           </div>
         </div>
@@ -135,59 +135,51 @@
     <!-- Actions rapides -->
     <div class="row g-4">
       <div class="col-md-6">
-        <div class="card border-0 shadow-sm">
-          <div class="card-body p-4">
-            <div class="d-flex align-items-center mb-3">
-              <i class="fa fa-chart-pie text-primary fa-2x me-3"></i>
-              <div>
-                <h5 class="mb-0">Statistiques</h5>
-                <p class="text-muted mb-0">Analyse occupation et revenus</p>
-              </div>
+        <div class="action-card">
+          <div class="d-flex align-items-center mb-3">
+            <div class="action-icon text-primary"><i class="fa fa-chart-pie"></i></div>
+            <div>
+              <h5 class="action-title">Statistiques</h5>
+              <p class="action-description">Analyse occupation et revenus</p>
             </div>
-            <a routerLink="/etablisement/statistiques" class="btn btn-primary">Voir statistiques</a>
           </div>
+          <a routerLink="statistiques" class="btn btn-primary action-btn">Voir statistiques</a>
         </div>
       </div>
       <div class="col-md-6">
-        <div class="card border-0 shadow-sm">
-          <div class="card-body p-4">
-            <div class="d-flex align-items-center mb-3">
-              <i class="fa fa-bed text-success fa-2x me-3"></i>
-              <div>
-                <h5 class="mb-0">Gestion Chambres</h5>
-                <p class="text-muted mb-0">Gérer disponibilité et tarifs</p>
-              </div>
+        <div class="action-card">
+          <div class="d-flex align-items-center mb-3">
+            <div class="action-icon text-success"><i class="fa fa-bed"></i></div>
+            <div>
+              <h5 class="action-title">Gestion Chambres</h5>
+              <p class="action-description">Gérer disponibilité et tarifs</p>
             </div>
-            <a routerLink="/etablisement/chambres" class="btn btn-success">Gérer chambres</a>
           </div>
+          <a routerLink="chambres" class="btn btn-success action-btn">Gérer chambres</a>
         </div>
       </div>
       <div class="col-md-6">
-        <div class="card border-0 shadow-sm">
-          <div class="card-body p-4">
-            <div class="d-flex align-items-center mb-3">
-              <i class="fa fa-calendar-check text-warning fa-2x me-3"></i>
-              <div>
-                <h5 class="mb-0">Réservations</h5>
-                <p class="text-muted mb-0">Gérer les réservations clients</p>
-              </div>
+        <div class="action-card">
+          <div class="d-flex align-items-center mb-3">
+            <div class="action-icon text-warning"><i class="fa fa-calendar-check"></i></div>
+            <div>
+              <h5 class="action-title">Réservations</h5>
+              <p class="action-description">Gérer les réservations clients</p>
             </div>
-            <a routerLink="/etablisement/reservations" class="btn btn-warning">Voir réservations</a>
           </div>
+          <a routerLink="reservations" class="btn btn-warning action-btn">Voir réservations</a>
         </div>
       </div>
       <div class="col-md-6">
-        <div class="card border-0 shadow-sm">
-          <div class="card-body p-4">
-            <div class="d-flex align-items-center mb-3">
-              <i class="fa fa-hotel text-info fa-2x me-3"></i>
-              <div>
-                <h5 class="mb-0">Types Hébergement</h5>
-                <p class="text-muted mb-0">Configurer Hôtel/Motel/Appart</p>
-              </div>
+        <div class="action-card">
+          <div class="d-flex align-items-center mb-3">
+            <div class="action-icon text-info"><i class="fa fa-hotel"></i></div>
+            <div>
+              <h5 class="action-title">Types Hébergement</h5>
+              <p class="action-description">Configurer Hôtel/Motel/Appart</p>
             </div>
-            <a routerLink="/etablisement/types" class="btn btn-info">Configurer types</a>
           </div>
+          <a routerLink="types" class="btn btn-info action-btn">Configurer types</a>
         </div>
       </div>
     </div>

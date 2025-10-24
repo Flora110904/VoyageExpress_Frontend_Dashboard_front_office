@@ -13,7 +13,8 @@ const routes: Routes = [
     path: '',
     component: ClientComponent,
     children: [
-      { path: '', redirectTo: '/', pathMatch: 'full' }, // Redirection vers la page d'accueil
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: Dashboard },
       { path: 'recherche', component: Recherche },
       { path: 'mes-reservations', component: MesReservations },
       { path: 'historique', component: Historique },

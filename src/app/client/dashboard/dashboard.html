@@ -1,77 +1,4 @@
-<!-- Topbar Start -->
-<div class="container-fluid bg-light d-none d-lg-block">
-  <div class="row align-items-center top-bar">
-    <div class="col-lg-3 col-md-12 text-center text-lg-start">
-      <a routerLink="/" class="navbar-brand m-0 p-0">
-        <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
-      </a>
-    </div>
-    <div class="col-lg-9 col-md-12 text-end">
-      <div class="h-100 d-inline-flex align-items-center me-4">
-        <i class="fa fa-map-marker-alt text-primary me-2"></i>
-        <p class="m-0">Lomé, Togo</p>
-      </div>
-      <div class="h-100 d-inline-flex align-items-center me-4">
-        <i class="far fa-envelope-open text-primary me-2"></i>
-        <p class="m-0">contact&#64;voyageexpress.tg</p>
-      </div>
-      <div class="h-100 d-inline-flex align-items-center">
-        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://facebook.com/voyageexpress" target="_blank">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://twitter.com/voyageexpress" target="_blank">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a class="btn btn-sm-square bg-white text-primary me-0" href="https://instagram.com/voyageexpress" target="_blank">
-          <i class="fab fa-instagram"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Topbar End -->
 
-<!-- Navbar Start -->
-<div class="container-fluid nav-bar bg-light">
-  <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
-    <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
-      <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-      <span class="fa fa-bars"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav me-auto">
-        <a routerLink="/" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-home me-2"></i>Accueil
-        </a>
-        <a routerLink="/client/recherche" class="nav-item nav-link active" routerLinkActive="active">
-          <i class="fa fa-search me-2"></i>Rechercher
-        </a>
-        <a routerLink="/client/mes-reservations" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-ticket-alt me-2"></i>Réservations
-        </a>
-        <a routerLink="/client/historique" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-history me-2"></i>Historique
-        </a>
-        <a routerLink="/client/profil" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-user me-2"></i>Profil
-        </a>
-      </div>
-
-      <!-- Auth Buttons -->
-      <div class="d-flex align-items-center mt-4 mt-lg-0 me-lg-n4">
-        <a routerLink="/auth/login" class="btn btn-outline-primary me-2">
-          <i class="fa fa-sign-in-alt me-1"></i>Se Connecter
-        </a>
-        <a routerLink="/auth/register" class="btn btn-primary">
-          <i class="fa fa-user-plus me-1"></i>S'Inscrire
-        </a>
-      </div>
-    </div>
-  </nav>
-</div>
-<!-- Navbar End -->
 
 <!-- Hero Section -->
 <div class="hero-client position-relative" style="background: linear-gradient(135deg, #4a90e2 0%, #7b68ee 50%, #ff6b6b 100%); min-height: 80vh; display: flex; align-items: center; padding-top: 120px;">
@@ -80,7 +7,7 @@
     <div class="row align-items-center">
       <div class="col-lg-6 text-white">
         <h1 class="display-2 fw-bold mb-4 animate-fade-in">
-          👤 Bienvenue dans votre
+          Bienvenue dans votre
           <span class="text-warning">Espace Client</span>
         </h1>
         <p class="lead mb-4 fs-5">
@@ -110,7 +37,7 @@
 <section class="py-5 bg-light">
   <div class="container">
     <div class="text-center mb-5">
-      <h2 class="display-4 fw-bold text-primary mb-3">🚀 Actions Rapides</h2>
+      <h2 class="display-4 fw-bold text-primary mb-3">Actions Rapides</h2>
       <p class="lead text-muted">Accédez rapidement à tous vos outils de voyage</p>
     </div>
 
@@ -124,7 +51,7 @@
               <i class="fa fa-search fa-2x"></i>
             </div>
           </div>
-          <h5 class="card-title text-primary mb-3">🔍 Recherche Avancée</h5>
+          <h5 class="card-title text-primary mb-3">Recherche Avancée</h5>
           <p class="card-text text-muted">Trouvez vos destinations et réservez vos voyages en quelques clics avec notre moteur de recherche intelligent</p>
           <a routerLink="/client/recherche" class="btn btn-primary btn-lg position-relative z-index-3">
             <i class="fa fa-search me-2"></i>Commencer la Recherche
@@ -141,7 +68,7 @@
               <i class="fa fa-ticket-alt fa-2x"></i>
             </div>
           </div>
-          <h5 class="card-title text-success mb-3">🎫 Mes Réservations</h5>
+          <h5 class="card-title text-success mb-3">Mes Réservations</h5>
           <p class="card-text text-muted">Gérez vos réservations en cours, modifiez-les et suivez leur statut en temps réel</p>
           <a routerLink="/client/mes-reservations" class="btn btn-success btn-lg position-relative z-index-3">
             <i class="fa fa-ticket-alt me-2"></i>Voir mes Réservations
@@ -158,7 +85,7 @@
               <i class="fa fa-history fa-2x"></i>
             </div>
           </div>
-          <h5 class="card-title text-warning mb-3">📚 Historique & Statistiques</h5>
+          <h5 class="card-title text-warning mb-3">Historique & Statistiques</h5>
           <p class="card-text text-muted">Consultez votre historique de voyages et découvrez vos statistiques de voyageur</p>
           <a routerLink="/client/historique" class="btn btn-warning btn-lg position-relative z-index-3">
             <i class="fa fa-history me-2"></i>Voir l'Historique
@@ -173,7 +100,7 @@
 <section class="py-5">
   <div class="container">
     <div class="text-center mb-5">
-      <h2 class="display-4 fw-bold text-primary mb-3">🌟 Services Populaires</h2>
+      <h2 class="display-4 fw-bold text-primary mb-3">Services Populaires</h2>
       <p class="lead text-muted">Découvrez nos services les plus demandés par nos voyageurs</p>
     </div>
 
@@ -186,7 +113,7 @@
             <div class="card-img-overlay d-flex align-items-end">
               <div class="service-info bg-white bg-opacity-90 p-3 rounded-3 w-100">
                 <div class="d-flex align-items-center justify-content-between mb-2">
-                  <h5 class="card-title mb-0">🚌 Transport Bus</h5>
+                  <h5 class="card-title mb-0">Transport Bus</h5>
                   <span class="badge bg-success fs-6">Plus populaire</span>
                 </div>
                 <p class="card-text small mb-2">Réservez vos billets de bus pour tous les trajets nationaux et régionaux</p>
@@ -217,7 +144,7 @@
             <div class="card-img-overlay d-flex align-items-end">
               <div class="service-info bg-white bg-opacity-90 p-3 rounded-3 w-100">
                 <div class="d-flex align-items-center justify-content-between mb-2">
-                  <h5 class="card-title mb-0">✈️ Transport Aérien</h5>
+                  <h5 class="card-title mb-0">Transport Aérien</h5>
                   <span class="badge bg-info fs-6">International</span>
                 </div>
                 <p class="card-text small mb-2">Vols nationaux et internationaux au départ de Lomé</p>
@@ -248,7 +175,7 @@
             <div class="card-img-overlay d-flex align-items-end">
               <div class="service-info bg-white bg-opacity-90 p-3 rounded-3 w-100">
                 <div class="d-flex align-items-center justify-content-between mb-2">
-                  <h5 class="card-title mb-0">🏨 Hébergement</h5>
+                  <h5 class="card-title mb-0">Hébergement</h5>
                   <span class="badge bg-warning fs-6">Confort</span>
                 </div>
                 <p class="card-text small mb-2">Hôtels, motels et appartements de qualité pour votre séjour</p>
@@ -278,7 +205,7 @@
 <section class="py-5 bg-light">
   <div class="container">
     <div class="text-center mb-5">
-      <h2 class="display-4 fw-bold text-primary mb-3">🌍 Destinations Recommandées</h2>
+      <h2 class="display-4 fw-bold text-primary mb-3">Destinations Recommandées</h2>
       <p class="lead text-muted">Découvrez les destinations les plus populaires de nos voyageurs</p>
     </div>
 
@@ -298,7 +225,7 @@
               <i class="fa fa-star text-warning"></i>
               <span class="ms-2 text-muted">(4.9/5)</span>
             </div>
-            <h5 class="card-title text-primary mb-2">🏖️ Lomé</h5>
+            <h5 class="card-title text-primary mb-2">Lomé</h5>
             <p class="card-text text-muted small mb-3">Capitale vibrante du Togo avec ses plages et sa culture riche</p>
             <div class="destination-price mb-3">
               <span class="text-primary fw-bold fs-5">À partir de 5,000 FCFA</span>
@@ -326,7 +253,7 @@
               <i class="fa fa-star-half-alt text-warning"></i>
               <span class="ms-2 text-muted">(4.8/5)</span>
             </div>
-            <h5 class="card-title text-success mb-2">⛰️ Kpalimé</h5>
+            <h5 class="card-title text-success mb-2">Kpalimé</h5>
             <p class="card-text text-muted small mb-3">Région montagneuse avec cascades et plantations de café</p>
             <div class="destination-price mb-3">
               <span class="text-primary fw-bold fs-5">À partir de 25,000 FCFA</span>
@@ -354,7 +281,7 @@
               <i class="fa fa-star text-warning"></i>
               <span class="ms-2 text-muted">(4.9/5)</span>
             </div>
-            <h5 class="card-title text-info mb-2">🌊 Lac Togo</h5>
+            <h5 class="card-title text-info mb-2">Lac Togo</h5>
             <p class="card-text text-muted small mb-3">Paradis aquatique avec activités nautiques et tranquillité</p>
             <div class="destination-price mb-3">
               <span class="text-primary fw-bold fs-5">À partir de 30,000 FCFA</span>
@@ -382,7 +309,7 @@
               <i class="fa fa-star-half-alt text-warning"></i>
               <span class="ms-2 text-muted">(4.7/5)</span>
             </div>
-            <h5 class="card-title text-warning mb-2">🏛️ Kara</h5>
+            <h5 class="card-title text-warning mb-2">Kara</h5>
             <p class="card-text text-muted small mb-3">Capitale régionale avec marchés traditionnels et artisanat</p>
             <div class="destination-price mb-3">
               <span class="text-primary fw-bold fs-5">À partir de 20,000 FCFA</span>
@@ -409,7 +336,7 @@
               <i class="fa fa-lightbulb text-primary fa-3x"></i>
             </div>
             <div>
-              <h4 class="mb-2">💡 Conseils Voyage</h4>
+              <h4 class="mb-2">Conseils Voyage</h4>
               <p class="text-muted mb-0">Optimisez vos voyages avec nos conseils d'experts</p>
             </div>
           </div>
@@ -455,7 +382,7 @@
               <i class="fa fa-headset text-info fa-3x"></i>
             </div>
             <div>
-              <h4 class="mb-2">📞 Support 24/7</h4>
+              <h4 class="mb-2">Support 24/7</h4>
               <p class="text-muted mb-0">Notre équipe est là pour vous accompagner</p>
             </div>
           </div>
@@ -499,7 +426,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8 text-center">
-        <h2 class="display-5 fw-bold mb-4">📧 Restez Informé !</h2>
+        <h2 class="display-5 fw-bold mb-4">Restez Informé !</h2>
         <p class="lead mb-4">
           Recevez nos meilleures offres, conseils voyage et actualités directement dans votre boîte mail
         </p>

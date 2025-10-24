@@ -1,297 +1,187 @@
-/* Styles pour la page Home modernisée - Thème Tourisme/Voyage */
-
-/* Variables de couleurs pour le thème tourisme */
-:root {
-  --primary-color: #4a90e2; /* Bleu océan */
-  --secondary-color: #7b68ee; /* Violet voyage */
-  --accent-color: #ff6b6b; /* Orange coucher de soleil */
-  --success-color: #51cf66; /* Vert nature */
-  --warning-color: #ffd43b; /* Jaune soleil */
-  --info-color: #74c0fc; /* Bleu ciel */
-  --light-bg: #f8f9fa; /* Blanc cassé */
-  --dark-text: #2c3e50; /* Gris foncé */
-  --light-text: #6c757d; /* Gris moyen */
-}
+/* Styles pour la page Services modernisée */
 
 /* Hero Section */
-.hero-section {
+.hero-services {
   overflow: hidden;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+  position: relative;
 }
 
 .hero-background {
   z-index: 1;
 }
 
-/* Animations désactivées temporairement pour diagnostiquer le problème */
+.hero-image-container {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
 .animate-fade-in {
-  opacity: 1; /* Animation remplacée par opacité directe */
+  animation: fadeIn 1.5s ease-in;
 }
 
 .animate-float {
-  /* Animation désactivée temporairement */
+  animation: float 6s ease-in-out infinite;
 }
 
-/* Header Navigation */
-.navbar {
-  background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(74, 144, 226, 0.1);
-}
-
-.navbar-brand {
-  color: var(--primary-color) !important;
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.navbar-nav .nav-link {
-  color: var(--dark-text) !important;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.navbar-nav .nav-link:hover {
-  color: var(--primary-color) !important;
-  transform: translateY(-2px);
-}
-
-/* Destinations Cards */
-.destination-card {
-  transition: all 0.3s ease;
-  cursor: pointer;
+/* Service Cards */
+.service-card {
+  background: white;
   border-radius: 15px;
   overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
-.destination-card:hover {
+.service-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(74, 144, 226, 0.15);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
-.destination-info {
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.9);
-}
-
-.card-img-wrapper {
-  height: 250px;
+.service-image {
+  position: relative;
+  height: 200px;
   overflow: hidden;
 }
 
-.card-img-wrapper img {
+.service-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
 
-.destination-card:hover .card-img-wrapper img {
+.service-card:hover .service-image img {
   transform: scale(1.1);
 }
 
-/* Service Cards */
-.service-card {
-  transition: all 0.3s ease;
+.service-overlay {
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(5px);
+}
+
+.service-icon {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.service-content {
+  background: white;
+}
+
+.service-features {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+/* Additional Services */
+.additional-service {
   background: white;
   border-radius: 15px;
+  transition: all 0.3s ease;
 }
 
-.service-card:hover {
+.additional-service:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(74, 144, 226, 0.1);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
 }
 
-.service-icon img {
-  transition: transform 0.3s ease;
-  border: 3px solid rgba(74, 144, 226, 0.1);
+.service-benefits .badge {
+  font-size: 0.7rem;
+  padding: 0.4em 0.8em;
 }
 
-.service-card:hover .service-icon img {
-  transform: scale(1.1);
-  border-color: var(--primary-color);
-}
-
-/* Testimonial Cards */
-.testimonial-card {
+/* Advantage Cards */
+.advantage-card {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 15px;
   transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.advantage-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.advantage-icon {
+  transition: transform 0.3s ease;
+}
+
+.advantage-card:hover .advantage-icon {
+  transform: scale(1.1);
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+  background: white;
+  border-radius: 15px;
+  transition: all 0.3s ease;
 }
 
 .testimonial-card:hover {
   transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
 }
 
 .testimonial-avatar img {
-  border: 3px solid rgba(255, 255, 255, 0.3);
+  border: 3px solid #f8f9fa;
   transition: transform 0.3s ease;
 }
 
 .testimonial-card:hover .testimonial-avatar img {
   transform: scale(1.1);
-  border-color: var(--warning-color);
 }
 
-/* Statistics Cards */
-.stat-card {
-  transition: all 0.3s ease;
-  background: white;
-  border-radius: 15px;
-  padding: 2rem;
-}
-
-.stat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(74, 144, 226, 0.1);
-}
-
-.stat-icon img {
+.testimonial-rating {
   transition: transform 0.3s ease;
-  border-radius: 50%;
-  padding: 10px;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
 }
 
-.stat-card:hover .stat-icon img {
+.testimonial-card:hover .testimonial-rating {
   transform: scale(1.1);
 }
 
-/* Contact Card */
-.contact-card {
-  background: linear-gradient(135deg, var(--light-bg) 0%, #e9ecef 100%);
-  border-radius: 20px;
-}
-
-/* Newsletter Section */
+/* Background Gradients */
 .bg-gradient-primary {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-/* Button enhancements */
-.btn {
-  border-radius: 50px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+/* List Styling */
+.list-unstyled li {
+  padding: 0.5rem 0;
+  border-radius: 8px;
   transition: all 0.3s ease;
-  border: none;
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-}
-
-.btn-success {
-  background: linear-gradient(135deg, var(--success-color) 0%, #40c057 100%);
-}
-
-.btn-warning {
-  background: linear-gradient(135deg, var(--warning-color) 0%, #fab005 100%);
-}
-
-.btn-info {
-  background: linear-gradient(135deg, var(--info-color) 0%, #339af0 100%);
-}
-
-.btn-outline-primary {
-  color: var(--primary-color);
-  border-color: var(--primary-color);
-}
-
-.btn-outline-primary:hover {
-  background: var(--primary-color);
-  border-color: var(--primary-color);
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* Badge styling */
-.badge {
-  font-size: 0.75rem;
-  padding: 0.5em 0.75em;
-  border-radius: 20px;
-  font-weight: 500;
-}
-
-.badge.bg-primary {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
-}
-
-.badge.bg-success {
-  background: linear-gradient(135deg, var(--success-color) 0%, #40c057 100%) !important;
-}
-
-.badge.bg-warning {
-  background: linear-gradient(135deg, var(--warning-color) 0%, #fab005 100%) !important;
-}
-
-.badge.bg-info {
-  background: linear-gradient(135deg, var(--info-color) 0%, #339af0 100%) !important;
-}
-
-/* Text enhancements */
-.text-primary {
-  color: var(--primary-color) !important;
-}
-
-.text-success {
-  color: var(--success-color) !important;
-}
-
-.text-warning {
-  color: var(--warning-color) !important;
-}
-
-.text-info {
-  color: var(--info-color) !important;
-}
-
-.text-muted {
-  color: var(--light-text) !important;
-}
-
-/* Icon animations */
-.fa {
-  transition: transform 0.3s ease;
-}
-
-.destination-card:hover .fa,
-.service-card:hover .fa,
-.stat-card:hover .fa {
-  transform: scale(1.2);
-}
-
-/* Background patterns */
-.bg-light {
-  background-color: var(--light-bg) !important;
-}
-
-/* Card shadows and effects */
-.card {
-  border: none;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-  transition: all 0.3s ease;
-  border-radius: 15px;
-}
-
-.card:hover {
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+.list-unstyled li:hover {
+  background: rgba(102, 126, 234, 0.05);
+  padding-left: 1rem;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .hero-section {
-    min-height: 80vh;
+  .hero-services {
+    min-height: 60vh;
     text-align: center;
-    padding-top: 100px;
   }
 
   .hero-image-container {
@@ -309,22 +199,111 @@
   .display-5 {
     font-size: calc(1.325rem + 0.9vw);
   }
+
+  .service-card {
+    margin-bottom: 2rem;
+  }
+
+  .additional-service {
+    margin-bottom: 2rem;
+  }
+
+  .advantage-card {
+    margin-bottom: 2rem;
+  }
 }
 
-/* Custom scrollbar */
+/* Button Enhancements */
+.btn {
+  border-radius: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Card Hover Effects */
+.card, .service-card, .additional-service, .advantage-card, .testimonial-card {
+  border: none;
+}
+
+.card:hover, .service-card:hover, .additional-service:hover, .advantage-card:hover, .testimonial-card:hover {
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+/* Image Loading Animation */
+img {
+  transition: opacity 0.3s ease;
+}
+
+img[src*="unsplash"] {
+  opacity: 0;
+  animation: fadeInImage 0.5s ease-in forwards;
+}
+
+@keyframes fadeInImage {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Icon Animations */
+.fa {
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .fa,
+.additional-service:hover .fa,
+.advantage-card:hover .fa {
+  transform: scale(1.2);
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--light-bg);
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
+  background: #667eea;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary-color);
+  background: #764ba2;
+}
+
+/* Text Enhancements */
+.text-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Badge Styling */
+.badge {
+  font-size: 0.75rem;
+  padding: 0.5em 0.75em;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* Service Icons */
+.service-icon i {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.service-benefits {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  margin-top: 1rem;
 }

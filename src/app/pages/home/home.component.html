@@ -1,14 +1,576 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-12 text-center">
-      <h1 class="display-4">🚀 VoyageExpress</h1>
-      <p class="lead">Votre plateforme de réservation de voyages au Togo</p>
-
-      <div class="mt-4">
-        <a routerLink="/about" class="btn btn-primary me-2">À Propos</a>
-        <a routerLink="/services" class="btn btn-secondary me-2">Services</a>
-        <a routerLink="/contact" class="btn btn-success">Contact</a>
+<!-- Topbar Start -->
+<div class="container-fluid bg-light d-none d-lg-block">
+  <div class="row align-items-center top-bar">
+    <div class="col-lg-3 col-md-12 text-center text-lg-start">
+      <a routerLink="/" class="navbar-brand m-0 p-0">
+        <h1 class="text-primary m-0">VoyageExpress</h1>
+      </a>
+    </div>
+    <div class="col-lg-9 col-md-12 text-end">
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="fa fa-map-marker-alt text-primary me-2"></i>
+        <p class="m-0">Lomé, Togo</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="far fa-envelope-open text-primary me-2"></i>
+        <p class="m-0">contact&#64;voyageexpress.tg</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center">
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://facebook.com/voyageexpress" target="_blank">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://twitter.com/voyageexpress" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-0" href="https://instagram.com/voyageexpress" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
       </div>
     </div>
   </div>
 </div>
+<!-- Topbar End -->
+
+<!-- Navbar Start -->
+<div class="container-fluid nav-bar bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
+    <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
+      <h1 class="text-primary m-0">VoyageExpress</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav me-auto">
+        <a routerLink="/" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-home me-2"></i>Accueil
+        </a>
+        <a routerLink="/about" class="nav-item nav-link active" routerLinkActive="active">
+          <i class="fa fa-info-circle me-2"></i>À Propos
+        </a>
+        <a routerLink="/services" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-list me-2"></i>Services
+        </a>
+        <a routerLink="/contact" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-phone me-2"></i>Contact
+        </a>
+      </div>
+
+      <!-- Auth Buttons -->
+      <div class="d-flex align-items-center mt-4 mt-lg-0 me-lg-n4">
+        <a routerLink="/auth/login" class="btn btn-outline-primary me-2">
+          <i class="fa fa-sign-in-alt me-1"></i>Se Connecter
+        </a>
+        <a routerLink="/auth/register" class="btn btn-primary">
+          <i class="fa fa-user-plus me-1"></i>S'Inscrire
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- Navbar End -->
+
+<!-- Hero Section -->
+<section class="hero-section position-relative overflow-hidden" style="background: var(--primary-gradient); min-height: 700px; display: flex; align-items: center;">
+  <!-- Background Image -->
+  <div class="hero-background position-absolute top-0 start-0 w-100 h-100" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80'); background-size: cover; background-position: center; opacity: 0.15;"></div>
+
+  <div class="container position-relative z-index-2">
+    <div class="row align-items-center">
+      <div class="col-lg-6 text-white">
+        <div class="hero-content">
+          <h1 class="display-2 fw-bold mb-4 animate-fade-in">
+            VoyageExpress
+            <span class="d-block h3 mt-2" style="color: var(--accent-color);">Votre partenaire de voyage au Togo</span>
+          </h1>
+          <p class="lead mb-4 fs-5">
+            Réservez vos billets de bus, vols et hôtels en toute simplicité.
+            Voyagez en toute sérénité avec les meilleures compagnies du Togo.
+          </p>
+          <div class="hero-stats d-flex gap-4 mb-4 flex-wrap">
+            <div class="stat-item">
+              <div class="stat-number fw-bold" style="color: var(--accent-color);">500+</div>
+              <div class="stat-label text-white-50">Voyages quotidiens</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number fw-bold" style="color: var(--accent-color);">50+</div>
+              <div class="stat-label text-white-50">Compagnies</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number fw-bold" style="color: var(--accent-color);">10k+</div>
+              <div class="stat-label text-white-50">Voyageurs</div>
+            </div>
+          </div>
+          <div class="d-flex gap-3 flex-wrap">
+            <a routerLink="/client" class="btn btn-outline-light btn-lg px-5 py-3 fw-bold animate-pulse border-2">
+              <i class="fa fa-search me-2"></i>Réserver maintenant
+            </a>
+            <a routerLink="/about" class="btn btn-outline-light btn-lg px-5 py-3 border-2">
+              <i class="fa fa-info-circle me-2"></i>En savoir plus
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-search bg-white p-4 rounded-4 shadow-lg animate-float">
+          <div class="search-header text-center mb-4">
+            <i class="fa fa-search fa-2x mb-2" style="color: var(--primary-color);"></i>
+            <h4 class="mb-1" style="color: var(--primary-color);">Rechercher un voyage</h4>
+            <p class="text-muted small">Trouvez votre destination idéale</p>
+          </div>
+          <form class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label text-muted fw-semibold">Départ</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0">
+                  <i class="fa fa-map-marker-alt text-muted"></i>
+                </span>
+                <input type="text" class="form-control border-start-0" placeholder="Lomé, Togo">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-muted fw-semibold">Destination</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0">
+                  <i class="fa fa-map-marker-alt text-muted"></i>
+                </span>
+                <input type="text" class="form-control border-start-0" placeholder="Kara, Togo">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-muted fw-semibold">Date départ</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0">
+                  <i class="fa fa-calendar-alt text-muted"></i>
+                </span>
+                <input type="date" class="form-control border-start-0">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-muted fw-semibold">Passagers</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0">
+                  <i class="fa fa-users text-muted"></i>
+                </span>
+                <select class="form-select border-start-0">
+                  <option>1 passager</option>
+                  <option>2 passagers</option>
+                  <option>3 passagers</option>
+                  <option>4 passagers</option>
+                  <option>5+ passagers</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-lg w-100 py-3 fw-bold" style="background: var(--primary-gradient); color: white; border: none;">
+                <i class="fa fa-search me-2"></i>Rechercher des voyages
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-5 bg-light position-relative">
+  <!-- Background Pattern -->
+  <div class="services-bg position-absolute top-0 start-0 w-100 h-100 opacity-5" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'); background-size: cover;"></div>
+
+  <div class="container position-relative z-index-2">
+    <div class="row text-center mb-5">
+      <div class="col-12">
+        <h2 class="display-4 fw-bold text-primary mb-3">Nos Services Premium</h2>
+        <p class="lead text-muted">Découvrez toutes nos options de voyage avec un service d'excellence</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="service-card-modern position-relative overflow-hidden rounded-4 shadow-lg h-100" style="background: linear-gradient(135deg, rgba(13,71,161,0.9) 0%, rgba(38,166,154,0.9) 100%), url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; min-height: 300px; display: flex; align-items: end;">
+          <div class="service-content p-4 text-white w-100">
+            <div class="service-icon mb-3">
+              <i class="fa fa-bus fa-2x" style="color: var(--accent-color);"></i>
+            </div>
+            <h4 class="mb-3 fw-bold">Transport Bus</h4>
+            <p class="mb-4 opacity-75">
+              Réservez vos billets de bus en ligne avec les meilleures compagnies du Togo.
+              Départs fréquents vers toutes les destinations.
+            </p>
+            <div class="service-features mb-4">
+              <span class="badge bg-white bg-opacity-20 me-2 mb-2">WiFi gratuit</span>
+              <span class="badge bg-white bg-opacity-20 me-2 mb-2">Climatisé</span>
+              <span class="badge bg-white bg-opacity-20 mb-2">Confortable</span>
+            </div>
+            <a routerLink="/client" class="btn btn-lg px-4" style="background: var(--accent-gradient); color: white; border: none;">
+              <i class="fa fa-arrow-right me-2"></i>Réserver Bus
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="service-card-modern position-relative overflow-hidden rounded-4 shadow-lg h-100" style="background: linear-gradient(135deg, rgba(38,166,154,0.9) 0%, rgba(13,71,161,0.9) 100%), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; min-height: 300px; display: flex; align-items: end;">
+          <div class="service-content p-4 text-white w-100">
+            <div class="service-icon mb-3">
+              <i class="fa fa-plane fa-2x" style="color: var(--accent-color);"></i>
+            </div>
+            <h4 class="mb-3 fw-bold">Transport Aérien</h4>
+            <p class="mb-4 opacity-75">
+              Réservez vos billets d'avion avec les compagnies aériennes partenaires.
+              Vols nationaux et internationaux disponibles.
+            </p>
+            <div class="service-features mb-4">
+              <span class="badge bg-white bg-opacity-20 me-2 mb-2">Bagage inclus</span>
+              <span class="badge bg-white bg-opacity-20 me-2 mb-2">Repas servis</span>
+              <span class="badge bg-white bg-opacity-20 mb-2">Divertissement</span>
+            </div>
+            <a routerLink="/client" class="btn btn-lg px-4" style="background: var(--secondary-gradient); color: white; border: none;">
+              <i class="fa fa-arrow-right me-2"></i>Réserver Vol
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="service-card-modern position-relative overflow-hidden rounded-4 shadow-lg h-100" style="background: linear-gradient(135deg, rgba(255,167,38,0.9) 0%, rgba(239,108,0,0.9) 100%), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; min-height: 300px; display: flex; align-items: end;">
+          <div class="service-content p-4 text-white w-100">
+            <div class="service-icon mb-3">
+              <i class="fa fa-hotel fa-2x" style="color: var(--primary-color);"></i>
+            </div>
+            <h4 class="mb-3 fw-bold">Hébergement</h4>
+            <p class="mb-4 opacity-75">
+              Réservez vos chambres d'hôtel, motels et appartements.
+              Large choix d'hébergements pour tous les budgets.
+            </p>
+            <div class="service-features mb-4">
+              <span class="badge bg-white bg-opacity-20 me-2 mb-2">WiFi gratuit</span>
+              <span class="badge bg-white bg-opacity-20 me-2 mb-2">Petit-déj inclus</span>
+              <span class="badge bg-white bg-opacity-20 mb-2">Service 24/7</span>
+            </div>
+            <a routerLink="/etablissement" class="btn btn-lg px-4" style="background: var(--primary-gradient); color: white; border: none;">
+              <i class="fa fa-arrow-right me-2"></i>Réserver Hôtel
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5 position-relative" style="background: linear-gradient(135deg, var(--light-bg) 0%, #f8f9fa 100%);">
+  <!-- Background Pattern -->
+  <div class="features-bg position-absolute top-0 start-0 w-100 h-100 opacity-10" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'); background-size: cover;"></div>
+
+  <div class="container position-relative z-index-2">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="feature-card-modern bg-white rounded-4 shadow-sm p-4 text-center h-100">
+              <div class="feature-icon-modern mb-3 mx-auto" style="width: 80px; height: 80px; background: var(--primary-gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <i class="fa fa-clock fa-2x text-white"></i>
+              </div>
+              <h5 class="fw-bold" style="color: var(--primary-color);">Réservation 24/7</h5>
+              <p class="text-muted">Réservez à tout moment, où que vous soyez avec notre plateforme disponible 24h/24</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="feature-card-modern bg-white rounded-4 shadow-sm p-4 text-center h-100">
+              <div class="feature-icon-modern mb-3 mx-auto" style="width: 80px; height: 80px; background: var(--secondary-gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <i class="fa fa-shield-alt fa-2x text-white"></i>
+              </div>
+              <h5 class="fw-bold" style="color: var(--secondary-color);">Sécurité garantie</h5>
+              <p class="text-muted">Paiements sécurisés SSL et protection complète de vos données personnelles</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="feature-card-modern bg-white rounded-4 shadow-sm p-4 text-center h-100">
+              <div class="feature-icon-modern mb-3 mx-auto" style="width: 80px; height: 80px; background: var(--accent-gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <i class="fa fa-star fa-2x text-white"></i>
+              </div>
+              <h5 class="fw-bold" style="color: var(--accent-color);">Meilleurs prix</h5>
+              <p class="text-muted">Tarifs compétitifs et offres exclusives grâce à nos partenariats</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="feature-card-modern bg-white rounded-4 shadow-sm p-4 text-center h-100">
+              <div class="feature-icon-modern mb-3 mx-auto" style="width: 80px; height: 80px; background: var(--primary-gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <i class="fa fa-headset fa-2x text-white"></i>
+              </div>
+              <h5 class="fw-bold" style="color: var(--primary-color);">Support client</h5>
+              <p class="text-muted">Assistance disponible 7j/7 par téléphone, email et chat en ligne</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="features-content bg-white rounded-4 shadow-lg p-5 h-100 d-flex flex-column justify-content-center">
+          <div class="section-header mb-4">
+            <h3 class="display-6 fw-bold mb-3" style="color: var(--primary-color);">Pourquoi choisir VoyageExpress ?</h3>
+            <div class="section-divider mb-4" style="width: 60px; height: 4px; border-radius: 2px; background: var(--primary-gradient);"></div>
+          </div>
+
+          <p class="lead text-muted mb-4">
+            Nous révolutionnons la façon dont les Togolais voyagent en offrant une plateforme
+            unique pour réserver bus, vols et hôtels en toute simplicité et sécurité.
+          </p>
+
+          <div class="features-list">
+            <div class="feature-item d-flex align-items-start mb-4">
+              <div class="feature-check me-3 mt-1">
+                <i class="fa fa-check-circle fa-2x" style="color: var(--primary-color);"></i>
+              </div>
+              <div>
+                <h6 class="mb-2 fw-bold">Interface intuitive et moderne</h6>
+                <p class="text-muted mb-0">Design épuré et navigation simplifiée pour une expérience utilisateur optimale</p>
+              </div>
+            </div>
+
+            <div class="feature-item d-flex align-items-start mb-4">
+              <div class="feature-check me-3 mt-1">
+                <i class="fa fa-check-circle fa-2x" style="color: var(--secondary-color);"></i>
+              </div>
+              <div>
+                <h6 class="mb-2 fw-bold">Partenariats de qualité</h6>
+                <p class="text-muted mb-0">Collaboration avec les meilleures compagnies de transport et chaînes hôtelières</p>
+              </div>
+            </div>
+
+            <div class="feature-item d-flex align-items-start mb-4">
+              <div class="feature-check me-3 mt-1">
+                <i class="fa fa-check-circle fa-2x" style="color: var(--accent-color);"></i>
+              </div>
+              <div>
+                <h6 class="mb-2 fw-bold">Réservation instantanée</h6>
+                <p class="text-muted mb-0">Confirmation immédiate et billet électronique disponible en quelques secondes</p>
+              </div>
+            </div>
+
+            <div class="feature-item d-flex align-items-start">
+              <div class="feature-check me-3 mt-1">
+                <i class="fa fa-check-circle fa-2x" style="color: var(--primary-color);"></i>
+              </div>
+              <div>
+                <h6 class="mb-2 fw-bold">Support réactif</h6>
+                <p class="text-muted mb-0">Équipe dédiée disponible pour vous accompagner à chaque étape de votre voyage</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Destinations Section -->
+<section class="py-5 position-relative" style="background: linear-gradient(135deg, var(--light-bg) 0%, #f8f9fa 100%);">
+  <!-- Background Pattern -->
+  <div class="destinations-bg position-absolute top-0 start-0 w-100 h-100 opacity-5" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'); background-size: cover;"></div>
+
+  <div class="container position-relative z-index-2">
+    <div class="row text-center mb-5">
+      <div class="col-12">
+        <h2 class="display-4 fw-bold mb-3" style="color: var(--primary-color);">Destinations Incontournables</h2>
+        <p class="lead text-muted">Découvrez les destinations les plus prisées du Togo et de la région</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6">
+        <div class="destination-card-modern position-relative overflow-hidden rounded-4 shadow-lg h-100" style="background: linear-gradient(135deg, rgba(13,71,161,0.1) 0%, rgba(38,166,154,0.1) 100%), url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; min-height: 250px; display: flex; align-items: end;">
+          <div class="destination-content p-4 text-white w-100">
+            <div class="destination-rating mb-2">
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <span class="ms-2 text-white-50">(4.9/5)</span>
+            </div>
+            <h5 class="mb-2 fw-bold">Lomé</h5>
+            <p class="mb-3 opacity-75 small">Capitale vibrante du Togo</p>
+            <div class="destination-info mb-3">
+              <span class="badge me-2" style="background: var(--primary-gradient); color: white;">Plages</span>
+              <span class="badge me-2" style="background: var(--primary-gradient); color: white;">Culture</span>
+            </div>
+            <a routerLink="/client/recherche" class="btn btn-light btn-sm px-3">
+              <i class="fa fa-search me-1"></i>Découvrir
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="destination-card-modern position-relative overflow-hidden rounded-4 shadow-lg h-100" style="background: linear-gradient(135deg, rgba(38,166,154,0.1) 0%, rgba(13,71,161,0.1) 100%), url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; min-height: 250px; display: flex; align-items: end;">
+          <div class="destination-content p-4 text-white w-100">
+            <div class="destination-rating mb-2">
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <i class="fa fa-star-half-alt" style="color: var(--accent-color);"></i>
+              <span class="ms-2 text-white-50">(4.8/5)</span>
+            </div>
+            <h5 class="mb-2 fw-bold">Kpalimé</h5>
+            <p class="mb-3 opacity-75 small">Région des Plateaux</p>
+            <div class="destination-info mb-3">
+              <span class="badge me-2" style="background: var(--secondary-gradient); color: white;">Nature</span>
+              <span class="badge me-2" style="background: var(--accent-gradient); color: white;">Montagne</span>
+            </div>
+            <a routerLink="/client/recherche" class="btn btn-light btn-sm px-3">
+              <i class="fa fa-search me-1"></i>Découvrir
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="destination-card-modern position-relative overflow-hidden rounded-4 shadow-lg h-100" style="background: linear-gradient(135deg, rgba(13,71,161,0.1) 0%, rgba(255,167,38,0.1) 100%), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; min-height: 250px; display: flex; align-items: end;">
+          <div class="destination-content p-4 text-white w-100">
+            <div class="destination-rating mb-2">
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <span class="ms-2 text-white-50">(4.9/5)</span>
+            </div>
+            <h5 class="mb-2 fw-bold">Lac Togo</h5>
+            <p class="mb-3 opacity-75 small">Paradis aquatique</p>
+            <div class="destination-info mb-3">
+              <span class="badge me-2" style="background: var(--primary-gradient); color: white;">Lac</span>
+              <span class="badge me-2" style="background: var(--primary-gradient); color: white;">Détente</span>
+            </div>
+            <a routerLink="/client/recherche" class="btn btn-light btn-sm px-3">
+              <i class="fa fa-search me-1"></i>Découvrir
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="destination-card-modern position-relative overflow-hidden rounded-4 shadow-lg h-100" style="background: linear-gradient(135deg, rgba(255,167,38,0.1) 0%, rgba(13,71,161,0.1) 100%), url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; min-height: 250px; display: flex; align-items: end;">
+          <div class="destination-content p-4 text-white w-100">
+            <div class="destination-rating mb-2">
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <i class="fa fa-star" style="color: var(--accent-color);"></i>
+              <i class="fa fa-star-half-alt" style="color: var(--accent-color);"></i>
+              <span class="ms-2 text-white-50">(4.7/5)</span>
+            </div>
+            <h5 class="mb-2 fw-bold">Kara</h5>
+            <p class="mb-3 opacity-75 small">Capitale du Nord</p>
+            <div class="destination-info mb-3">
+              <span class="badge me-2" style="background: var(--accent-gradient); color: white;">Culture</span>
+              <span class="badge me-2" style="background: var(--secondary-gradient); color: white;">Marchés</span>
+            </div>
+            <a routerLink="/client/recherche" class="btn btn-light btn-sm px-3">
+              <i class="fa fa-search me-1"></i>Découvrir
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4 text-center">
+      <div class="col-lg-3 col-md-6">
+        <div class="stat-item">
+          <div class="stat-number display-4 fw-bold mb-2" style="color: var(--primary-color);">500+</div>
+          <h6>Voyages quotidiens</h6>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="stat-item">
+          <div class="stat-number display-4 fw-bold mb-2" style="color: var(--primary-color);">50+</div>
+          <h6>Compagnies partenaires</h6>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="stat-item">
+          <div class="stat-number display-4 fw-bold mb-2" style="color: var(--primary-color);">10k+</div>
+          <h6>Voyageurs satisfaits</h6>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="stat-item">
+          <div class="stat-number display-4 fw-bold mb-2" style="color: var(--primary-color);">24/7</div>
+          <h6>Support client</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 position-relative overflow-hidden" style="background: var(--primary-gradient); color: white;">
+  <!-- Background Elements -->
+  <div class="cta-bg position-absolute top-0 start-0 w-100 h-100 opacity-10" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'); background-size: cover;"></div>
+  <div class="cta-shapes position-absolute top-0 end-0 w-50 h-100">
+    <div class="shape-1 position-absolute" style="top: 10%; right: 10%; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%;"></div>
+    <div class="shape-2 position-absolute" style="top: 60%; right: 20%; width: 60px; height: 60px; background: rgba(255,167,38,0.3); border-radius: 50%;"></div>
+  </div>
+
+  <div class="container position-relative z-index-2 text-center">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="cta-content">
+          <!-- CTA Icon -->
+          <div class="cta-icon mb-4">
+            <i class="fa fa-rocket fa-4x animate-pulse" style="color: var(--accent-color);"></i>
+          </div>
+
+          <!-- CTA Text -->
+          <h2 class="display-4 fw-bold mb-4">Prêt à voyager avec VoyageExpress ?</h2>
+          <p class="lead mb-4 fs-5 opacity-90">
+            Rejoignez des milliers de voyageurs satisfaits et découvrez une nouvelle façon de voyager au Togo.
+            Réservez dès maintenant et profitez de nos offres exclusives !
+          </p>
+
+          <!-- CTA Stats -->
+          <div class="cta-stats d-flex justify-content-center gap-5 mb-5 flex-wrap">
+            <div class="stat-item text-center">
+              <div class="stat-number display-6 fw-bold" style="color: var(--accent-color);">10k+</div>
+              <div class="stat-label opacity-75">Voyageurs satisfaits</div>
+            </div>
+            <div class="stat-item text-center">
+              <div class="stat-number display-6 fw-bold" style="color: var(--accent-color);">50+</div>
+              <div class="stat-label opacity-75">Compagnies partenaires</div>
+            </div>
+            <div class="stat-item text-center">
+              <div class="stat-number display-6 fw-bold" style="color: var(--accent-color);">24/7</div>
+              <div class="stat-label opacity-75">Support disponible</div>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="cta-buttons d-flex justify-content-center gap-4 flex-wrap">
+            <a routerLink="/auth/register" class="btn btn-light btn-lg px-5 py-3 fw-bold shadow-lg">
+              <i class="fa fa-user-plus me-2"></i>Créer un compte
+            </a>
+            <a routerLink="/client" class="btn btn-outline-light btn-lg px-5 py-3 fw-bold border-2">
+              <i class="fa fa-search me-2"></i>Explorer les voyages
+            </a>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="trust-badges mt-5 pt-4 border-top border-white border-opacity-25">
+            <p class="mb-3 opacity-75">Plateforme sécurisée et certifiée</p>
+            <div class="badges d-flex justify-content-center gap-3 flex-wrap">
+              <span class="badge bg-white bg-opacity-20 px-3 py-2">
+                <i class="fa fa-shield-alt me-1"></i>SSL Sécurisé
+              </span>
+              <span class="badge bg-white bg-opacity-20 px-3 py-2">
+                <i class="fa fa-lock me-1"></i>Données protégées
+              </span>
+              <span class="badge bg-white bg-opacity-20 px-3 py-2">
+                <i class="fa fa-check-circle me-1"></i>100% Fiable
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

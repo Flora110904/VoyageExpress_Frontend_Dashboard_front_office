@@ -1,30 +1,16 @@
-/* Styles pour la page Contact modernisée - Thème Tourisme/Voyage */
-
-/* Variables de couleurs pour le thème tourisme */
-:root {
-  --primary-color: #4a90e2; /* Bleu océan */
-  --secondary-color: #7b68ee; /* Violet voyage */
-  --accent-color: #ff6b6b; /* Orange coucher de soleil */
-  --success-color: #51cf66; /* Vert nature */
-  --warning-color: #ffd43b; /* Jaune soleil */
-  --info-color: #74c0fc; /* Bleu ciel */
-  --light-bg: #f8f9fa; /* Blanc cassé */
-  --dark-text: #2c3e50; /* Gris foncé */
-  --light-text: #6c757d; /* Gris moyen */
-}
+/* Styles pour la page Services modernisée */
 
 /* Hero Section */
-.hero-contact {
+.hero-services {
   overflow: hidden;
   position: relative;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
 }
 
-.hero-contact .hero-background {
+.hero-background {
   z-index: 1;
 }
 
-.hero-contact .hero-image-container {
+.hero-image-container {
   animation: float 6s ease-in-out infinite;
 }
 
@@ -57,258 +43,145 @@
   animation: float 6s ease-in-out infinite;
 }
 
-/* Contact Cards */
-.contact-card {
+/* Service Cards */
+.service-card {
   background: white;
-  border-radius: 20px;
+  border-radius: 15px;
+  overflow: hidden;
   transition: all 0.3s ease;
-  height: 100%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
-.contact-card:hover {
+.service-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(74, 144, 226, 0.15);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
-.contact-icon {
+.service-image {
   position: relative;
-  display: inline-block;
+  height: 200px;
+  overflow: hidden;
 }
 
-.icon-overlay {
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+.service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-.contact-card:hover .icon-overlay {
+.service-card:hover .service-image img {
   transform: scale(1.1);
 }
 
-.contact-info h4 {
-  font-weight: 700;
-  margin-bottom: 1rem;
+.service-overlay {
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(5px);
 }
 
-/* Schedule Cards */
-.schedule-card {
+.service-icon {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.service-content {
+  background: white;
+}
+
+.service-features {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+/* Additional Services */
+.additional-service {
+  background: white;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.additional-service:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.service-benefits .badge {
+  font-size: 0.7rem;
+  padding: 0.4em 0.8em;
+}
+
+/* Advantage Cards */
+.advantage-card {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 15px;
   transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.schedule-card:hover {
+.advantage-card:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: translateY(-5px);
-  border-color: rgba(255, 255, 255, 0.4);
 }
 
-.schedule-icon {
+.advantage-icon {
   transition: transform 0.3s ease;
 }
 
-.schedule-card:hover .schedule-icon {
+.advantage-card:hover .advantage-icon {
   transform: scale(1.1);
 }
 
-/* Office Cards */
-.office-card {
-  transition: all 0.3s ease;
+/* Testimonial Cards */
+.testimonial-card {
+  background: white;
   border-radius: 15px;
+  transition: all 0.3s ease;
 }
 
-.office-card:hover {
+.testimonial-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(74, 144, 226, 0.1);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
 }
 
-.office-icon img {
+.testimonial-avatar img {
+  border: 3px solid #f8f9fa;
   transition: transform 0.3s ease;
-  border: 3px solid rgba(74, 144, 226, 0.1);
 }
 
-.office-card:hover .office-icon img {
+.testimonial-card:hover .testimonial-avatar img {
   transform: scale(1.1);
-  border-color: var(--primary-color);
 }
 
-.office-info {
-  padding-left: 1rem;
+.testimonial-rating {
+  transition: transform 0.3s ease;
 }
 
-/* FAQ Cards */
-.faq-card {
-  transition: all 0.3s ease;
-  background: white;
-  border-radius: 15px;
-}
-
-.faq-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(74, 144, 226, 0.1);
-}
-
-/* Contact Form */
-.contact-form-card {
-  transition: all 0.3s ease;
-  border-radius: 20px;
-}
-
-.contact-form-card:hover {
-  transform: translateY(-5px);
-}
-
-.contact-form .form-control,
-.contact-form .form-select {
-  border-radius: 12px;
-  border: 2px solid rgba(74, 144, 226, 0.1);
-  padding: 1rem;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  background: rgba(248, 249, 250, 0.8);
-}
-
-.contact-form .form-control:focus,
-.contact-form .form-select:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
-  background: white;
-}
-
-.contact-form .form-label {
-  color: var(--dark-text);
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-
-/* Form Check */
-.contact-form .form-check-input:checked {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-}
-
-.contact-form .form-check-label {
-  font-size: 0.9rem;
-  cursor: pointer;
-  line-height: 1.5;
+.testimonial-card:hover .testimonial-rating {
+  transform: scale(1.1);
 }
 
 /* Background Gradients */
 .bg-gradient-primary {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-/* Button enhancements */
-.btn {
-  border-radius: 50px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+/* List Styling */
+.list-unstyled li {
+  padding: 0.5rem 0;
+  border-radius: 8px;
   transition: all 0.3s ease;
-  border: none;
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-  box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
-}
-
-.btn-success {
-  background: linear-gradient(135deg, var(--success-color) 0%, #40c057 100%);
-}
-
-.btn-warning {
-  background: linear-gradient(135deg, var(--warning-color) 0%, #fab005 100%);
-}
-
-.btn-info {
-  background: linear-gradient(135deg, var(--info-color) 0%, #339af0 100%);
-}
-
-.btn-outline-light:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* Card shadows and effects */
-.card, .contact-card, .office-card, .faq-card, .schedule-card {
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-  border: none;
-  border-radius: 15px;
-}
-
-.card:hover, .contact-card:hover, .office-card:hover, .faq-card:hover, .schedule-card:hover {
-  box-shadow: 0 15px 35px rgba(74, 144, 226, 0.15);
-}
-
-/* Text enhancements */
-.text-primary {
-  color: var(--primary-color) !important;
-}
-
-.text-success {
-  color: var(--success-color) !important;
-}
-
-.text-warning {
-  color: var(--warning-color) !important;
-}
-
-.text-info {
-  color: var(--info-color) !important;
-}
-
-.text-muted {
-  color: var(--light-text) !important;
-}
-
-/* Icon animations */
-.fa {
-  transition: transform 0.3s ease;
-}
-
-.contact-card:hover .fa,
-.office-card:hover .fa,
-.faq-card:hover .fa {
-  transform: scale(1.2);
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--light-bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary-color);
-}
-
-/* Background patterns */
-.bg-light {
-  background-color: var(--light-bg) !important;
+.list-unstyled li:hover {
+  background: rgba(102, 126, 234, 0.05);
+  padding-left: 1rem;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .hero-contact {
+  .hero-services {
     min-height: 60vh;
     text-align: center;
-    padding-top: 100px;
   }
 
   .hero-image-container {
@@ -327,39 +200,43 @@
     font-size: calc(1.325rem + 0.9vw);
   }
 
-  .contact-card {
+  .service-card {
     margin-bottom: 2rem;
   }
 
-  .office-card {
+  .additional-service {
     margin-bottom: 2rem;
   }
 
-  .faq-card {
+  .advantage-card {
     margin-bottom: 2rem;
   }
 }
 
-/* Form Select Custom Styling */
-.form-select {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-  background-position: right 1rem center;
-  background-repeat: no-repeat;
-  background-size: 1.5em 1.5em;
-  padding-right: 3rem;
+/* Button Enhancements */
+.btn {
+  border-radius: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
 }
 
-.form-select:focus {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%234a90e2' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* Textarea styling */
-textarea.form-control {
-  resize: vertical;
-  min-height: 120px;
+/* Card Hover Effects */
+.card, .service-card, .additional-service, .advantage-card, .testimonial-card {
+  border: none;
 }
 
-/* Image loading animations */
+.card:hover, .service-card:hover, .additional-service:hover, .advantage-card:hover, .testimonial-card:hover {
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+/* Image Loading Animation */
 img {
   transition: opacity 0.3s ease;
 }
@@ -375,18 +252,58 @@ img[src*="unsplash"] {
   }
 }
 
-/* Contact form specific styling */
-.contact-form .form-floating {
-  position: relative;
+/* Icon Animations */
+.fa {
+  transition: transform 0.3s ease;
 }
 
-.contact-form .form-floating label {
-  padding: 1rem;
+.service-card:hover .fa,
+.additional-service:hover .fa,
+.advantage-card:hover .fa {
+  transform: scale(1.2);
 }
 
-/* Icon spacing in contact info */
-.office-info .fa,
-.contact-info .fa {
-  width: 20px;
-  text-align: center;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #764ba2;
+}
+
+/* Text Enhancements */
+.text-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Badge Styling */
+.badge {
+  font-size: 0.75rem;
+  padding: 0.5em 0.75em;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* Service Icons */
+.service-icon i {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.service-benefits {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  margin-top: 1rem;
 }
