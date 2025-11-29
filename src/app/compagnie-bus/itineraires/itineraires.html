@@ -1,165 +1,149 @@
-<!-- Topbar Start -->
-<div class="container-fluid bg-light d-none d-lg-block">
-  <div class="row align-items-center top-bar">
-    <div class="col-lg-3 col-md-12 text-center text-lg-start">
-      <a routerLink="/" class="navbar-brand m-0 p-0">
-        <h1 class="text-primary m-0">VoyageExpress Bus</h1>
-      </a>
-    </div>
-    <div class="col-lg-9 col-md-12 text-end">
-      <div class="h-100 d-inline-flex align-items-center me-4">
-        <i class="fa fa-map-marker-alt text-primary me-2"></i>
-        <p class="m-0">Dakar, Sénégal</p>
-      </div>
-      <div class="h-100 d-inline-flex align-items-center me-4">
-        <i class="far fa-envelope-open text-primary me-2"></i>
-        <p class="m-0">contact&#64;voyageexpress.sn</p>
-      </div>
-      <div class="h-100 d-inline-flex align-items-center">
-        <a class="btn btn-sm-square bg-white text-primary me-1" href=""><i class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-sm-square bg-white text-primary me-1" href=""><i class="fab fa-twitter"></i></a>
-        <a class="btn btn-sm-square bg-white text-primary me-0" href=""><i class="fab fa-instagram"></i></a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Topbar End -->
+<app-compagnie-bus-navbar></app-compagnie-bus-navbar>
 
-<!-- Navbar Start -->
-<div class="container-fluid nav-bar bg-light">
-  <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
-    <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
-      <h1 class="text-primary m-0">VoyageExpress Bus</h1>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-      <span class="fa fa-bars"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav me-auto">
-        <a routerLink="/compagnieBus" class="nav-item nav-link" routerLinkActive="active">Dashboard</a>
-        <a routerLink="/compagnieBus/statistiques" class="nav-item nav-link" routerLinkActive="active">Statistiques</a>
-        <a routerLink="/compagnieBus/reservations" class="nav-item nav-link" routerLinkActive="active">Réservations</a>
-        <a routerLink="/compagnieBus/itineraires" class="nav-item nav-link active" routerLinkActive="active">Itinéraires</a>
-        <a routerLink="/compagnieBus/vehicules" class="nav-item nav-link" routerLinkActive="active">Véhicules</a>
-      </div>
-      <div class="mt-4 mt-lg-0 me-lg-n4 py-3 px-4 bg-primary d-flex align-items-center">
-        <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white" style="width: 45px; height: 45px;">
-          <i class="fa fa-phone-alt text-primary"></i>
-        </div>
-        <div class="ms-3">
-          <p class="mb-1 text-white">Support 24/7</p>
-          <h5 class="m-0 text-secondary">+221 33 XXX XX XX</h5>
-        </div>
-      </div>
-    </div>
-  </nav>
-</div>
-<!-- Navbar End -->
 <div class="container-fluid py-5">
   <div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2>Itinéraires de Bus</h2>
-      <button class="btn btn-primary">+ Nouvel Itinéraire</button>
-    </div>
-
-    <!-- Liste Itinéraires -->
-    <div class="row g-4">
-      <div class="col-md-6">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-start mb-3">
-              <div>
-                <h4>Dakar → Thiès</h4>
-                <p class="text-muted mb-0">Distance: 70 km</p>
-              </div>
-              <span class="badge bg-success">Actif</span>
-            </div>
-            <hr>
-            <div class="mb-3">
-              <strong>Arrêts :</strong> Rufisque, Bargny
-            </div>
-            <div class="mb-3">
-              <strong>Durée :</strong> 1h 15min
-            </div>
-            <div class="mb-3">
-              <strong>Tarif :</strong> 2,500 FCFA
-            </div>
-            <div class="mb-3">
-              <strong>Fréquence :</strong> Toutes les heures
-            </div>
-            <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-info flex-fill">Voir détails</button>
-              <button class="btn btn-sm btn-warning">Modifier</button>
-              <button class="btn btn-sm btn-danger">Désactiver</button>
-            </div>
-          </div>
-        </div>
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3 mb-4">
+      <div>
+        <h2 class="mb-1">Gestion des itinéraires</h2>
+        <p class="text-muted mb-0">Planifiez et surveillez vos trajets en temps réel.</p>
       </div>
-
-      <div class="col-md-6">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-start mb-3">
-              <div>
-                <h4>Dakar → Saint-Louis</h4>
-                <p class="text-muted mb-0">Distance: 270 km</p>
-              </div>
-              <span class="badge bg-success">Actif</span>
-            </div>
-            <hr>
-            <div class="mb-3">
-              <strong>Arrêts :</strong> Thiès, Louga
-            </div>
-            <div class="mb-3">
-              <strong>Durée :</strong> 4h 00min
-            </div>
-            <div class="mb-3">
-              <strong>Tarif :</strong> 6,000 FCFA
-            </div>
-            <div class="mb-3">
-              <strong>Fréquence :</strong> 3 fois par jour
-            </div>
-            <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-info flex-fill">Voir détails</button>
-              <button class="btn btn-sm btn-warning">Modifier</button>
-              <button class="btn btn-sm btn-danger">Désactiver</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-start mb-3">
-              <div>
-                <h4>Dakar → Kaolack</h4>
-                <p class="text-muted mb-0">Distance: 195 km</p>
-              </div>
-              <span class="badge bg-success">Actif</span>
-            </div>
-            <hr>
-            <div class="mb-3">
-              <strong>Arrêts :</strong> Fatick, Gossas
-            </div>
-            <div class="mb-3">
-              <strong>Durée :</strong> 2h 45min
-            </div>
-            <div class="mb-3">
-              <strong>Tarif :</strong> 4,500 FCFA
-            </div>
-            <div class="mb-3">
-              <strong>Fréquence :</strong> Toutes les 2 heures
-            </div>
-            <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-info flex-fill">Voir détails</button>
-              <button class="btn btn-sm btn-warning">Modifier</button>
-              <button class="btn btn-sm btn-danger">Désactiver</button>
-            </div>
-          </div>
-        </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-secondary" type="button" (click)="refresh()">
+          <i class="fa fa-sync-alt me-2"></i>Actualiser
+        </button>
+        <button class="btn btn-primary" type="button" (click)="openCreateItinerary()">
+          <i class="fa fa-plus me-2"></i>Nouvel itinéraire
+        </button>
       </div>
     </div>
+
+    <section *ngIf="isLoading" class="card border-0 shadow-sm text-center p-5">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p class="mt-3 mb-0">Chargement des itinéraires bus...</p>
+    </section>
+
+    <section *ngIf="!isLoading && error" class="alert alert-danger d-flex flex-column flex-sm-row align-items-sm-center justify-content-between shadow-sm">
+      <div>
+        <h5 class="alert-heading"><i class="fa fa-exclamation-triangle me-2"></i>Impossible de récupérer les itinéraires</h5>
+        <p class="mb-0">{{ error }}</p>
+      </div>
+      <button class="btn btn-danger mt-3 mt-sm-0" type="button" (click)="refresh()">
+        <i class="fa fa-sync-alt me-2"></i>Réessayer
+      </button>
+    </section>
+
+    <ng-container *ngIf="!isLoading && !error">
+      <div class="row g-4 mb-4">
+        <div class="col-sm-6 col-lg-3" *ngFor="let card of kpiCards">
+          <div class="kpi-card" [ngClass]="'tone-' + card.tone">
+            <div class="icon"><i class="fa" [ngClass]="card.icon"></i></div>
+            <div>
+              <span class="label">{{ card.label }}</span>
+              <span class="value">{{ card.value }}</span>
+              <small class="hint">{{ card.hint }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body p-4">
+          <div class="row g-3 align-items-end">
+            <div class="col-lg-4">
+              <label class="form-label fw-semibold">Recherche</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                <input class="form-control" type="text" placeholder="Ville départ ou arrivée" [(ngModel)]="filters.search" (ngModelChange)="onFiltersChange()">
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <label class="form-label fw-semibold">Date</label>
+              <input class="form-control" type="date" [(ngModel)]="filters.date" (change)="onFiltersChange()">
+            </div>
+            <div class="col-lg-2">
+              <label class="form-label fw-semibold">Statut</label>
+              <select class="form-select" [(ngModel)]="filters.status" (change)="onFiltersChange()">
+                <option value="ALL">Tous les statuts</option>
+                <option value="TODAY">Aujourd'hui</option>
+                <option value="UPCOMING">À venir</option>
+                <option value="PAST">Passés</option>
+              </select>
+            </div>
+            <div class="col-lg-1">
+              <label class="form-label fw-semibold">Places ≥</label>
+              <input class="form-control" type="number" min="0" [(ngModel)]="filters.minSeats" (input)="onFiltersChange()">
+            </div>
+            <div class="col-lg-1">
+              <label class="form-label fw-semibold">Prix ≤</label>
+              <input class="form-control" type="number" min="0" [(ngModel)]="filters.maxPrice" (input)="onFiltersChange()">
+            </div>
+            <div class="col-lg-1 text-lg-end">
+              <button class="btn btn-outline-secondary w-100" type="button" (click)="resetFilters()">
+                <i class="fa fa-undo me-2"></i>Reset
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4" *ngIf="filteredItineraires.length; else emptyItineraries">
+        <div class="col-md-6 col-xl-4" *ngFor="let itinerary of filteredItineraires; trackBy: trackItinerary">
+          <div class="card h-100 border-0 shadow-sm itinerary-card">
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <div>
+                  <h4 class="mb-1">{{ itinerary.villeDepart }} → {{ itinerary.villeArrivee }}</h4>
+                  <small class="text-muted">Départ le {{ itinerary.dateDepart | date:'mediumDate' }} à {{ itinerary.heureDepart || '--:--' }}</small>
+                </div>
+                <span class="badge" [ngClass]="getStatusBadge(itinerary.computedStatus)">{{ getStatusLabel(itinerary.computedStatus) }}</span>
+              </div>
+
+              <div class="d-flex flex-column gap-2 flex-grow-1">
+                <div class="d-flex justify-content-between">
+                  <span class="text-muted">Tarif</span>
+                  <strong>{{ itinerary.prix | currency:'XOF':'symbol':'1.0-0' }}</strong>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span class="text-muted">Places disponibles</span>
+                  <span>
+                    <span class="badge" [ngClass]="{
+                      'bg-danger': isLowCapacity(itinerary),
+                      'bg-success': !isLowCapacity(itinerary)
+                    }">{{ getSeatCount(itinerary) }}</span>
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span class="text-muted">Référence</span>
+                  <span>{{ itinerary.trackingId }}</span>
+                </div>
+              </div>
+
+              <div class="mt-3 d-flex gap-2">
+                <button class="btn btn-sm btn-outline-primary flex-fill" type="button" [routerLink]="['/compagnieBus/itineraires', itinerary.trackingId]" [disabled]="!itinerary.trackingId">
+                  <i class="fa fa-eye me-1"></i>Détails
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" type="button" [disabled]="true">
+                  <i class="fa fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger" type="button" [disabled]="true">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #emptyItineraries>
+        <div class="card border-0 shadow-sm text-center p-5 text-muted">
+          <i class="fa fa-road fa-2x mb-3"></i>
+          <p class="mb-2">Aucun itinéraire ne correspond à vos critères.</p>
+          <button class="btn btn-outline-primary" type="button" (click)="resetFilters()">
+            Réinitialiser les filtres
+          </button>
+        </div>
+      </ng-template>
+    </ng-container>
   </div>
 </div>
 <!-- Footer Start -->
@@ -213,3 +197,8 @@
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+<app-itineraire-form-modal
+  [isOpen]="isCreateModalOpen"
+  (closed)="onItineraryModalClosed()"
+  (saved)="onItinerarySaved($event)"></app-itineraire-form-modal>

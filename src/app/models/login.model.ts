@@ -15,6 +15,7 @@ export interface LoginResponse {
   token: string;
   type: string;
   email: string;
+  trackingId: string;
   role: Role;
   nom: string;
   prenom: string;

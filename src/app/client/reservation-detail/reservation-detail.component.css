@@ -1,0 +1,32 @@
+.detail-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f2f6ff;
+}
+
+.detail-card {
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.detail-card .card-header {
+  background: linear-gradient(135deg, #ff7f50, #ff4b2b);
+  color: #fff;
+}
+
+.info-block {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 10px 25px rgba(255, 79, 79, 0.15);
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 0;
+}

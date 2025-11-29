@@ -1,0 +1,360 @@
+<app-navbar></app-navbar>
+
+<!-- Hero Dashboard Établissement -->
+<div class="dashboard-hero position-relative overflow-hidden">
+  <div class="container position-relative" style="z-index: 2; padding: 3rem 1rem;">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <div class="d-flex align-items-center mb-3">
+          <div class="me-3" style="width: 70px; height: 70px; background: var(--accent-gradient); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center;">
+            <i class="fa fa-hotel fa-2x text-white"></i>
+          </div>
+          <div>
+            <h6 class="text-white-50 mb-1 text-uppercase" style="font-size: 0.9rem; letter-spacing: 1px;">Gestion Hébergement</h6>
+            <h1 class="text-white mb-0 fw-bold" style="font-size: 2.5rem;">Tableau de Bord</h1>
+          </div>
+        </div>
+        <p class="text-white mb-4 opacity-90" style="font-size: 1.1rem; max-width: 600px;">
+          Gérez efficacement votre établissement avec des outils puissants de suivi des réservations, occupation et revenus.
+        </p>
+        <div class="d-flex gap-3 flex-wrap">
+          <button class="btn btn-lg px-4" style="background: var(--accent-gradient); color: white; border: none; border-radius: var(--radius-full); font-weight: 600;">
+            <i class="fa fa-plus me-2"></i>Nouvelle Réservation
+          </button>
+          <button class="btn btn-outline-light btn-lg px-4" style="border-radius: var(--radius-full); font-weight: 600; border-width: 2px;">
+            <i class="fa fa-calendar-alt me-2"></i>Calendrier
+          </button>
+        </div>
+      </div>
+      <div class="col-lg-4 text-end d-none d-lg-block">
+        <div class="text-white">
+          <div class="d-flex align-items-center justify-content-end mb-3">
+            <i class="fa fa-calendar-day fa-2x me-3" style="color: var(--accent-color);"></i>
+            <div class="text-end">
+              <div style="font-size: 2rem; font-weight: bold;" id="currentDate"></div>
+              <div class="opacity-75">Aujourd'hui</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Métriques Clés -->
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);">
+  <div class="container">
+    <!-- En-tête Section -->
+    <div class="text-center mb-5">
+      <h6 class="text-uppercase mb-2" style="color: var(--accent-color); font-weight: 600; letter-spacing: 1px;">Indicateurs de Performance</h6>
+      <h2 class="fw-bold mb-3" style="color: var(--primary-color); font-size: 2.5rem;">Vue d'ensemble</h2>
+      <div class="mx-auto" style="width: 80px; height: 4px; background: var(--primary-gradient); border-radius: 2px;"></div>
+    </div>
+
+    <!-- Dashboard Metrics Grid -->
+    <div class="dashboard-metrics mb-5">
+      <!-- Chambres Totales -->
+      <div class="metric-card animate-fade-in" style="animation-delay: 0.1s;">
+        <div class="d-flex align-items-center">
+          <div class="metric-icon primary">
+            <i class="fa fa-bed"></i>
+          </div>
+          <div class="flex-1">
+            <div class="metric-number">89</div>
+            <div class="metric-label">Chambres Totales</div>
+            <div class="metric-change positive">
+              <i class="fa fa-arrow-up"></i> +3 ce mois
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chambres Occupées -->
+      <div class="metric-card animate-fade-in" style="animation-delay: 0.2s;">
+        <div class="d-flex align-items-center">
+          <div class="metric-icon secondary">
+            <i class="fa fa-check-circle"></i>
+          </div>
+          <div class="flex-1">
+            <div class="metric-number">67</div>
+            <div class="metric-label">Chambres Occupées</div>
+            <div class="metric-change positive">
+              <i class="fa fa-arrow-up"></i> +8%
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Taux d'Occupation -->
+      <div class="metric-card animate-fade-in" style="animation-delay: 0.3s;">
+        <div class="d-flex align-items-center">
+          <div class="metric-icon accent">
+            <i class="fa fa-percentage"></i>
+          </div>
+          <div class="flex-1">
+            <div class="metric-number">75%</div>
+            <div class="metric-label">Taux d'Occupation</div>
+            <div class="metric-change positive">
+              <i class="fa fa-arrow-up"></i> +5%
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Revenus -->
+      <div class="metric-card animate-fade-in" style="animation-delay: 0.4s;">
+        <div class="d-flex align-items-center">
+          <div class="metric-icon success">
+            <i class="fa fa-coins"></i>
+          </div>
+          <div class="flex-1">
+            <div class="metric-number">2.4M</div>
+            <div class="metric-label">Revenus (FCFA)</div>
+            <div class="metric-change positive">
+              <i class="fa fa-arrow-up"></i> +12%
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions Rapides -->
+    <div class="mb-5">
+      <h3 class="fw-bold mb-4" style="color: var(--primary-color);">
+        <i class="fa fa-bolt me-2" style="color: var(--accent-color);"></i>
+        Actions Rapides
+      </h3>
+      <div class="action-grid">
+        <!-- Statistiques -->
+        <div class="action-card animate-fade-in-up" style="animation-delay: 0.1s;">
+          <div class="action-icon primary mb-3">
+            <i class="fa fa-chart-line"></i>
+          </div>
+          <div class="action-title">Statistiques Détaillées</div>
+          <div class="action-description">
+            Analysez l'occupation, les revenus et les tendances de votre établissement
+          </div>
+          <a routerLink="statistiques" class="btn btn-modern btn-primary-modern w-100 mt-3">
+            <i class="fa fa-arrow-right me-2"></i>Voir Statistiques
+          </a>
+        </div>
+
+        <!-- Gestion Chambres -->
+        <div class="action-card animate-fade-in-up" style="animation-delay: 0.2s;">
+          <div class="action-icon secondary mb-3">
+            <i class="fa fa-bed"></i>
+          </div>
+          <div class="action-title">Gestion des Chambres</div>
+          <div class="action-description">
+            Gérez la disponibilité, les tarifs et les caractéristiques de vos chambres
+          </div>
+          <a routerLink="chambres" class="btn btn-modern btn-secondary-modern w-100 mt-3">
+            <i class="fa fa-arrow-right me-2"></i>Gérer Chambres
+          </a>
+        </div>
+
+        <!-- Réservations -->
+        <div class="action-card animate-fade-in-up" style="animation-delay: 0.3s;">
+          <div class="action-icon accent mb-3">
+            <i class="fa fa-calendar-check"></i>
+          </div>
+          <div class="action-title">Réservations Clients</div>
+          <div class="action-description">
+            Consultez et gérez toutes les réservations en cours et à venir
+          </div>
+          <a routerLink="reservations" class="btn btn-modern btn-accent-modern w-100 mt-3">
+            <i class="fa fa-arrow-right me-2"></i>Voir Réservations
+          </a>
+        </div>
+
+        <!-- Types d'Hébergement -->
+        <div class="action-card animate-fade-in-up" style="animation-delay: 0.4s;">
+          <div class="action-icon primary mb-3">
+            <i class="fa fa-hotel"></i>
+          </div>
+          <div class="action-title">Types d'Hébergement</div>
+          <div class="action-description">
+            Configurez les types (Hôtel, Motel, Appartement) et leurs tarifs
+          </div>
+          <a routerLink="types-hebergement" class="btn btn-modern btn-primary-modern w-100 mt-3">
+            <i class="fa fa-arrow-right me-2"></i>Configurer Types
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Réservations Récentes -->
+    <div class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold mb-0" style="color: var(--primary-color);">
+          <i class="fa fa-clock me-2" style="color: var(--accent-color);"></i>
+          Réservations Récentes
+        </h3>
+        <a routerLink="reservations" class="btn btn-outline-primary">Voir tout</a>
+      </div>
+      
+      <div class="card-modern">
+        <div class="table-modern-container">
+          <table class="table-modern">
+            <thead>
+              <tr>
+                <th>Client</th>
+                <th>Chambre</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th>Statut</th>
+                <th>Montant</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="me-3" style="width: 40px; height: 40px; border-radius: 50%; background: var(--primary-gradient); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                      JD
+                    </div>
+                    <div>
+                      <div class="fw-semibold">Jean Dupont</div>
+                      <div class="text-muted small">jean&#64;email.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="fw-semibold">Suite 201</span></td>
+                <td>01 Nov 2025</td>
+                <td>05 Nov 2025</td>
+                <td><span class="badge-modern badge-success">Confirmé</span></td>
+                <td><span class="fw-bold" style="color: var(--primary-color);">120,000 FCFA</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="me-3" style="width: 40px; height: 40px; border-radius: 50%; background: var(--secondary-gradient); display: flex; align-items-center; justify-content: center; color: white; font-weight: bold;">
+                      MK
+                    </div>
+                    <div>
+                      <div class="fw-semibold">Marie Koffi</div>
+                      <div class="text-muted small">marie&#64;email.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="fw-semibold">Chambre 105</span></td>
+                <td>02 Nov 2025</td>
+                <td>03 Nov 2025</td>
+                <td><span class="badge-modern badge-warning">En attente</span></td>
+                <td><span class="fw-bold" style="color: var(--primary-color);">45,000 FCFA</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="me-3" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-gradient); display: flex; align-items-center; justify-content: center; color: white; font-weight: bold;">
+                      KA
+                    </div>
+                    <div>
+                      <div class="fw-semibold">Kofi Amani</div>
+                      <div class="text-muted small">kofi&#64;email.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="fw-semibold">Suite 305</span></td>
+                <td>03 Nov 2025</td>
+                <td>10 Nov 2025</td>
+                <td><span class="badge-modern badge-success">Confirmé</span></td>
+                <td><span class="fw-bold" style="color: var(--primary-color);">210,000 FCFA</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Occupation par Type -->
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="card-modern h-100">
+          <h4 class="fw-bold mb-4" style="color: var(--primary-color);">
+            <i class="fa fa-chart-pie me-2" style="color: var(--accent-color);"></i>
+            Occupation par Type
+          </h4>
+          <div class="space-y-3">
+            <div class="mb-4">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="fw-semibold">Chambres Standard</span>
+                <span class="fw-bold" style="color: var(--primary-color);">70%</span>
+              </div>
+              <div class="progress-modern">
+                <div class="progress-bar-modern primary" style="width: 70%"></div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="fw-semibold">Chambres Deluxe</span>
+                <span class="fw-bold" style="color: var(--secondary-color);">85%</span>
+              </div>
+              <div class="progress-modern">
+                <div class="progress-bar-modern secondary" style="width: 85%"></div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="fw-semibold">Suites</span>
+                <span class="fw-bold" style="color: var(--accent-color);">60%</span>
+              </div>
+              <div class="progress-modern">
+                <div class="progress-bar-modern accent" style="width: 60%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card-modern h-100">
+          <h4 class="fw-bold mb-4" style="color: var(--primary-color);">
+            <i class="fa fa-star me-2" style="color: var(--accent-color);"></i>
+            Objectifs du Mois
+          </h4>
+          <div class="space-y-3">
+            <div class="mb-4">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="fw-semibold">Taux d'occupation cible</span>
+                <span class="fw-bold text-success">75% / 80%</span>
+              </div>
+              <div class="progress-modern">
+                <div class="progress-bar-modern primary" style="width: 93.75%"></div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="fw-semibold">Revenus cible</span>
+                <span class="fw-bold text-success">2.4M / 3M FCFA</span>
+              </div>
+              <div class="progress-modern">
+                <div class="progress-bar-modern accent" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="fw-semibold">Satisfaction client</span>
+                <span class="fw-bold text-warning">4.5 / 5.0</span>
+              </div>
+              <div class="progress-modern">
+                <div class="progress-bar-modern secondary" style="width: 90%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+<script>
+  // Afficher la date actuelle
+  const dateElement = document.getElementById('currentDate');
+  if (dateElement) {
+    const options = { day: '2-digit', month: 'short' };
+    dateElement.textContent = new Date().toLocaleDateString('fr-FR', options);
+  }
+</script>

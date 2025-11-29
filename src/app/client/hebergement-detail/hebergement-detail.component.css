@@ -1,0 +1,51 @@
+.detail-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f7fb;
+}
+
+.detail-card {
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.detail-card .card-header {
+  background: linear-gradient(135deg, #00a8cc, #006f9c);
+  color: #fff;
+}
+
+.image-wrapper img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 220px;
+  border: 2px dashed #c5d3e6;
+  border-radius: 12px;
+  color: #8aa0c3;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.info-block {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(31, 61, 90, 0.08);
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 0;
+}

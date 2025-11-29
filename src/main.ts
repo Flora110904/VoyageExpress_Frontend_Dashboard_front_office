@@ -2,7 +2,10 @@ import { enableProdMode, importProvidersFrom, isDevMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app/app';
+import { AuthInterceptor } from './app/interceptors/auth.interceptor';
 
 // Import des routes
 import { routes } from './app/app-routing-module';
@@ -17,6 +20,16 @@ console.log('Démarrage de VoyageExpress...');
 // Démarrage de l'application avec le composant racine autonome
 bootstrapApplication(AppComponent, {
   providers: [
+    // Fournit HttpClient pour toute l'application
+    provideHttpClient(withInterceptorsFromDi()),
+    
+    // Intercepteur d'authentification
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    
     // Fournit les fournisseurs nécessaires pour le routage
     importProvidersFrom(
       BrowserAnimationsModule,

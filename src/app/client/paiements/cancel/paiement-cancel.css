@@ -1,0 +1,88 @@
+.payment-cancel {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f7fa;
+  padding: 2rem 1rem;
+}
+
+.payment-cancel .card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.1);
+}
+
+.payment-cancel .icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.payment-cancel .icon.bg-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.payment-cancel h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
+  color: #0f172a;
+}
+
+.payment-cancel .lead {
+  color: #475569;
+  margin-bottom: 2rem;
+}
+
+.payment-cancel .details {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.payment-cancel .details h2 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #0f172a;
+}
+
+.payment-cancel .details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.payment-cancel .details li {
+  margin-bottom: 0.5rem;
+  color: #1e293b;
+}
+
+.payment-cancel .actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.payment-cancel .btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+}
+
+@media (min-width: 480px) {
+  .payment-cancel .actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}

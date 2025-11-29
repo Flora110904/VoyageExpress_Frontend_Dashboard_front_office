@@ -1,0 +1,298 @@
+.seasons-wrapper {
+  padding: 24px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #1f2933;
+}
+
+.seasons-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.seasons-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.seasons-header .subtitle {
+  margin: 4px 0 0;
+  color: #52606d;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: white;
+}
+
+.btn.ghost {
+  background: #e4e7eb;
+  color: #334155;
+}
+
+.btn.danger {
+  background: #f87171;
+  color: white;
+}
+
+.btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn .spin {
+  animation: spin 1s linear infinite;
+}
+
+.layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.seasons-list {
+  flex: 1;
+  display: grid;
+  gap: 16px;
+}
+
+.seasons-list.overlay {
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.season-card {
+  border: 1px solid #d9e2ec;
+  border-radius: 16px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 12px 20px -15px rgba(43, 108, 176, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.season-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -15px rgba(43, 108, 176, 0.65);
+}
+
+.season-card.highlighted {
+  border-color: #2563eb;
+  box-shadow: 0 12px 28px -16px rgba(37, 99, 235, 0.7);
+}
+
+.season-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.season-header h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.season-header .dates {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 13px;
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.badge.active {
+  background: rgba(16, 185, 129, 0.15);
+  color: #047857;
+}
+
+.badge.inactive {
+  background: rgba(248, 113, 113, 0.15);
+  color: #b91c1c;
+}
+
+.season-body {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.rule .label {
+  font-weight: 600;
+  color: #475569;
+}
+
+.rule .value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.meta {
+  display: flex;
+  gap: 16px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.season-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.alert {
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.alert.success {
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+}
+
+.alert.danger {
+  background: rgba(248, 113, 113, 0.15);
+  color: #b91c1c;
+}
+
+.alert.compact {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.empty-state {
+  border: 2px dashed #a0aec0;
+  border-radius: 16px;
+  padding: 40px 24px;
+  text-align: center;
+  background: white;
+  color: #52606d;
+}
+
+.empty-state i {
+  font-size: 40px;
+  color: #2563eb;
+  margin-bottom: 12px;
+}
+
+.season-form {
+  width: 360px;
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 18px 32px -18px rgba(37, 99, 235, 0.4);
+  position: sticky;
+  top: 32px;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.form-group span {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select {
+  border: 1px solid #cbd5f5;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 15px;
+  color: #0f172a;
+}
+
+.form-group small {
+  margin-top: 6px;
+  color: #64748b;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1024px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .season-form {
+    position: static;
+    width: 100%;
+  }
+}

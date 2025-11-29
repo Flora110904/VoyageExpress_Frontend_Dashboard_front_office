@@ -1,7 +1,5 @@
-
-
 <!-- Register Section -->
-<div class="register-container d-flex align-items-center justify-content-center min-vh-100" style="background: linear-gradient(135deg, #4a90e2 0%, #7b68ee 50%, #ff6b6b 100%);">
+<div class="register-container d-flex align-items-center justify-content-center min-vh-100" style="background: var(--hero-gradient);">
   <div class="register-card bg-white rounded-4 shadow-lg p-5" style="max-width: 600px; width: 100%;">
     <!-- Header -->
     <div class="text-center mb-4">
@@ -10,6 +8,12 @@
       </div>
       <h2 class="fw-bold text-primary mb-2">Créer votre compte VoyageExpress</h2>
       <p class="text-muted">Rejoignez notre communauté de voyageurs</p>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-danger d-flex align-items-center mb-4" role="alert">
+      <i class="fa fa-exclamation-triangle me-2"></i>
+      <div>{{ errorMessage }}</div>
     </div>
 
     <!-- Register Form -->
@@ -105,6 +109,82 @@
         </div>
       </div>
 
+      <!-- Champs pour Compagnie -->
+      <div *ngIf="isCompagnie()">
+        <!-- Nom de la Compagnie -->
+        <div class="mb-4">
+          <label for="nomCompagnie" class="form-label fw-semibold">
+            <i class="fa fa-building me-2 text-primary"></i>Nom de la Compagnie
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-lg"
+            id="nomCompagnie"
+            formControlName="nomCompagnie"
+            placeholder="Nom de votre compagnie"
+            [class.is-invalid]="registerForm.get('nomCompagnie')?.invalid && registerForm.get('nomCompagnie')?.touched">
+          <div *ngIf="registerForm.get('nomCompagnie')?.invalid && registerForm.get('nomCompagnie')?.touched" class="invalid-feedback">
+            <span *ngIf="registerForm.get('nomCompagnie')?.errors?.['required']">Le nom de la compagnie est requis</span>
+            <span *ngIf="registerForm.get('nomCompagnie')?.errors?.['minlength']">Le nom doit contenir au moins 2 caractères</span>
+          </div>
+        </div>
+
+        <!-- Type de Compagnie -->
+        <div class="mb-4">
+          <label for="typeCompagnie" class="form-label fw-semibold">
+            <i class="fa fa-list me-2 text-primary"></i>Type de Compagnie
+          </label>
+          <select
+            class="form-select form-select-lg"
+            id="typeCompagnie"
+            formControlName="typeCompagnie"
+            [class.is-invalid]="registerForm.get('typeCompagnie')?.invalid && registerForm.get('typeCompagnie')?.touched">
+            <option *ngFor="let type of typesCompagnie" [value]="type.value">{{ type.label }}</option>
+          </select>
+          <div *ngIf="registerForm.get('typeCompagnie')?.invalid && registerForm.get('typeCompagnie')?.touched" class="invalid-feedback">
+            Veuillez sélectionner un type de compagnie
+          </div>
+        </div>
+      </div>
+
+      <!-- Champs pour Établissement -->
+      <div *ngIf="isEtablissement()">
+        <!-- Adresse -->
+        <div class="mb-4">
+          <label for="adresse" class="form-label fw-semibold">
+            <i class="fa fa-map-marker me-2 text-primary"></i>Adresse
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-lg"
+            id="adresse"
+            formControlName="adresse"
+            placeholder="Adresse de l'établissement"
+            [class.is-invalid]="registerForm.get('adresse')?.invalid && registerForm.get('adresse')?.touched">
+          <div *ngIf="registerForm.get('adresse')?.invalid && registerForm.get('adresse')?.touched" class="invalid-feedback">
+            <span *ngIf="registerForm.get('adresse')?.errors?.['required']">L'adresse est requise</span>
+            <span *ngIf="registerForm.get('adresse')?.errors?.['minlength']">L'adresse doit contenir au moins 5 caractères</span>
+          </div>
+        </div>
+
+        <!-- Type d'Établissement -->
+        <div class="mb-4">
+          <label for="typeEtablissement" class="form-label fw-semibold">
+            <i class="fa fa-home me-2 text-primary"></i>Type d'Établissement
+          </label>
+          <select
+            class="form-select form-select-lg"
+            id="typeEtablissement"
+            formControlName="typeEtablissement"
+            [class.is-invalid]="registerForm.get('typeEtablissement')?.invalid && registerForm.get('typeEtablissement')?.touched">
+            <option *ngFor="let type of typesEtablissement" [value]="type.value">{{ type.label }}</option>
+          </select>
+          <div *ngIf="registerForm.get('typeEtablissement')?.invalid && registerForm.get('typeEtablissement')?.touched" class="invalid-feedback">
+            Veuillez sélectionner un type d'établissement
+          </div>
+        </div>
+      </div>
+
       <!-- Password -->
       <div class="mb-4">
         <label for="password" class="form-label fw-semibold">
@@ -183,11 +263,19 @@
       <!-- Terms & Conditions -->
       <div class="mb-4">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="terms" required>
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="terms"
+            formControlName="acceptTerms"
+            [class.is-invalid]="registerForm.get('acceptTerms')?.invalid && registerForm.get('acceptTerms')?.touched">
           <label class="form-check-label" for="terms">
             J'accepte les <a href="#" class="text-primary text-decoration-none">conditions d'utilisation</a>
             et la <a href="#" class="text-primary text-decoration-none">politique de confidentialité</a>
           </label>
+        </div>
+        <div *ngIf="registerForm.get('acceptTerms')?.invalid && registerForm.get('acceptTerms')?.touched" class="invalid-feedback d-block">
+          Vous devez accepter les conditions d'utilisation pour créer un compte.
         </div>
       </div>
 
@@ -209,7 +297,7 @@
       <div class="text-center">
         <p class="text-muted mb-0">
           Déjà un compte ?
-          <a href="#" (click)="goToLogin()" class="text-decoration-none fw-bold text-primary">
+          <a routerLink="/auth/login" class="text-decoration-none fw-bold text-primary">
             Se connecter
           </a>
         </p>

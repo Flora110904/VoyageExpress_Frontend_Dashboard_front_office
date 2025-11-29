@@ -1,179 +1,75 @@
-<!-- Topbar Start -->
-<div class="container-fluid bg-light d-none d-lg-block">
-  <div class="row align-items-center top-bar">
-    <div class="col-lg-3 col-md-12 text-center text-lg-start">
-      <a routerLink="/" class="navbar-brand m-0 p-0">
-        <h1 class="text-primary m-0">VoyageExpress Bus</h1>
-      </a>
-    </div>
-    <div class="col-lg-9 col-md-12 text-end">
-      <div class="h-100 d-inline-flex align-items-center me-4">
-        <i class="fa fa-map-marker-alt text-primary me-2"></i>
-        <p class="m-0">Dakar, Sénégal</p>
-      </div>
-      <div class="h-100 d-inline-flex align-items-center me-4">
-        <i class="far fa-envelope-open text-primary me-2"></i>
-        <p class="m-0">contact&#64;voyageexpress.sn</p>
-      </div>
-      <div class="h-100 d-inline-flex align-items-center">
-        <a class="btn btn-sm-square bg-white text-primary me-1" href=""><i class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-sm-square bg-white text-primary me-1" href=""><i class="fab fa-twitter"></i></a>
-        <a class="btn btn-sm-square bg-white text-primary me-0" href=""><i class="fab fa-instagram"></i></a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Topbar End -->
+<app-compagnie-bus-navbar></app-compagnie-bus-navbar>
 
-<!-- Navbar Start -->
-<div class="container-fluid nav-bar bg-light">
-  <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
-    <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
-      <h1 class="text-primary m-0">VoyageExpress Bus</h1>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-      <span class="fa fa-bars"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav me-auto">
-        <a routerLink="/compagnieBus" class="nav-item nav-link" routerLinkActive="active">Dashboard</a>
-        <a routerLink="/compagnieBus/statistiques" class="nav-item nav-link" routerLinkActive="active">Statistiques</a>
-        <a routerLink="/compagnieBus/reservations" class="nav-item nav-link" routerLinkActive="active">Réservations</a>
-        <a routerLink="/compagnieBus/itineraires" class="nav-item nav-link" routerLinkActive="active">Itinéraires</a>
-        <a routerLink="/compagnieBus/vehicules" class="nav-item nav-link active" routerLinkActive="active">Véhicules</a>
-      </div>
-      <div class="mt-4 mt-lg-0 me-lg-n4 py-3 px-4 bg-primary d-flex align-items-center">
-        <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white" style="width: 45px; height: 45px;">
-          <i class="fa fa-phone-alt text-primary"></i>
-        </div>
-        <div class="ms-3">
-          <p class="mb-1 text-white">Support 24/7</p>
-          <h5 class="m-0 text-secondary">+221 33 XXX XX XX</h5>
-        </div>
-      </div>
-    </div>
-  </nav>
-</div>
-<!-- Navbar End -->
 <div class="container-fluid py-5">
   <div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2>Flotte de Bus</h2>
-      <button class="btn btn-primary">+ Ajouter un Bus</button>
-    </div>
-
-    <!-- Filtres -->
-    <div class="bg-light p-3 rounded mb-4">
-      <div class="row g-3">
-        <div class="col-md-4">
-          <select class="form-select">
-            <option>Tous les statuts</option>
-            <option>En service</option>
-            <option>En maintenance</option>
-            <option>Hors service</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <select class="form-select">
-            <option>Toutes les capacités</option>
-            <option>30-40 places</option>
-            <option>40-50 places</option>
-            <option>50+ places</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <input type="text" class="form-control" placeholder="Immatriculation">
-        </div>
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3 mb-4">
+      <div>
+        <h2 class="mb-1">Gestion de la flotte bus</h2>
+        <p class="text-muted mb-0">Visualisez l'état de vos véhicules et optimisez vos capacités.</p>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-secondary" type="button" (click)="refresh()">
+          <i class="fa fa-sync-alt me-2"></i>Actualiser
+        </button>
+        <button class="btn btn-primary" type="button" (click)="openCreateVehicle()">
+          <i class="fa fa-plus me-2"></i>Ajouter un bus
+        </button>
       </div>
     </div>
+    <div class="card border-0 shadow-sm text-center p-5 text-muted" *ngIf="filteredVehicles.length === 0">
+      <i class="fa fa-bus-alt fa-2x mb-3"></i>
+      <p class="mb-2">Aucun bus ne correspond à vos critères.</p>
+      <button class="btn btn-outline-primary" type="button" (click)="resetFilters()">Réinitialiser les filtres</button>
+    </div>
 
-    <!-- Liste Bus -->
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
+    <div class="row g-4" *ngIf="filteredVehicles.length > 0">
+      <div class="col-md-6 col-xl-4" *ngFor="let vehicle of filteredVehicles; trackBy: trackVehicle">
+        <div class="card h-100 border-0 shadow-sm vehicle-card">
+          <div class="vehicle-image" [ngStyle]="{ 'background-image': 'url(' + getVehicleImage(vehicle) + ')' }"></div>
+          <div class="card-body d-flex flex-column">
             <div class="d-flex justify-content-between align-items-start mb-3">
-              <h5>Bus #001</h5>
-              <span class="badge bg-success">En service</span>
+              <div>
+                <h5 class="card-title mb-1">{{ vehicle.marque || 'Bus VoyageExpress' }}</h5>
+                <p class="text-muted mb-0 small" *ngIf="vehicle.modele as modele">{{ modele }}</p>
+              </div>
+              <span class="badge" [ngClass]="getStatusBadge(vehicle)">{{ getStatusLabel(vehicle) }}</span>
             </div>
-            <div class="mb-2">
-              <strong>Immatriculation :</strong> DK-1234-AB
-            </div>
-            <div class="mb-2">
-              <strong>Marque :</strong> Mercedes Benz
-            </div>
-            <div class="mb-2">
-              <strong>Capacité :</strong> 45 places
-            </div>
-            <div class="mb-2">
-              <strong>Année :</strong> 2022
-            </div>
-            <div class="mb-3">
-              <strong>Itinéraire :</strong> Dakar-Thiès
-            </div>
-            <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-info flex-fill">Détails</button>
-              <button class="btn btn-sm btn-warning">Modifier</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-start mb-3">
-              <h5>Bus #002</h5>
-              <span class="badge bg-warning">Maintenance</span>
+            <div class="info-row" *ngIf="vehicle.immatriculation as immat">
+              <span class="info-label">Immatriculation</span>
+              <span class="info-value">{{ immat }}</span>
             </div>
-            <div class="mb-2">
-              <strong>Immatriculation :</strong> DK-5678-CD
+            <div class="info-row" *ngIf="getSeatCount(vehicle) > 0">
+              <span class="info-label">Capacité</span>
+              <span class="info-value">
+                {{ getSeatCount(vehicle) }} sièges
+                <br />
+                <small class="text-muted">{{ getCapacityLabel(vehicle) }}</small>
+              </span>
             </div>
-            <div class="mb-2">
-              <strong>Marque :</strong> Volvo
+            <div class="info-row" *ngIf="vehicle.annee">
+              <span class="info-label">Année</span>
+              <span class="info-value">{{ vehicle.annee }}</span>
             </div>
-            <div class="mb-2">
-              <strong>Capacité :</strong> 50 places
+            <div class="info-row" *ngIf="vehicle.carburant as carburant">
+              <span class="info-label">Carburant</span>
+              <span class="info-value text-uppercase">{{ carburant }}</span>
             </div>
-            <div class="mb-2">
-              <strong>Année :</strong> 2021
-            </div>
-            <div class="mb-3">
-              <strong>Itinéraire :</strong> Dakar-Saint-Louis
-            </div>
-            <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-info flex-fill">Détails</button>
-              <button class="btn btn-sm btn-warning">Modifier</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-start mb-3">
-              <h5>Bus #003</h5>
-              <span class="badge bg-success">En service</span>
+            <div *ngIf="hasEquipments(vehicle)" class="equipments mt-3">
+              <span class="info-label d-block mb-2">Équipements</span>
+              <div class="badge-list">
+                <span class="badge bg-light text-dark" *ngFor="let equipment of formatEquipments(vehicle)">{{ equipment }}</span>
+              </div>
             </div>
-            <div class="mb-2">
-              <strong>Immatriculation :</strong> DK-9012-EF
-            </div>
-            <div class="mb-2">
-              <strong>Marque :</strong> Scania
-            </div>
-            <div class="mb-2">
-              <strong>Capacité :</strong> 42 places
-            </div>
-            <div class="mb-2">
-              <strong>Année :</strong> 2023
-            </div>
-            <div class="mb-3">
-              <strong>Itinéraire :</strong> Dakar-Kaolack
-            </div>
-            <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-info flex-fill">Détails</button>
-              <button class="btn btn-sm btn-warning">Modifier</button>
+
+            <div class="mt-auto pt-3 d-flex gap-2">
+              <button class="btn btn-sm btn-outline-primary flex-fill" type="button" disabled>
+                <i class="fa fa-eye me-1"></i>Détails
+              </button>
+              <button class="btn btn-sm btn-outline-secondary" type="button" disabled>
+                <i class="fa fa-edit"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -181,6 +77,7 @@
     </div>
   </div>
 </div>
+
 <!-- Footer Start -->
 <div class="container-fluid bg-dark text-light footer pt-5 mt-5">
   <div class="container py-5">
@@ -232,3 +129,8 @@
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+<app-vehicule-form-modal
+  [isOpen]="isCreateModalOpen"
+  (closed)="onVehicleModalClosed()"
+  (saved)="onVehicleSaved($event)"></app-vehicule-form-modal>

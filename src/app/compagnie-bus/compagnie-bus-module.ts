@@ -8,20 +8,22 @@ import { Statistiques } from './statistiques/statistiques';
 import { Vehicules } from './vehicules/vehicules';
 import { Reservations } from './reservations/reservations';
 import { Itineraires } from './itineraires/itineraires';
+import { CompagnieBusNavbarComponent } from './shared/compagnie-bus-navbar/compagnie-bus-navbar.component';
 
 
 @NgModule({
   declarations: [
-    CompagnieBus,
-    Statistiques,
-    Reservations,
-    Itineraires,
-    Vehicules
+    CompagnieBus
   ],
   imports: [
     CommonModule,
     RouterModule,
-    CompagnieBusRoutingModule
+    CompagnieBusRoutingModule,
+    Statistiques,
+    Reservations,
+    Itineraires,
+    Vehicules,
+    CompagnieBusNavbarComponent
   ]
 })
 export class CompagnieBusModule { }

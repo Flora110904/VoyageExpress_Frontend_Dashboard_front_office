@@ -1,0 +1,22 @@
+/* ========================================
+   ETABLISSEMENT MODULE - STYLES SPÉCIFIQUES
+   Les styles communs sont dans src/styles/*.css
+   ======================================== */
+
+/* 
+  IMPORTANT: Ce fichier ne contient plus de duplication.
+  Tous les styles dashboard, layouts, et composants sont maintenant
+  dans les fichiers globaux:
+  - src/styles/_variables.css
+  - src/styles/_components.css
+  - src/styles/_layouts.css
+  - src/styles/_dashboard.css
+  - src/styles/_utilities.css
+  
+  Ces styles sont automatiquement appliqués via src/styles.css
+*/
+
+/* Ajoutez ici uniquement les styles SPÉCIFIQUES au module Établissement */
+/* qui ne peuvent pas être réutilisés ailleurs */
+
+/* Exemple: styles spécifiques à la gestion des hébergements */

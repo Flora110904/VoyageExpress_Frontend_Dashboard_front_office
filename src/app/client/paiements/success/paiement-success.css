@@ -1,0 +1,77 @@
+.payment-success {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f7fa;
+  padding: 2rem 1rem;
+}
+
+.payment-success .card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.1);
+}
+
+.payment-success .icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.payment-success .icon.bg-success {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.payment-success h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
+  color: #0f172a;
+}
+
+.payment-success .lead {
+  color: #475569;
+  margin-bottom: 2rem;
+}
+
+.payment-success .details {
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.payment-success .details h2 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #0f172a;
+}
+
+.payment-success .details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.payment-success .details li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  color: #1e293b;
+}
+
+.payment-success .btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+}

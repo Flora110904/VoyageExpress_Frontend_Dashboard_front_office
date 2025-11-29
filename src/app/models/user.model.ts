@@ -5,7 +5,7 @@ export interface UserRequest {
   prenom: string;
   email: string;
   password: string;
-  role: string; // or Role if backend expects enum-compatible strings
+  role: Role;
   telephone: string;
 }
 

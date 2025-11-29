@@ -1,0 +1,81 @@
+<!-- Topbar Start -->
+<div class="container-fluid bg-light d-none d-lg-block">
+  <div class="row align-items-center top-bar">
+    <div class="col-lg-3 col-md-12 text-center text-lg-start">
+      <a routerLink="/etablisement" class="navbar-brand m-0 p-0">
+        <h1 class="text-primary m-0">VoyageExpress Hébergements</h1>
+      </a>
+    </div>
+    <div class="col-lg-9 col-md-12 text-end">
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="fa fa-map-marker-alt text-primary me-2"></i>
+        <p class="m-0">Lomé, Togo</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="far fa-envelope-open text-primary me-2"></i>
+        <p class="m-0">contact&#64;voyageexpress.tg</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center">
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://facebook.com/voyageexpress" target="_blank" rel="noreferrer">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://twitter.com/voyageexpress" target="_blank" rel="noreferrer">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-0" href="https://instagram.com/voyageexpress" target="_blank" rel="noreferrer">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Topbar End -->
+
+<!-- Navbar Start -->
+<div class="container-fluid nav-bar bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 px-lg-4">
+    <a routerLink="/etablisement" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
+      <h1 class="text-primary m-0">VoyageExpress</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#etablisementNavbar">
+      <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="etablisementNavbar">
+      <div class="navbar-nav me-auto">
+        <a routerLink="/etablisement" class="nav-item nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <i class="fa fa-home me-2"></i>Accueil
+        </a>
+        <a routerLink="/etablisement" class="nav-item nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <i class="fa fa-tachometer-alt me-2"></i>Dashboard
+        </a>
+        <a routerLink="/etablisement/chambres" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-bed me-2"></i>Chambres
+        </a>
+        <a routerLink="/etablisement/reservations" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-calendar-check me-2"></i>Réservations
+        </a>
+        <a routerLink="/etablisement/tarifs" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-tags me-2"></i>Tarifs
+        </a>
+        <a routerLink="/etablisement/statistiques" class="nav-item nav-link" routerLinkActive="active">
+          <i class="fa fa-chart-line me-2"></i>Statistiques
+        </a>
+      </div>
+
+      <div class="d-flex align-items-center gap-2 mt-4 mt-lg-0">
+        <button *ngIf="isLoggedIn; else authLinks" class="btn btn-danger px-4" (click)="logout()">
+          <i class="fa fa-sign-out-alt me-2"></i>Se déconnecter
+        </button>
+        <ng-template #authLinks>
+          <a routerLink="/auth/login" class="btn btn-outline-primary px-4">
+            <i class="fa fa-sign-in-alt me-2"></i>Se connecter
+          </a>
+          <a routerLink="/auth/register" class="btn btn-primary px-4">
+            <i class="fa fa-user-plus me-2"></i>S'inscrire
+          </a>
+        </ng-template>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- Navbar End -->

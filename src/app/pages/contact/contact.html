@@ -1,91 +1,21 @@
-<!-- Topbar Start -->
-<div class="container-fluid bg-light d-none d-lg-block">
-  <div class="row align-items-center top-bar">
-    <div class="col-lg-3 col-md-12 text-center text-lg-start">
-      <a routerLink="/" class="navbar-brand m-0 p-0">
-        <h1 class="text-primary m-0">VoyageExpress</h1>
-      </a>
-    </div>
-    <div class="col-lg-9 col-md-12 text-end">
-      <div class="h-100 d-inline-flex align-items-center me-4">
-        <i class="fa fa-map-marker-alt text-primary me-2"></i>
-        <p class="m-0">Lomé, Togo</p>
-      </div>
-      <div class="h-100 d-inline-flex align-items-center me-4">
-        <i class="far fa-envelope-open text-primary me-2"></i>
-        <p class="m-0">contact&#64;voyageexpress.tg</p>
-      </div>
-      <div class="h-100 d-inline-flex align-items-center">
-        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://facebook.com/voyageexpress" target="_blank">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://twitter.com/voyageexpress" target="_blank">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a class="btn btn-sm-square bg-white text-primary me-0" href="https://instagram.com/voyageexpress" target="_blank">
-          <i class="fab fa-instagram"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Topbar End -->
-
-<!-- Navbar Start -->
-<div class="container-fluid nav-bar bg-light">
-  <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
-    <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
-      <h1 class="text-primary m-0">VoyageExpress</h1>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-      <span class="fa fa-bars"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav me-auto">
-        <a routerLink="/" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-home me-2"></i>Accueil
-        </a>
-        <a routerLink="/about" class="nav-item nav-link active" routerLinkActive="active">
-          <i class="fa fa-info-circle me-2"></i>À Propos
-        </a>
-        <a routerLink="/services" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-list me-2"></i>Services
-        </a>
-        <a routerLink="/contact" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-phone me-2"></i>Contact
-        </a>
-      </div>
-
-      <!-- Auth Buttons -->
-      <div class="d-flex align-items-center mt-4 mt-lg-0 me-lg-n4">
-        <a routerLink="/auth/login" class="btn btn-outline-primary me-2">
-          <i class="fa fa-sign-in-alt me-1"></i>Se Connecter
-        </a>
-        <a routerLink="/auth/register" class="btn btn-primary">
-          <i class="fa fa-user-plus me-1"></i>S'Inscrire
-        </a>
-      </div>
-    </div>
-  </nav>
-</div>
-<!-- Navbar End -->
+<app-navbar></app-navbar>
 
 <!-- Hero Section -->
-<div class="hero-contact position-relative" style="background: linear-gradient(135deg, #4a90e2 0%, #7b68ee 50%, #ff6b6b 100%); min-height: 70vh; display: flex; align-items: center; padding-top: 80px;">
+<div class="hero-contact position-relative" style="background: var(--hero-gradient); min-height: 70vh; display: flex; align-items: center; padding-top: 80px;">
   <div class="hero-background position-absolute top-0 start-0 w-100 h-100" style="background-image: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80'); background-size: cover; background-position: center; opacity: 0.2;"></div>
   <div class="container position-relative z-index-2">
     <div class="row align-items-center">
       <div class="col-lg-6 text-white">
         <h1 class="display-3 fw-bold mb-4 animate-fade-in">
            Contactez
-          <span class="text-warning">VoyageExpress</span>
+          <span style="color: var(--accent-color);">VoyageExpress</span>
         </h1>
         <p class="lead mb-4 fs-5">
           Besoin d'aide ? Notre équipe d'experts est disponible 24h/24 et 7j/7
           pour répondre à toutes vos questions concernant vos réservations et services.
         </p>
         <div class="d-flex gap-3 flex-wrap">
-          <a href="tel:+22898337662" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
+          <a href="tel:+22898337662" class="btn btn-lg px-5 py-3 fw-bold" style="background: var(--accent-gradient); color: white; border: none;">
             <i class="fa fa-phone me-2"></i>Appeler Maintenant
           </a>
           <a href="mailto:contact@voyageexpress.tg" class="btn btn-outline-light btn-lg px-5 py-3">
@@ -434,7 +364,7 @@
 </section>
 
 <!-- Call to Action Section -->
-<section class="py-5 bg-gradient-primary">
+<section class="py-5" style="background: var(--primary-gradient);">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8 text-center text-white">
@@ -444,7 +374,7 @@
           Contactez-nous dès maintenant !
         </p>
         <div class="d-flex gap-3 justify-content-center flex-wrap">
-          <a href="tel:+22898337662" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
+          <a href="tel:+22898337662" class="btn btn-lg px-5 py-3 fw-bold" style="background: var(--accent-gradient); color: white; border: none;">
             <i class="fa fa-phone me-2"></i>Appeler Maintenant
           </a>
           <a href="mailto:contact@voyageexpress.tg" class="btn btn-outline-light btn-lg px-5 py-3">
@@ -455,3 +385,5 @@
     </div>
   </div>
 </section>
+
+<app-footer></app-footer>

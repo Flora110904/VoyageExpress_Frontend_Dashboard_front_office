@@ -1,0 +1,161 @@
+<div class="dashboard-container">
+  <!-- En-tête avec salutation -->
+  <div class="header-section">
+    <div class="welcome">
+      <h1>Bienvenue, {{ userInfo?.nom || 'Voyageur' }} !</h1>
+      <p>Gérez vos réservations et planifiez votre prochain voyage</p>
+    </div>
+    <button class="btn btn-primary" (click)="rechercherVoyage()">
+      <i class="bi bi-search"></i> Nouvelle recherche
+    </button>
+  </div>
+
+  <!-- Cartes de statistiques -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon blue">
+        <i class="bi bi-calendar-check"></i>
+      </div>
+      <div class="stat-content">
+        <h3>{{ stats.total }}</h3>
+        <p>Réservations totales</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon green">
+        <i class="bi bi-clock-history"></i>
+      </div>
+      <div class="stat-content">
+        <h3>{{ stats.aVenir }}</h3>
+        <p>À venir</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon purple">
+        <i class="bi bi-check-circle"></i>
+      </div>
+      <div class="stat-content">
+        <h3>{{ stats.terminees }}</h3>
+        <p>Terminées</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon red">
+        <i class="bi bi-x-circle"></i>
+      </div>
+      <div class="stat-content">
+        <h3>{{ stats.annulees }}</h3>
+        <p>Annulées</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions rapides -->
+  <div class="quick-actions">
+    <h2>Actions rapides</h2>
+    <div class="actions-grid">
+      <a routerLink="/client/recherche" class="action-card">
+        <i class="bi bi-search"></i>
+        <span>Rechercher</span>
+      </a>
+      <a routerLink="/client/mes-reservations" class="action-card">
+        <i class="bi bi-list-check"></i>
+        <span>Mes réservations</span>
+      </a>
+      <a routerLink="/client/historique" class="action-card">
+        <i class="bi bi-clock-history"></i>
+        <span>Historique</span>
+      </a>
+      <a routerLink="/client/profil" class="action-card">
+        <i class="bi bi-person"></i>
+        <span>Mon profil</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Réservations à venir -->
+  <div class="section" *ngIf="reservationsAVenir.length > 0">
+    <div class="section-header">
+      <h2>Réservations à venir</h2>
+      <button class="btn btn-link" (click)="voirToutesReservations()">
+        Voir tout <i class="bi bi-arrow-right"></i>
+      </button>
+    </div>
+    <div class="reservations-list">
+      <div *ngFor="let reservation of reservationsAVenir" class="reservation-card">
+        <div class="reservation-header">
+          <span class="badge" [ngClass]="getStatutClass(reservation.statut)">
+            {{ getStatutLabel(reservation.statut) }}
+          </span>
+          <span class="date">{{ reservation.dateReservation | date:'dd/MM/yyyy' }}</span>
+        </div>
+        <div class="reservation-body">
+          <div class="info">
+            <h3>Réservation #{{ reservation.trackingId.substring(0, 8) }}</h3>
+            <p class="montant">{{ (reservation.montantTotal || 0) | number:'1.0-0' }} XAF</p>
+          </div>
+        </div>
+        <div class="reservation-footer">
+          <button class="btn btn-sm btn-outline" (click)="viewReservation(reservation)">
+            Détails
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="downloadTicket(reservation)">
+            <i class="bi bi-download"></i> Ticket
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Réservations passées -->
+  <div class="section" *ngIf="reservationsPassees.length > 0">
+    <div class="section-header">
+      <h2>Réservations récentes</h2>
+      <button class="btn btn-link" (click)="voirToutesReservations()">
+        Voir tout <i class="bi bi-arrow-right"></i>
+      </button>
+    </div>
+    <div class="reservations-list">
+      <div *ngFor="let reservation of reservationsPassees" class="reservation-card">
+        <div class="reservation-header">
+          <span class="badge" [ngClass]="getStatutClass(reservation.statut)">
+            {{ getStatutLabel(reservation.statut) }}
+          </span>
+          <span class="date">{{ reservation.dateReservation | date:'dd/MM/yyyy' }}</span>
+        </div>
+        <div class="reservation-body">
+          <div class="info">
+            <h3>Réservation #{{ reservation.trackingId.substring(0, 8) }}</h3>
+            <p class="montant">{{ (reservation.montantTotal || 0) | number:'1.0-0' }} XAF</p>
+          </div>
+        </div>
+        <div class="reservation-footer">
+          <button class="btn btn-sm btn-outline" (click)="viewReservation(reservation)">
+            Détails
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Message si aucune réservation -->
+  <div *ngIf="!loading && reservations.length === 0" class="empty-state">
+    <i class="bi bi-inbox"></i>
+    <h3>Aucune réservation</h3>
+    <p>Commencez à explorer nos offres et réservez votre prochain voyage !</p>
+    <button class="btn btn-primary" (click)="rechercherVoyage()">
+      <i class="bi bi-search"></i> Rechercher maintenant
+    </button>
+  </div>
+
+  <!-- Loader -->
+  <div *ngIf="loading" class="loader-container">
+    <div class="spinner"></div>
+    <p>Chargement de vos informations...</p>
+  </div>
+
+  <app-footer></app-footer>
+</div>

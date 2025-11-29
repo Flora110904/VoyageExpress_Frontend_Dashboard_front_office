@@ -1,0 +1,75 @@
+.metric-card {
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f8fbff 0%, #eef3ff 100%);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card .metric-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.metric-card .metric-value {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-top: 0.4rem;
+}
+
+.metric-icon {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.card .form-label {
+  font-weight: 600;
+}
+
+.filters .form-control,
+.filters .form-select {
+  border-radius: 14px;
+  padding: 0.65rem 1rem;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+.badge {
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+.btn-outline-secondary {
+  border-radius: 999px;
+}
+
+.btn-outline-primary.btn-sm,
+.btn-outline-secondary.btn-sm {
+  border-radius: 999px;
+}
+
+@media (max-width: 767px) {
+  .metric-card {
+    text-align: center;
+  }
+
+  .metric-icon {
+    position: static;
+    margin: 1rem auto 0;
+  }
+}

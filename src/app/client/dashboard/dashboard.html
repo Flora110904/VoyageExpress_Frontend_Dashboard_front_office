@@ -1,21 +1,20 @@
 
-
 <!-- Hero Section -->
-<div class="hero-client position-relative" style="background: linear-gradient(135deg, #4a90e2 0%, #7b68ee 50%, #ff6b6b 100%); min-height: 80vh; display: flex; align-items: center; padding-top: 120px;">
+<div class="hero-client position-relative" style="background: var(--hero-gradient); min-height: 80vh; display: flex; align-items: center; padding-top: 80px;">
   <div class="hero-background position-absolute top-0 start-0 w-100 h-100" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80'); background-size: cover; background-position: center; opacity: 0.15;"></div>
   <div class="container position-relative z-index-2">
     <div class="row align-items-center">
       <div class="col-lg-6 text-white">
         <h1 class="display-2 fw-bold mb-4 animate-fade-in">
           Bienvenue dans votre
-          <span class="text-warning">Espace Client</span>
+          <span style="color: var(--accent-color);">Espace Client</span>
         </h1>
         <p class="lead mb-4 fs-5">
           Réservez vos billets, gérez vos réservations et profitez d'avantages exclusifs
           avec VoyageExpress. Votre partenaire de confiance pour tous vos voyages.
         </p>
         <div class="d-flex gap-3 flex-wrap">
-          <a routerLink="/client/recherche" class="btn btn-warning btn-lg px-5 py-3 fw-bold animate-pulse">
+          <a routerLink="/client/recherche" class="btn btn-lg px-5 py-3 fw-bold animate-pulse" style="background: var(--accent-gradient); color: white; border: none;">
             <i class="fa fa-search me-2"></i>Réserver Maintenant
           </a>
           <a routerLink="/client/mes-reservations" class="btn btn-outline-light btn-lg px-5 py-3">
@@ -432,7 +431,7 @@
         </p>
         <div class="newsletter-form d-flex gap-2 justify-content-center flex-wrap">
           <input type="email" class="form-control form-control-lg" placeholder="Votre adresse email" style="max-width: 300px;">
-          <button type="submit" class="btn btn-warning btn-lg px-4">
+          <button type="submit" class="btn btn-lg px-4" style="background: var(--accent-gradient); color: white; border: none;">
             <i class="fa fa-paper-plane me-2"></i>M'abonner
           </button>
         </div>
@@ -440,3 +439,5 @@
     </div>
   </div>
 </section>
+
+<app-footer></app-footer>

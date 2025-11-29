@@ -249,15 +249,33 @@
 
 /* Form Select Custom Styling */
 .form-select {
+  /* Supprimer la flèche par défaut du navigateur */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  /* Ajouter une flèche personnalisée */
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
   background-position: right 1rem center;
   background-repeat: no-repeat;
   background-size: 1.5em 1.5em;
   padding-right: 3rem;
+  cursor: pointer;
 }
 
 .form-select:focus {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%234a90e2' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+}
+
+/* Style pour les options du select */
+.form-select option {
+  padding: 0.75rem;
+  background: white;
+  color: var(--dark-text);
+}
+
+.form-select option:hover {
+  background: rgba(74, 144, 226, 0.1);
 }
 
 /* Terms and Conditions */

@@ -54,13 +54,13 @@ export interface UserRequest {
   prenom: string;
   email: string;
   password: string;
-  role: string; // or Role if backend expects enum string values compatible
+  role: Role;
   telephone: string;
 }
 
 export interface CompagnieRequest {
   nom: string;
-  type: string; // or TypeCompagnie
+  type: TypeCompagnie;
 }
 
 export interface EtablissementRequest {
@@ -88,7 +88,7 @@ export interface LocalRequest {
 export interface ReservationRequest {
   statut: string;
   dateReservation: string; // LocalDateTime ISO
-  userTrakingId: string; // UUID as string (note: spelling from backend)
+  userTrackingId: string; // UUID as string
 }
 
 export interface VehiculeRequest {
@@ -105,7 +105,13 @@ export interface VehiculeItineraireRequest {
 export interface BilletRequest {
   montant: number;
   statut: string;
-  fils: string;
+  numeroSiege?: string;
+  classeVoyage?: string;
+  nomPassager: string;
+  prenomPassager: string;
+  numeroIdentite?: string;
+  itineraireTrackingId: string; // UUID as string
+  reservationTrackingId?: string; // UUID as string
 }
 
 // Response DTOs
@@ -197,10 +203,19 @@ export interface VehiculeItineraireResponse {
 export interface BilletResponse {
   trackingId: string;
   id: number;
+  numeroBillet: string;
   montant: number;
   statut: string;
-  fils: string;
+  numeroSiege?: string;
+  classeVoyage?: string;
+  nomPassager: string;
+  prenomPassager: string;
+  numeroIdentite?: string;
+  dateEmission: string; // LocalDateTime
+  dateExpiration: string; // LocalDateTime
+  qrCode: string;
   pdfUrl: string;
+  utilisateurTrackingId: string;
   reservationId: number;
   itineraireId: number;
 }
@@ -265,7 +280,7 @@ export class UserServiceApi {
   list(): Observable<UserResponse[]> {
     return this.http.get<UserResponse[]>(`${this.base}/all`);
   }
-  findByRole(role: string): Observable<UserResponse[]> {
+  findByRole(role: Role): Observable<UserResponse[]> {
     return this.http.get<UserResponse[]>(`${this.base}/role/${role}`);
   }
   update(trackingId: string, body: UserRequest): Observable<UserResponse> {
@@ -355,9 +370,9 @@ export class ItineraireServiceApi {
 export class LocalServiceApi {
   private base = `${API}/locaux`;
   constructor(private http: HttpClient) {}
-  // Note: backend method signature shows an unannotated UUID param. Adjust if backend expects a query param like ?trackingId=
-  create(body: LocalRequest, trackingId?: string): Observable<LocalResponse> {
-    const url = `${this.base}/create` + (trackingId ? `?trackingId=${encodeURIComponent(trackingId)}` : '');
+  // Backend expects etablissementTrackingId as query param
+  create(body: LocalRequest, etablissementTrackingId: string): Observable<LocalResponse> {
+    const url = `${this.base}/create?etablissementTrackingId=${encodeURIComponent(etablissementTrackingId)}`;
     return this.http.post<LocalResponse>(url, body);
   }
   get(trackingId: string): Observable<LocalResponse> {
@@ -390,7 +405,7 @@ export class ReservationServiceApi {
     return this.http.get<ReservationResponse>(`${this.base}/${trackingId}`);
   }
   list(page = 0, size = 10): Observable<ReservationResponse[]> {
-    const params = new HttpParams().set('page', page).set('size', size);
+    const params = new HttpParams().set('page', page.toString()).set('size', size.toString());
     return this.http.get<ReservationResponse[]>(`${this.base}/all`, { params });
   }
   update(trackingId: string, body: ReservationRequest): Observable<ReservationResponse> {

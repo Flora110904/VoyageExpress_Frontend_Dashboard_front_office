@@ -4,9 +4,11 @@ export interface ItineraireRequest {
   dateDepart: string; // YYYY-MM-DD
   heureDepart: string;
   prix: number;
-  placeDisponible: number;
   compagnieId: string; // UUID as string
+  vehiculeId: string;
 }
+
+import { TypeCompagnie } from './enums.model';
 
 export interface ItineraireResponse {
   trackingId: string;
@@ -16,4 +18,7 @@ export interface ItineraireResponse {
   heureDepart: string;
   prix: number;
   placeDisponible: number;
+  placeTotal: number;
+  vehiculeId: string | null;
+  compagnieType: TypeCompagnie | null;
 }

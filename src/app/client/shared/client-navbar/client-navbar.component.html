@@ -1,0 +1,75 @@
+<!-- Topbar Start -->
+<div class="container-fluid bg-light d-none d-lg-block">
+  <div class="row align-items-center top-bar" style="padding: 12px 0;">
+    <div class="col-lg-3 col-md-12 text-center text-lg-start">
+      <a routerLink="/client/dashboard" class="navbar-brand m-0 p-0">
+        <h1 class="text-primary m-0" style="font-size: 2rem;">VoyageExpress</h1>
+      </a>
+    </div>
+    <div class="col-lg-9 col-md-12 text-end">
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="fa fa-map-marker-alt text-primary me-2" style="font-size: 1.1rem;"></i>
+        <p class="m-0" style="font-size: 1rem;">Lomé, Togo</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="far fa-envelope-open text-primary me-2" style="font-size: 1.1rem;"></i>
+        <p class="m-0" style="font-size: 1rem;">contact&#64;voyageexpress.tg</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center">
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://facebook.com/voyageexpress" target="_blank" style="width: 36px; height: 36px;">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://twitter.com/voyageexpress" target="_blank" style="width: 36px; height: 36px;">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-0" href="https://instagram.com/voyageexpress" target="_blank" style="width: 36px; height: 36px;">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Topbar End -->
+
+<!-- Navbar Start -->
+<div class="container-fluid nav-bar bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 px-lg-4" style="padding: 1.2rem 1rem;">
+    <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
+      <h1 class="text-primary m-0" style="font-size: 1.8rem;">VoyageExpress</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#clientNavbar">
+      <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="clientNavbar">
+      <div class="navbar-nav me-auto">
+        <a routerLink="/client/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+           class="nav-item nav-link" style="font-size: 1.05rem; padding: 0.6rem 1rem;">
+          <i class="fa fa-home me-2"></i>Accueil
+        </a>
+        <a routerLink="/client/recherche" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+           class="nav-item nav-link" style="font-size: 1.05rem; padding: 0.6rem 1rem;">
+          <i class="fa fa-search me-2"></i>Rechercher
+        </a>
+        <a routerLink="/client/mes-reservations" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+           class="nav-item nav-link" style="font-size: 1.05rem; padding: 0.6rem 1rem;">
+          <i class="fa fa-ticket-alt me-2"></i>Réservations
+        </a>
+        <a routerLink="/client/historique" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+           class="nav-item nav-link" style="font-size: 1.05rem; padding: 0.6rem 1rem;">
+          <i class="fa fa-history me-2"></i>Historique
+        </a>
+        <a routerLink="/client/profil" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+           class="nav-item nav-link" style="font-size: 1.05rem; padding: 0.6rem 1rem;">
+          <i class="fa fa-user me-2"></i>Profil
+        </a>
+      </div>
+
+      <div class="d-flex align-items-center gap-2 mt-4 mt-lg-0">
+        <button *ngIf="isLoggedIn" (click)="logout()" class="btn btn-danger px-4" style="font-size: 1rem; padding: 0.6rem 1.5rem;">
+          <i class="fa fa-sign-out-alt me-2"></i>Se déconnecter
+        </button>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- Navbar End -->

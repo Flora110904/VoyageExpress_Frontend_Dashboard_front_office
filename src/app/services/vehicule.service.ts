@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { VehiculeRequest, VehiculeResponse } from '../models';
+import { environment } from '../../environments/environment';
 
-const API = '/api';
+const API = environment.apiUrl;
 
 @Injectable({ providedIn: 'root' })
 export class VehiculeServiceApi {
@@ -20,6 +21,10 @@ export class VehiculeServiceApi {
 
   list(): Observable<VehiculeResponse[]> {
     return this.http.get<VehiculeResponse[]>(`${this.base}`);
+  }
+
+  listByCompagnie(compagnieTrackingId: string): Observable<VehiculeResponse[]> {
+    return this.http.get<VehiculeResponse[]>(`${this.base}/compagnie/${compagnieTrackingId}`);
   }
 
   update(trackingId: string, body: VehiculeRequest): Observable<VehiculeResponse> {

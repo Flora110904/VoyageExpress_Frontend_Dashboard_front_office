@@ -5,13 +5,15 @@ import { Statistiques } from './statistiques/statistiques';
 import { Chambres } from './chambres/chambres';
 import { Reservations } from './reservations/reservations';
 import { TypesHebergement } from './types-hebergement/types-hebergement';
+import { SeasonsComponent } from './seasons/seasons.component';
 
 const routes: Routes = [
   { path: '', component: Etablisement },
   { path: 'statistiques', component: Statistiques },
   { path: 'chambres', component: Chambres },
   { path: 'reservations', component: Reservations },
-  { path: 'types', component: TypesHebergement }
+  { path: 'types', component: TypesHebergement },
+  { path: 'tarifs', component: SeasonsComponent }
 ];
 
 @NgModule({

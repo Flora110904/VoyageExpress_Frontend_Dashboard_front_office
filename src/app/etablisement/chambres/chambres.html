@@ -1,118 +1,265 @@
-<!-- Topbar Start -->
-<div class="container-fluid bg-light d-none d-lg-block">
-  <div class="row align-items-center top-bar">
-    <div class="col-lg-3 col-md-12 text-center text-lg-start">
-      <a routerLink="/" class="navbar-brand m-0 p-0">
-        <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
-      </a>
-    </div>
-    <div class="col-lg-9 col-md-12 text-end">
-      <div class="h-100 d-inline-flex align-items-center me-4">
-        <i class="fa fa-map-marker-alt text-primary me-2"></i>
-        <p class="m-0">Lomé, Togo</p>
-      </div>
-      <div class="h-100 d-inline-flex align-items-center me-4">
-        <i class="far fa-envelope-open text-primary me-2"></i>
-        <p class="m-0">contact&#64;voyageexpress.tg</p>
-      </div>
-      <div class="h-100 d-inline-flex align-items-center">
-        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://facebook.com/voyageexpress" target="_blank">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://twitter.com/voyageexpress" target="_blank">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a class="btn btn-sm-square bg-white text-primary me-0" href="https://instagram.com/voyageexpress" target="_blank">
-          <i class="fab fa-instagram"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Topbar End -->
-
-<!-- Navbar Start -->
-<div class="container-fluid nav-bar bg-light">
-  <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
-    <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
-      <h1 class="text-primary m-0">🚀 VoyageExpress</h1>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-      <span class="fa fa-bars"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav me-auto">
-        <a routerLink="/" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-home me-2"></i>Accueil
-        </a>
-        <a routerLink="/etablissement" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-tachometer-alt me-2"></i>Dashboard
-        </a>
-        <a routerLink="/etablissement/chambres" class="nav-item nav-link active" routerLinkActive="active">
-          <i class="fa fa-bed me-2"></i>Chambres
-        </a>
-        <a routerLink="/etablissement/reservations" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-calendar-check me-2"></i>Réservations
-        </a>
-        <a routerLink="/etablissement/tarifs" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-tags me-2"></i>Tarifs
-        </a>
-        <a routerLink="/etablissement/statistiques" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-chart-line me-2"></i>Statistiques
-        </a>
-      </div>
-
-      <!-- Auth Buttons -->
-      <div class="d-flex align-items-center mt-4 mt-lg-0 me-lg-n4">
-        <a routerLink="/auth/login" class="btn btn-outline-primary me-2">
-          <i class="fa fa-sign-in-alt me-1"></i>Se Connecter
-        </a>
-        <a routerLink="/auth/register" class="btn btn-primary">
-          <i class="fa fa-user-plus me-1"></i>S'Inscrire
-        </a>
-      </div>
-    </div>
-  </nav>
-</div>
-<!-- Navbar End -->
+<app-etablisement-navbar></app-etablisement-navbar>
 
 <div class="container-fluid py-5">
   <div class="container">
-    <h2 class="mb-4">🛏️ Gestion des Chambres</h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex justify-content-between mb-3">
-              <h5>Chambre 101</h5>
-              <span class="badge bg-success">Disponible</span>
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start gap-3 mb-4">
+      <div>
+        <h2 class="fw-bold mb-2">Gestion des chambres</h2>
+        <p class="text-muted mb-0">Consultez la disponibilité de vos chambres et optimisez vos performances.</p>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-primary" (click)="openCreateModal()">
+          <i class="fa fa-plus me-2"></i>Ajouter une chambre
+        </button>
+        <button class="btn btn-outline-secondary" (click)="refresh()">
+          <i class="fa fa-sync-alt me-2"></i>Actualiser
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading state -->
+    <div *ngIf="isLoading" class="card border-0 shadow-sm text-center p-5">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p class="mt-3 mb-0">Chargement des chambres...</p>
+    </div>
+
+    <!-- Error state -->
+    <div *ngIf="!isLoading && error" class="alert alert-danger d-flex flex-column flex-md-row align-items-md-center justify-content-between">
+      <div>{{ error }}</div>
+      <button class="btn btn-danger mt-3 mt-md-0" (click)="retry()">
+        <i class="fa fa-sync-alt me-2"></i>Réessayer
+      </button>
+    </div>
+
+    <ng-container *ngIf="!isLoading && !error">
+      <!-- KPI cards -->
+      <div class="row g-3 mb-4">
+        <div class="col-md-3" *ngFor="let card of kpiCards">
+          <div class="card metric-card border-0 h-100" [ngClass]="'metric-' + card.tone">
+            <div class="card-body">
+              <span class="metric-label">{{ card.label }}</span>
+              <h3 class="metric-value">{{ card.value }}</h3>
+              <span class="metric-hint d-block">{{ card.hint }}</span>
+              <span class="metric-icon"><i class="fa" [ngClass]="card.icon"></i></span>
             </div>
-            <div class="mb-2"><strong>Type:</strong> Standard</div>
-            <div class="mb-2"><strong>Capacité:</strong> 2 personnes</div>
-            <div class="mb-2"><strong>Tarif:</strong> 25,000 FCFA/nuit</div>
-            <div class="mb-3"><strong>Équipements:</strong> WiFi, TV, Clim</div>
-            <button class="btn btn-primary btn-sm w-100">Voir détails</button>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex justify-content-between mb-3">
-              <h5>Chambre 102</h5>
-              <span class="badge bg-danger">Occupée</span>
+
+      <!-- Filters -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+          <div class="row g-3 align-items-end">
+            <div class="col-md-4">
+              <label class="form-label text-muted small">Recherche</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Nom, type, référence..."
+                  [(ngModel)]="filters.search"
+                  (ngModelChange)="onFiltersChange()"
+                />
+              </div>
             </div>
-            <div class="mb-2"><strong>Type:</strong> Suite</div>
-            <div class="mb-2"><strong>Capacité:</strong> 4 personnes</div>
-            <div class="mb-2"><strong>Tarif:</strong> 45,000 FCFA/nuit</div>
-            <div class="mb-3"><strong>Check-out:</strong> 25 Oct 2025</div>
-            <button class="btn btn-info btn-sm w-100">Voir détails</button>
+            <div class="col-md-4">
+              <label class="form-label text-muted small">Type de chambre</label>
+              <select class="form-select" [(ngModel)]="filters.type" (ngModelChange)="onFiltersChange()">
+                <option value="all">Tous les types</option>
+                <option *ngFor="let type of typeOptions" [value]="type">{{ formatTypeOption(type) }}</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label text-muted small">Disponibilité</label>
+              <select class="form-select" [(ngModel)]="filters.availability" (ngModelChange)="onFiltersChange()">
+                <option value="all">Toutes</option>
+                <option value="available">Disponible</option>
+                <option value="occupied">Occupée</option>
+              </select>
+            </div>
+            <div class="col-md-1 text-md-end">
+              <button class="btn btn-outline-secondary w-100" (click)="resetFilters()">
+                <i class="fa fa-undo me-2"></i>Réinit.
+              </button>
+            </div>
           </div>
         </div>
+      </div>
+
+      <!-- Empty state -->
+      <div *ngIf="filteredChambres.length === 0" class="card border-0 shadow-sm text-center py-5">
+        <div class="card-body">
+          <i class="fa fa-bed fa-3x text-muted mb-3"></i>
+          <h4 class="fw-semibold">Aucune chambre trouvée</h4>
+          <p class="text-muted mb-2">Aucun résultat pour les filtres sélectionnés. Essayez d'élargir votre recherche.</p>
+          <button class="btn btn-primary mt-2" (click)="openCreateModal()">
+            <i class="fa fa-plus me-2"></i>Ajouter une première chambre
+          </button>
+        </div>
+      </div>
+
+      <!-- Chambre grid -->
+      <div class="row g-4" *ngIf="filteredChambres.length > 0">
+        <div class="col-md-6 col-xl-4" *ngFor="let chambre of filteredChambres; trackBy: trackChambre">
+          <div class="card chambre-card h-100">
+            <div class="chambre-image" [ngStyle]="{ 'background-image': 'url(' + getPreviewImage(chambre) + ')' }"></div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <div>
+                  <h5 class="card-title mb-1">{{ getName(chambre) }}</h5>
+                  <p class="text-muted mb-0 small">{{ getTypeLabel(chambre) }}</p>
+                </div>
+                <div class="d-flex flex-column gap-2 text-end">
+                  <span class="badge" [ngClass]="getAvailabilityBadge(chambre)">{{ getAvailabilityLabel(chambre) }}</span>
+                  <span class="badge" [ngClass]="getStatusBadge(chambre)">{{ getStatusLabel(chambre) }}</span>
+                </div>
+              </div>
+
+              <div class="info-row">
+                <span class="info-label">Tarif</span>
+                <span class="info-value">{{ getPrice(chambre) }}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Capacité</span>
+                <span class="info-value">{{ getCapacityLabel(chambre) }}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Référence</span>
+                <span class="info-value">{{ chambre.trackingId || '—' }}</span>
+              </div>
+
+              <p class="text-muted small mt-3" *ngIf="chambre.description">{{ chambre.description }}</p>
+            </div>
+            <div class="card-footer bg-transparent border-0 pt-0">
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-outline-primary flex-fill" disabled><i class="fa fa-eye me-1"></i>Détails</button>
+                <button class="btn btn-sm btn-outline-secondary" disabled><i class="fa fa-edit me-1"></i>Modifier</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<!-- Modal création de chambre -->
+<ng-container *ngIf="isCreateModalOpen">
+  <div class="ve-modal-overlay">
+    <div class="ve-modal">
+      <div class="ve-modal-header d-flex justify-content-between align-items-center">
+        <h5 class="modal-title mb-0">Ajouter une chambre</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeCreateModal()"></button>
+      </div>
+      <div class="ve-modal-body">
+        <div *ngIf="createError" class="alert alert-danger">{{ createError }}</div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Numéro / Nom de la chambre</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="newChambre.numero"
+              placeholder="Ex : 101, Suite Royale, Chambre A1"
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Type de chambre</label>
+            <select class="form-select" [(ngModel)]="newChambre.type">
+              <option [ngValue]="''">Sélectionnez un type</option>
+              <option *ngFor="let type of typeLocalOptions" [ngValue]="type">
+                {{ formatTypeOption(type) }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-md-12">
+            <label class="form-label">Description</label>
+            <textarea
+              class="form-control"
+              rows="3"
+              [(ngModel)]="newChambre.description"
+              placeholder="Ex : Chambre double climatisée avec salle de bain privée"
+            ></textarea>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Capacité (personnes)</label>
+            <input
+              type="number"
+              min="1"
+              class="form-control"
+              [(ngModel)]="newChambre.capacite"
+              placeholder="Ex : 2"
+            />
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Superficie (m²)</label>
+            <input
+              type="number"
+              min="0"
+              class="form-control"
+              [(ngModel)]="newChambre.superficie"
+              placeholder="Ex : 20"
+            />
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Nombre de lits</label>
+            <input
+              type="number"
+              min="0"
+              class="form-control"
+              [(ngModel)]="newChambre.nombreLits"
+              placeholder="Ex : 1"
+            />
+          </div>
+
+          <div class="col-md-8">
+            <label class="form-label">Équipements</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="newChambre.equipements"
+              placeholder="Ex : climatisation, TV, Wi-Fi, minibar"
+            />
+            <small class="text-muted">Séparez les équipements par des virgules.</small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Image principale</label>
+          <input
+            type="file"
+            class="form-control"
+            accept="image/*"
+            (change)="onImageSelected($event)"
+          />
+          <small class="text-muted">Optionnel. Vous pourrez ajouter d'autres images plus tard.</small>
+        </div>
+
+        <p class="text-muted small mb-0">
+          Les tarifs sont désormais gérés par type de chambre dans l’onglet « Tarifs ». Définissez-les avant d’ouvrir vos chambres à la réservation.
+        </p>
+      </div>
+      <div class="ve-modal-footer d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-outline-secondary" (click)="closeCreateModal()" [disabled]="isCreating">
+          Annuler
+        </button>
+        <button type="button" class="btn btn-primary" (click)="submitCreateChambre()" [disabled]="isCreating">
+          <span *ngIf="!isCreating"><i class="fa fa-save me-2"></i>Enregistrer</span>
+          <span *ngIf="isCreating">
+            <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+            Enregistrement...
+          </span>
+        </button>
       </div>
     </div>
   </div>
-</div>
+</ng-container>
 
 <!-- Footer Start -->
 <div class="container-fluid bg-dark text-light footer pt-5 mt-5">

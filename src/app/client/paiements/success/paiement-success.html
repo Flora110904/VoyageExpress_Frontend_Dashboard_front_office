@@ -1,0 +1,22 @@
+<div class="payment-success">
+  <div class="card">
+    <div class="icon bg-success">
+      <i class="fa fa-check"></i>
+    </div>
+    <h1>Paiement confirmé !</h1>
+    <p class="lead">Merci, votre transaction a été validée avec succès.</p>
+
+    <div class="details" *ngIf="transactionId || amount || paymentMethod">
+      <h2>Détails du paiement</h2>
+      <ul>
+        <li *ngIf="transactionId"><strong>Transaction :</strong> {{ transactionId }}</li>
+        <li *ngIf="amount"><strong>Montant :</strong> {{ amount }} XAF</li>
+        <li *ngIf="paymentMethod"><strong>Méthode :</strong> {{ paymentMethod }}</li>
+      </ul>
+    </div>
+
+    <a routerLink="/client/mes-reservations" class="btn btn-primary mt-3">
+      Voir mes réservations
+    </a>
+  </div>
+</div>

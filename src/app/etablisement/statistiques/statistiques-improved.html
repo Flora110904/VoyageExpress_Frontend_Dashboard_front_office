@@ -1,0 +1,328 @@
+<app-navbar></app-navbar>
+
+<!-- Hero Statistiques -->
+<div class="dashboard-hero position-relative overflow-hidden">
+  <div class="container position-relative" style="z-index: 2; padding: 2.5rem 1rem;">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <div class="d-flex align-items-center mb-3">
+          <div class="me-3" style="width: 60px; height: 60px; background: var(--accent-gradient); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center;">
+            <i class="fa fa-chart-line fa-2x text-white"></i>
+          </div>
+          <div>
+            <h6 class="text-white-50 mb-1 text-uppercase" style="font-size: 0.85rem; letter-spacing: 1px;">Analyse de Performance</h6>
+            <h1 class="text-white mb-0 fw-bold" style="font-size: 2.2rem;">Statistiques & Rapports</h1>
+          </div>
+        </div>
+        <p class="text-white mb-0 opacity-90" style="font-size: 1.05rem;">
+          Analysez les performances de votre établissement avec des indicateurs clés et des graphiques interactifs
+        </p>
+      </div>
+      <div class="col-lg-4 text-end d-none d-lg-block">
+        <div class="text-white">
+          <select class="form-select bg-white bg-opacity-20 text-white border-0" style="backdrop-filter: blur(10px); font-size: 1.1rem; font-weight: 600;">
+            <option>Derniers 7 jours</option>
+            <option>Ce mois</option>
+            <option>Ce trimestre</option>
+            <option>Cette année</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Statistiques Principales -->
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);">
+  <div class="container">
+    
+    <!-- Métriques Clés -->
+    <div class="dashboard-metrics mb-5">
+      <!-- Taux d'Occupation -->
+      <div class="metric-card animate-fade-in">
+        <div class="d-flex align-items-center">
+          <div class="metric-icon primary">
+            <i class="fa fa-percentage"></i>
+          </div>
+          <div class="flex-1">
+            <div class="metric-number">75%</div>
+            <div class="metric-label">Taux d'Occupation</div>
+            <div class="metric-change positive">
+              <i class="fa fa-arrow-up"></i> +5% vs mois dernier
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Revenus -->
+      <div class="metric-card animate-fade-in" style="animation-delay: 0.1s;">
+        <div class="d-flex align-items-center">
+          <div class="metric-icon success">
+            <i class="fa fa-coins"></i>
+          </div>
+          <div class="flex-1">
+            <div class="metric-number">2.4M</div>
+            <div class="metric-label">Revenus (FCFA)</div>
+            <div class="metric-change positive">
+              <i class="fa fa-arrow-up"></i> +12% vs mois dernier
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Réservations -->
+      <div class="metric-card animate-fade-in" style="animation-delay: 0.2s;">
+        <div class="d-flex align-items-center">
+          <div class="metric-icon accent">
+            <i class="fa fa-calendar-check"></i>
+          </div>
+          <div class="flex-1">
+            <div class="metric-number">156</div>
+            <div class="metric-label">Réservations</div>
+            <div class="metric-change positive">
+              <i class="fa fa-arrow-up"></i> +18 ce mois
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Satisfaction -->
+      <div class="metric-card animate-fade-in" style="animation-delay: 0.3s;">
+        <div class="d-flex align-items-center">
+          <div class="metric-icon secondary">
+            <i class="fa fa-star"></i>
+          </div>
+          <div class="flex-1">
+            <div class="metric-number">4.8</div>
+            <div class="metric-label">Note Moyenne</div>
+            <div class="metric-change positive">
+              <i class="fa fa-arrow-up"></i> +0.2 points
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Graphiques -->
+    <div class="row g-4 mb-5">
+      <!-- Occupation sur 30 jours -->
+      <div class="col-lg-8">
+        <div class="card-modern h-100">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="fw-bold mb-0" style="color: var(--primary-color);">
+              <i class="fa fa-chart-area me-2" style="color: var(--accent-color);"></i>
+              Évolution de l'Occupation
+            </h4>
+            <div class="btn-group" role="group">
+              <input type="radio" class="btn-check" name="period" id="week" checked>
+              <label class="btn btn-outline-primary btn-sm" for="week">7j</label>
+              <input type="radio" class="btn-check" name="period" id="month">
+              <label class="btn btn-outline-primary btn-sm" for="month">30j</label>
+              <input type="radio" class="btn-check" name="period" id="year">
+              <label class="btn btn-outline-primary btn-sm" for="year">1an</label>
+            </div>
+          </div>
+          <div class="chart-placeholder" style="min-height: 350px; background: linear-gradient(135deg, var(--light-gray) 0%, white 100%); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; position: relative;">
+            <div class="text-center">
+              <i class="fa fa-chart-line fa-4x mb-3" style="color: var(--primary-color); opacity: 0.2;"></i>
+              <p class="text-muted">Graphique d'occupation (intégration Chart.js)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Répartition des Réservations -->
+      <div class="col-lg-4">
+        <div class="card-modern h-100">
+          <h4 class="fw-bold mb-4" style="color: var(--primary-color);">
+            <i class="fa fa-chart-pie me-2" style="color: var(--accent-color);"></i>
+            Répartition par Type
+          </h4>
+          <div class="chart-placeholder" style="min-height: 250px; background: linear-gradient(135deg, var(--light-gray) 0%, white 100%); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+            <div class="text-center">
+              <i class="fa fa-chart-pie fa-3x" style="color: var(--secondary-color); opacity: 0.2;"></i>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div class="d-flex align-items-center">
+                <div style="width: 12px; height: 12px; background: var(--primary-color); border-radius: 2px;" class="me-2"></div>
+                <span class="fw-semibold">Standard</span>
+              </div>
+              <span class="fw-bold" style="color: var(--primary-color);">45%</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div class="d-flex align-items-center">
+                <div style="width: 12px; height: 12px; background: var(--secondary-color); border-radius: 2px;" class="me-2"></div>
+                <span class="fw-semibold">Deluxe</span>
+              </div>
+              <span class="fw-bold" style="color: var(--secondary-color);">35%</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="d-flex align-items-center">
+                <div style="width: 12px; height: 12px; background: var(--accent-color); border-radius: 2px;" class="me-2"></div>
+                <span class="fw-semibold">Suite</span>
+              </div>
+              <span class="fw-bold" style="color: var(--accent-color);">20%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Revenus Détaillés -->
+    <div class="row g-4 mb-5">
+      <!-- Graphique Revenus -->
+      <div class="col-lg-7">
+        <div class="card-modern">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="fw-bold mb-0" style="color: var(--primary-color);">
+              <i class="fa fa-money-bill-wave me-2" style="color: var(--accent-color);"></i>
+              Revenus par Mois
+            </h4>
+            <span class="badge-modern badge-success">+12% vs année dernière</span>
+          </div>
+          <div class="chart-placeholder" style="min-height: 300px; background: linear-gradient(135deg, var(--light-gray) 0%, white 100%); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center;">
+            <div class="text-center">
+              <i class="fa fa-chart-bar fa-4x mb-3" style="color: var(--accent-color); opacity: 0.2;"></i>
+              <p class="text-muted">Graphique des revenus (intégration Chart.js)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Chambres -->
+      <div class="col-lg-5">
+        <div class="card-modern h-100">
+          <h4 class="fw-bold mb-4" style="color: var(--primary-color);">
+            <i class="fa fa-trophy me-2" style="color: var(--accent-color);"></i>
+            Top Chambres Réservées
+          </h4>
+          <div class="space-y-3">
+            <!-- Chambre 1 -->
+            <div class="d-flex align-items-center justify-content-between p-3 rounded" style="background: var(--light-gray); transition: var(--transition-all);" onmouseover="this.style.background='var(--primary-10)'" onmouseout="this.style.background='var(--light-gray)'">
+              <div class="d-flex align-items-center">
+                <div class="me-3" style="width: 45px; height: 45px; background: var(--primary-gradient); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem;">
+                  1
+                </div>
+                <div>
+                  <div class="fw-bold">Suite Présidentielle</div>
+                  <div class="text-muted small">Chambre 301</div>
+                </div>
+              </div>
+              <div class="text-end">
+                <div class="fw-bold" style="color: var(--primary-color);">48</div>
+                <div class="text-muted small">réservations</div>
+              </div>
+            </div>
+
+            <!-- Chambre 2 -->
+            <div class="d-flex align-items-center justify-content-between p-3 rounded" style="background: var(--light-gray); transition: var(--transition-all);" onmouseover="this.style.background='var(--secondary-10)'" onmouseout="this.style.background='var(--light-gray)'">
+              <div class="d-flex align-items-center">
+                <div class="me-3" style="width: 45px; height: 45px; background: var(--secondary-gradient); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem;">
+                  2
+                </div>
+                <div>
+                  <div class="fw-bold">Chambre Deluxe</div>
+                  <div class="text-muted small">Chambre 205</div>
+                </div>
+              </div>
+              <div class="text-end">
+                <div class="fw-bold" style="color: var(--secondary-color);">42</div>
+                <div class="text-muted small">réservations</div>
+              </div>
+            </div>
+
+            <!-- Chambre 3 -->
+            <div class="d-flex align-items-center justify-content-between p-3 rounded" style="background: var(--light-gray); transition: var(--transition-all);" onmouseover="this.style.background='var(--accent-10)'" onmouseout="this.style.background='var(--light-gray)'">
+              <div class="d-flex align-items-center">
+                <div class="me-3" style="width: 45px; height: 45px; background: var(--accent-gradient); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem;">
+                  3
+                </div>
+                <div>
+                  <div class="fw-bold">Chambre Standard</div>
+                  <div class="text-muted small">Chambre 105</div>
+                </div>
+              </div>
+              <div class="text-end">
+                <div class="fw-bold" style="color: var(--accent-color);">38</div>
+                <div class="text-muted small">réservations</div>
+              </div>
+            </div>
+
+            <!-- Chambre 4 -->
+            <div class="d-flex align-items-center justify-content-between p-3 rounded" style="background: var(--light-gray);">
+              <div class="d-flex align-items-center">
+                <div class="me-3" style="width: 45px; height: 45px; background: var(--medium-gray); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--text-primary); font-weight: bold; font-size: 1.2rem;">
+                  4
+                </div>
+                <div>
+                  <div class="fw-bold">Suite Junior</div>
+                  <div class="text-muted small">Chambre 202</div>
+                </div>
+              </div>
+              <div class="text-end">
+                <div class="fw-bold text-muted">35</div>
+                <div class="text-muted small">réservations</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analyse Détaillée -->
+    <div class="row g-4">
+      <!-- Durée Moyenne de Séjour -->
+      <div class="col-lg-4">
+        <div class="card-modern text-center">
+          <div class="mb-3" style="width: 80px; height: 80px; background: var(--primary-gradient); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+            <i class="fa fa-clock fa-2x text-white"></i>
+          </div>
+          <h3 class="fw-bold mb-2" style="color: var(--primary-color); font-size: 3rem;">3.5</h3>
+          <p class="text-muted mb-3">Durée moyenne de séjour (jours)</p>
+          <div class="d-flex align-items-center justify-content-center">
+            <span class="badge-modern badge-success">
+              <i class="fa fa-arrow-up me-1"></i>+0.5 jours
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Revenu Par Chambre -->
+      <div class="col-lg-4">
+        <div class="card-modern text-center">
+          <div class="mb-3" style="width: 80px; height: 80px; background: var(--accent-gradient); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+            <i class="fa fa-chart-line fa-2x text-white"></i>
+          </div>
+          <h3 class="fw-bold mb-2" style="color: var(--accent-color); font-size: 3rem;">27K</h3>
+          <p class="text-muted mb-3">Revenu moyen par chambre (FCFA)</p>
+          <div class="d-flex align-items-center justify-content-center">
+            <span class="badge-modern badge-success">
+              <i class="fa fa-arrow-up me-1"></i>+8%
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Taux d'Annulation -->
+      <div class="col-lg-4">
+        <div class="card-modern text-center">
+          <div class="mb-3" style="width: 80px; height: 80px; background: var(--secondary-gradient); border-radius: var(--radius-full); display: flex; align-items-center; justify-content: center; margin: 0 auto;">
+            <i class="fa fa-ban fa-2x text-white"></i>
+          </div>
+          <h3 class="fw-bold mb-2" style="color: var(--secondary-color); font-size: 3rem;">5%</h3>
+          <p class="text-muted mb-3">Taux d'annulation</p>
+          <div class="d-flex align-items-center justify-content-center">
+            <span class="badge-modern badge-danger">
+              <i class="fa fa-arrow-down me-1"></i>-2%
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<app-footer></app-footer>

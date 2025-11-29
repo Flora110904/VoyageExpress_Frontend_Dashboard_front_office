@@ -1,91 +1,151 @@
-<!-- Topbar Start -->
-<div class="container-fluid bg-light d-none d-lg-block">
-  <div class="row align-items-center top-bar">
-    <div class="col-lg-3 col-md-12 text-center text-lg-start">
-      <a routerLink="/" class="navbar-brand m-0 p-0">
-        <h1 class="text-primary m-0">VoyageExpress Vol</h1>
-      </a>
-    </div>
-    <div class="col-lg-9 col-md-12 text-end">
-      <div class="h-100 d-inline-flex align-items-center me-4">
-        <i class="fa fa-map-marker-alt text-primary me-2"></i>
-        <p class="m-0">Dakar, Sénégal</p>
-      </div>
-      <div class="h-100 d-inline-flex align-items-center me-4">
-        <i class="far fa-envelope-open text-primary me-2"></i>
-        <p class="m-0">contact&#64;voyageexpress.sn</p>
-      </div>
-      <div class="h-100 d-inline-flex align-items-center">
-        <a class="btn btn-sm-square bg-white text-primary me-1" href=""><i class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-sm-square bg-white text-primary me-1" href=""><i class="fab fa-twitter"></i></a>
-        <a class="btn btn-sm-square bg-white text-primary me-0" href=""><i class="fab fa-instagram"></i></a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Topbar End -->
+<app-compagnie-vol-navbar></app-compagnie-vol-navbar>
 
-<!-- Navbar Start -->
-<div class="container-fluid nav-bar bg-light">
-  <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
-    <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
-      <h1 class="text-primary m-0">VoyageExpress Vol</h1>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-      <span class="fa fa-bars"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav me-auto">
-        <a routerLink="/compagnieVol" class="nav-item nav-link" routerLinkActive="active">Dashboard</a>
-        <a routerLink="/compagnieVol/statistiques" class="nav-item nav-link" routerLinkActive="active">Statistiques</a>
-        <a routerLink="/compagnieVol/reservations" class="nav-item nav-link active" routerLinkActive="active">Réservations</a>
-        <a routerLink="/compagnieVol/vols" class="nav-item nav-link" routerLinkActive="active">Vols</a>
-        <a routerLink="/compagnieVol/avions" class="nav-item nav-link" routerLinkActive="active">Avions</a>
-      </div>
-      <div class="mt-4 mt-lg-0 me-lg-n4 py-3 px-4 bg-primary d-flex align-items-center">
-        <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white" style="width: 45px; height: 45px;">
-          <i class="fa fa-phone-alt text-primary"></i>
-        </div>
-        <div class="ms-3">
-          <p class="mb-1 text-white">Support 24/7</p>
-          <h5 class="m-0 text-secondary">+221 33 XXX XX XX</h5>
-        </div>
-      </div>
-    </div>
-  </nav>
-</div>
-<!-- Navbar End -->
 <div class="container-fluid py-5">
   <div class="container">
-    <h2 class="mb-4">Réservations de Vols</h2>
-    <div class="table-responsive">
-      <table class="table table-hover">
-        <thead class="table-primary">
-          <tr>
-            <th>N° Billet</th>
-            <th>Passager</th>
-            <th>Vol</th>
-            <th>Départ → Arrivée</th>
-            <th>Date</th>
-            <th>Classe</th>
-            <th>Montant</th>
-            <th>Statut</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>#VOL12345</strong></td>
-            <td>Marie Ndiaye</td>
-            <td>AF-001</td>
-            <td>Dakar (DSS) → Paris (CDG)</td>
-            <td>2025-11-15 22:30</td>
-            <td>Économique</td>
-            <td>450,000 FCFA</td>
-            <td><span class="badge bg-success">Confirmé</span></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start gap-3 mb-4">
+      <div>
+        <h2 class="fw-bold mb-2">Réservations de vols</h2>
+        <p class="text-muted mb-0">Visualisez les transactions récentes et le statut de paiement de vos clients.</p>
+      </div>
+      <button class="btn btn-outline-secondary" (click)="refresh()">
+        <i class="fa fa-sync-alt me-2"></i>Actualiser
+      </button>
     </div>
+
+    <!-- Loading -->
+    <div *ngIf="isLoading" class="card border-0 shadow-sm text-center p-5">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p class="mt-3 mb-0">Chargement des réservations...</p>
+    </div>
+
+    <!-- Error -->
+    <div *ngIf="!isLoading && error" class="alert alert-danger d-flex flex-column flex-md-row align-items-md-center justify-content-between">
+      <div>{{ error }}</div>
+      <button class="btn btn-danger mt-3 mt-md-0" (click)="retry()">
+        <i class="fa fa-sync-alt me-2"></i>Réessayer
+      </button>
+    </div>
+
+    <ng-container *ngIf="!isLoading && !error">
+      <!-- KPIs -->
+      <div class="row g-3 mb-4">
+        <div class="col-md-3">
+          <div class="card metric-card border-0 h-100">
+            <div class="card-body">
+              <span class="metric-label">Total</span>
+              <h3 class="metric-value">{{ totalReservations }}</h3>
+              <span class="metric-icon bg-primary-subtle text-primary"><i class="fa fa-ticket-alt"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card metric-card border-0 h-100">
+            <div class="card-body">
+              <span class="metric-label">Confirmées</span>
+              <h3 class="metric-value">{{ confirmedCount }}</h3>
+              <span class="metric-icon bg-success-subtle text-success"><i class="fa fa-check-circle"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card metric-card border-0 h-100">
+            <div class="card-body">
+              <span class="metric-label">En attente</span>
+              <h3 class="metric-value">{{ pendingCount }}</h3>
+              <span class="metric-icon bg-warning-subtle text-warning"><i class="fa fa-hourglass-half"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card metric-card border-0 h-100">
+            <div class="card-body">
+              <span class="metric-label">Annulées</span>
+              <h3 class="metric-value">{{ cancelledCount }}</h3>
+              <span class="metric-icon bg-danger-subtle text-danger"><i class="fa fa-times-circle"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body p-4">
+          <div class="row g-3">
+            <div class="col-md-3">
+              <label class="form-label text-muted small">Date de réservation</label>
+              <input type="date" class="form-control" [value]="dateFilter ?? ''" (change)="onDateChange($any($event.target).value)" />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label text-muted small">Statut</label>
+              <select class="form-select" [value]="statusFilter" (change)="onStatusChange($any($event.target).value)">
+                <option value="all">Tous les statuts</option>
+                <option value="CONFIRMEE">Confirmée</option>
+                <option value="EN_ATTENTE_PAIEMENT">En attente</option>
+                <option value="ANNULEE">Annulée</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label text-muted small">N° réservation</label>
+              <input type="text" class="form-control" placeholder="Ex: VE-1234" [value]="searchTerm" (input)="onSearch($any($event.target).value)" />
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+              <button class="btn btn-outline-secondary w-100" (click)="resetFilters()">
+                <i class="fa fa-undo me-2"></i>Réinitialiser
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div *ngIf="filteredReservations.length === 0" class="card border-0 shadow-sm text-center py-5">
+        <div class="card-body">
+          <i class="fa fa-ticket-alt fa-3x text-muted mb-3"></i>
+          <h4 class="fw-semibold">Aucune réservation trouvée</h4>
+          <p class="text-muted mb-0">Aucune réservation ne correspond aux filtres sélectionnés. Essayez de modifier la recherche.</p>
+        </div>
+      </div>
+
+      <!-- Reservations table -->
+      <div class="card border-0 shadow-sm" *ngIf="filteredReservations.length > 0">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>Réservation</th>
+                <th>Date</th>
+                <th>Montant</th>
+                <th>Statut</th>
+                <th class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let reservation of filteredReservations; trackBy: trackReservation">
+                <td>
+                  <div class="fw-semibold">{{ reservation.numeroReservation }}</div>
+                  <small class="text-muted">ID tracking: {{ reservation.trackingId }}</small>
+                </td>
+                <td>{{ formatDate(reservation.dateReservation) }}</td>
+                <td>{{ formatCurrency(reservation.montantTotal) }}</td>
+                <td>
+                  <span class="badge" [ngClass]="getStatusBadge(reservation.statut)">{{ reservation.statut }}</span>
+                </td>
+                <td class="text-end">
+                  <div class="btn-group">
+                    <button class="btn btn-sm btn-outline-primary" [disabled]="true">
+                      <i class="fa fa-eye"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary" [disabled]="true">
+                      <i class="fa fa-print"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </div>
 <!-- Footer Start -->

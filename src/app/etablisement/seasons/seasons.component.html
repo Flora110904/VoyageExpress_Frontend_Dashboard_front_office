@@ -1,0 +1,137 @@
+<app-etablisement-navbar></app-etablisement-navbar>
+
+<div class="seasons-wrapper">
+  <div class="seasons-header">
+    <div>
+      <h1>Tarifs par type d'hébergement</h1>
+      <p class="subtitle">
+        Définissez des prix cohérents pour chaque catégorie de local.
+      </p>
+    </div>
+    <div class="actions">
+      <button class="btn primary" (click)="openCreateForm()">
+        <i class="fa fa-plus"></i>
+        Nouveau tarif
+      </button>
+      <button class="btn ghost" (click)="loadTarifs()" [disabled]="isLoading">
+        <i class="fa fa-refresh" [class.spin]="isLoading"></i>
+        Rafraîchir
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="error" class="alert danger">
+    {{ error }}
+  </div>
+
+  <div *ngIf="successMessage" class="alert success">
+    {{ successMessage }}
+  </div>
+
+  <div class="layout">
+    <div class="seasons-list" [class.overlay]="showForm">
+      <ng-container *ngIf="hasTarifs; else emptyState">
+        <div
+          class="season-card"
+          *ngFor="let tarif of tarifs"
+          [class.highlighted]="tarif.trackingId === highlightedTarifId"
+        >
+          <div class="season-header">
+            <div>
+              <h3>{{ formatType(tarif.type) }}</h3>
+              <p class="dates">Tarif TTC : {{ formatCurrency(tarif.prixTtc) }}</p>
+            </div>
+            <span class="badge" [class.active]="tarif.actif" [class.inactive]="!tarif.actif">
+              {{ tarif.actif ? 'Actif' : 'Inactif' }}
+            </span>
+          </div>
+
+          <div class="season-body">
+            <div class="rule">
+              <span class="label">Tarif appliqué</span>
+              <span class="value">{{ formatCurrency(tarif.prixTtc) }}</span>
+            </div>
+            <div class="meta">
+              <span>Type : {{ tarif.type }}</span>
+              <span>Status : {{ tarif.actif ? 'Disponible' : 'Désactivé' }}</span>
+            </div>
+          </div>
+
+          <div class="season-actions">
+            <button class="btn ghost" (click)="editTarif(tarif)">
+              <i class="fa fa-edit"></i>
+              Modifier
+            </button>
+            <button class="btn danger" (click)="deleteTarif(tarif)" [disabled]="isDeleting">
+              <i class="fa fa-trash"></i>
+              Supprimer
+            </button>
+          </div>
+
+          <div *ngIf="deleteError" class="alert danger compact">
+            {{ deleteError }}
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #emptyState>
+        <div class="empty-state">
+          <i class="fa fa-tags"></i>
+          <h3>Aucun tarif défini</h3>
+          <p>
+            Créez votre premier tarif pour lier un prix à chaque type d'hébergement.
+          </p>
+          <button class="btn primary" (click)="openCreateForm()">
+            Commencer
+          </button>
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="season-form" *ngIf="showForm">
+      <form (ngSubmit)="submitForm()" novalidate>
+        <div class="form-header">
+          <h2>{{ form.trackingId ? 'Modifier le tarif' : 'Nouveau tarif' }}</h2>
+          <button class="icon-button" type="button" (click)="cancelForm()" [disabled]="isSaving">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+
+        <div *ngIf="formError" class="alert danger compact">
+          {{ formError }}
+        </div>
+
+        <label class="form-group">
+          <span>Type d'hébergement</span>
+          <select [(ngModel)]="form.type" name="type" required>
+            <option value="" disabled>Choisir un type</option>
+            <option *ngFor="let option of selectableTypes" [value]="option">
+              {{ formatType(option) }}
+            </option>
+          </select>
+        </label>
+
+        <label class="form-group">
+          <span>Prix TTC (FCFA)</span>
+          <input type="number" min="0" [(ngModel)]="form.prixTtc" name="prixTtc" placeholder="Ex: 60000" />
+          <small>Ce prix sera appliqué à toutes les chambres de ce type.</small>
+        </label>
+
+        <label class="toggle">
+          <input type="checkbox" [(ngModel)]="form.actif" name="actif" />
+          <span>Tarif actif</span>
+        </label>
+
+        <div class="form-actions">
+          <button class="btn ghost" type="button" (click)="cancelForm()" [disabled]="isSaving">
+            Annuler
+          </button>
+          <button class="btn primary" type="submit" [disabled]="isSaving">
+            <i class="fa fa-spinner spin" *ngIf="isSaving"></i>
+            {{ form.trackingId ? 'Enregistrer les modifications' : 'Créer le tarif' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -8,20 +8,22 @@ import { Statistiques } from './statistiques/statistiques';
 import { Chambres } from './chambres/chambres';
 import { Reservations } from './reservations/reservations';
 import { TypesHebergement } from './types-hebergement/types-hebergement';
+import { SeasonsComponent } from './seasons/seasons.component';
+import { EtablisementNavbarComponent } from './shared/etablisement-navbar/etablisement-navbar.component';
 
 
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    RouterModule,
+    EtablisementRoutingModule,
     Etablisement,
     Statistiques,
     Chambres,
     Reservations,
-    TypesHebergement
-  ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    EtablisementRoutingModule
+    TypesHebergement,
+    EtablisementNavbarComponent,
+    SeasonsComponent
   ]
 })
 export class EtablisementModule { }

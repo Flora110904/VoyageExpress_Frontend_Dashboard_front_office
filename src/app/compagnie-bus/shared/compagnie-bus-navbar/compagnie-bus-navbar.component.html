@@ -1,0 +1,81 @@
+<!-- Topbar Start -->
+<div class="container-fluid bg-light d-none d-lg-block">
+  <div class="row align-items-center top-bar" style="padding: 12px 0;">
+    <div class="col-lg-3 col-md-12 text-center text-lg-start">
+      <a routerLink="/compagnieBus" class="navbar-brand m-0 p-0">
+        <h1 class="text-primary m-0" style="font-size: 2rem;">🚀 VoyageExpress</h1>
+      </a>
+    </div>
+    <div class="col-lg-9 col-md-12 text-end">
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="fa fa-map-marker-alt text-primary me-2" style="font-size: 1.1rem;"></i>
+        <p class="m-0" style="font-size: 1rem;">Lomé, Togo</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center me-4">
+        <i class="far fa-envelope-open text-primary me-2" style="font-size: 1.1rem;"></i>
+        <p class="m-0" style="font-size: 1rem;">contact&#64;voyageexpress.tg</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center">
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://facebook.com/voyageexpress" target="_blank" style="width: 36px; height: 36px;">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://twitter.com/voyageexpress" target="_blank" style="width: 36px; height: 36px;">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a class="btn btn-sm-square bg-white text-primary me-0" href="https://instagram.com/voyageexpress" target="_blank" style="width: 36px; height: 36px;">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Topbar End -->
+
+<!-- Navbar Start -->
+<div class="container-fluid nav-bar bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 px-lg-4" style="padding: 1.2rem 1rem;">
+    <a routerLink="/compagnieBus" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
+      <h1 class="text-primary m-0" style="font-size: 1.8rem;">VoyageExpress</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#compagnieBusNavbar">
+      <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="compagnieBusNavbar">
+      <div class="navbar-nav me-auto">
+        <a routerLink="/compagnieBus" class="nav-item nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" style="font-size: 1.05rem; padding: 0.6rem 1rem;">
+          <i class="fa fa-home me-2"></i>Accueil
+        </a>
+        <a routerLink="/compagnieBus" class="nav-item nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" style="font-size: 1.05rem; padding: 0.6rem 1rem;">
+          <i class="fa fa-tachometer-alt me-2"></i>Dashboard
+        </a>
+        <a routerLink="/compagnieBus/reservations" class="nav-item nav-link" routerLinkActive="active" style="font-size: 1.05rem; padding: 0.6rem 1rem;">
+          <i class="fa fa-ticket-alt me-2"></i>Réservations
+        </a>
+        <a routerLink="/compagnieBus/itineraires" class="nav-item nav-link" routerLinkActive="active" style="font-size: 1.05rem; padding: 0.6rem 1rem;">
+          <i class="fa fa-route me-2"></i>Itinéraires
+        </a>
+        <a routerLink="/compagnieBus/vehicules" class="nav-item nav-link" routerLinkActive="active" style="font-size: 1.05rem; padding: 0.6rem 1rem;">
+          <i class="fa fa-bus me-2"></i>Flotte
+        </a>
+        <a routerLink="/compagnieBus/statistiques" class="nav-item nav-link" routerLinkActive="active" style="font-size: 1.05rem; padding: 0.6rem 1rem;">
+          <i class="fa fa-chart-line me-2"></i>Statistiques
+        </a>
+      </div>
+
+      <div class="d-flex align-items-center gap-2 mt-4 mt-lg-0">
+        <button *ngIf="isLoggedIn; else authLinks" class="btn btn-danger px-4" style="font-size: 1rem; padding: 0.6rem 1.5rem;" (click)="logout()">
+          <i class="fa fa-sign-out-alt me-2"></i>Se déconnecter
+        </button>
+        <ng-template #authLinks>
+          <a routerLink="/auth/login" class="btn btn-outline-primary px-4" style="font-size: 1rem; padding: 0.6rem 1.5rem;">
+            <i class="fa fa-sign-in-alt me-2"></i>Se connecter
+          </a>
+          <a routerLink="/auth/register" class="btn btn-primary px-4" style="font-size: 1rem; padding: 0.6rem 1.5rem;">
+            <i class="fa fa-user-plus me-2"></i>S'inscrire
+          </a>
+        </ng-template>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- Navbar End -->

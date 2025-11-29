@@ -1,0 +1,158 @@
+<div class="stats-container">
+  <div class="header">
+    <h1><i class="bi bi-graph-up"></i> Statistiques & Performance</h1>
+    <p>Vue d'ensemble de votre établissement</p>
+  </div>
+
+  <!-- Sélection du local -->
+  <div class="local-selector" *ngIf="locaux.length > 1">
+    <label>Sélectionner un local :</label>
+    <div class="locaux-chips">
+      <button 
+        *ngFor="let local of locaux" 
+        class="chip-btn"
+        (click)="selectLocal(local)">
+        {{ local.type }} - {{ local.description }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Cartes de statistiques principales -->
+  <div class="metrics-grid" *ngIf="stats">
+    <div class="metric-card blue">
+      <div class="metric-icon">
+        <i class="bi bi-calendar-check"></i>
+      </div>
+      <div class="metric-content">
+        <h2>{{ stats.totalReservations }}</h2>
+        <p>Réservations totales</p>
+      </div>
+    </div>
+
+    <div class="metric-card green">
+      <div class="metric-icon">
+        <i class="bi bi-check-circle"></i>
+      </div>
+      <div class="metric-content">
+        <h2>{{ stats.reservationsConfirmees }}</h2>
+        <p>Confirmées</p>
+      </div>
+    </div>
+
+    <div class="metric-card purple">
+      <div class="metric-icon">
+        <i class="bi bi-cash-stack"></i>
+      </div>
+      <div class="metric-content">
+        <h2>{{ stats.revenusTotal | number:'1.0-0' }} XAF</h2>
+        <p>Revenus totaux</p>
+      </div>
+    </div>
+
+    <div class="metric-card orange">
+      <div class="metric-icon">
+        <i class="bi bi-cash"></i>
+      </div>
+      <div class="metric-content">
+        <h2>{{ stats.revenusMoisActuel | number:'1.0-0' }} XAF</h2>
+        <p>Revenus du mois</p>
+      </div>
+    </div>
+
+    <div class="metric-card teal">
+      <div class="metric-icon">
+        <i class="bi bi-percent"></i>
+      </div>
+      <div class="metric-content">
+        <h2>{{ getTauxOccupation() }}%</h2>
+        <p>Taux d'occupation</p>
+      </div>
+    </div>
+
+    <div class="metric-card pink">
+      <div class="metric-icon">
+        <i class="bi bi-graph-up"></i>
+      </div>
+      <div class="metric-content">
+        <h2>{{ getRevenuMoyen() | number:'1.0-0' }} XAF</h2>
+        <p>Revenu moyen</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Graphiques -->
+  <div class="charts-section" *ngIf="stats">
+    <div class="chart-card">
+      <h3><i class="bi bi-bar-chart"></i> Réservations par mois</h3>
+      <div class="simple-chart">
+        <div *ngFor="let label of chartLabels; let i = index" class="chart-bar">
+          <div class="bar" [style.height.%]="(chartReservations[i] / (stats.totalReservations || 1)) * 100">
+            <span class="bar-value">{{ chartReservations[i] }}</span>
+          </div>
+          <span class="bar-label">{{ label }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h3><i class="bi bi-cash"></i> Revenus par mois</h3>
+      <div class="simple-chart">
+        <div *ngFor="let label of chartLabels; let i = index" class="chart-bar">
+          <div class="bar revenue" [style.height.%]="(chartRevenus[i] / (stats.revenusTotal || 1)) * 100">
+            <span class="bar-value">{{ chartRevenus[i] | number:'1.0-0' }}</span>
+          </div>
+          <span class="bar-label">{{ label }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- État des réservations -->
+  <div class="status-section" *ngIf="stats">
+    <h3>Répartition des réservations</h3>
+    <div class="status-grid">
+      <div class="status-item">
+        <div class="status-bar">
+          <div class="status-fill green" [style.width.%]="(stats.reservationsConfirmees / stats.totalReservations) * 100"></div>
+        </div>
+        <div class="status-info">
+          <span class="status-label">Confirmées</span>
+          <span class="status-value">{{ stats.reservationsConfirmees }}</span>
+        </div>
+      </div>
+
+      <div class="status-item">
+        <div class="status-bar">
+          <div class="status-fill orange" [style.width.%]="(stats.reservationsEnCours / stats.totalReservations) * 100"></div>
+        </div>
+        <div class="status-info">
+          <span class="status-label">En cours</span>
+          <span class="status-value">{{ stats.reservationsEnCours }}</span>
+        </div>
+      </div>
+
+      <div class="status-item">
+        <div class="status-bar">
+          <div class="status-fill red" [style.width.%]="(stats.reservationsAnnulees / stats.totalReservations) * 100"></div>
+        </div>
+        <div class="status-info">
+          <span class="status-label">Annulées</span>
+          <span class="status-value">{{ stats.reservationsAnnulees }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loader -->
+  <div *ngIf="loading" class="loader-container">
+    <div class="spinner"></div>
+    <p>Chargement des statistiques...</p>
+  </div>
+
+  <!-- Message si pas de données -->
+  <div *ngIf="!loading && !stats" class="empty-state">
+    <i class="bi bi-graph-up"></i>
+    <h3>Aucune donnée disponible</h3>
+    <p>Les statistiques apparaîtront une fois que vous aurez des réservations.</p>
+  </div>
+</div>

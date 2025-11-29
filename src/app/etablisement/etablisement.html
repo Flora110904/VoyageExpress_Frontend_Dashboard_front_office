@@ -1,187 +1,249 @@
-<!-- Topbar Start -->
-<div class="container-fluid bg-light d-none d-lg-block">
-    <div class="row align-items-center top-bar">
-    <div class="col-lg-3 col-md-12 text-center text-lg-start">
-      <a routerLink="/" class="navbar-brand m-0 p-0">
-        <h1 class="text-primary m-0">VoyageExpress</h1>
-      </a>
+<app-etablisement-navbar></app-etablisement-navbar>
+
+<!-- Loading State -->
+<section class="dashboard-loading" *ngIf="isLoading">
+  <div class="container text-center py-5">
+    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+      <span class="visually-hidden">Chargement...</span>
     </div>
-    <div class="col-lg-9 col-md-12 text-end">
-      <div class="h-100 d-inline-flex align-items-center me-4">
-        <i class="fa fa-map-marker-alt text-primary me-2"></i>
-        <p class="m-0">Lomé, Togo</p>
+    <p class="mt-3 mb-0">Chargement des données de votre espace établissement...</p>
+  </div>
+</section>
+
+<!-- Error State -->
+<section class="dashboard-error" *ngIf="!isLoading && hasError">
+  <div class="container py-5">
+    <div class="alert alert-danger shadow-sm d-flex flex-column flex-sm-row align-items-sm-center justify-content-between">
+      <div class="me-sm-3">
+        <h5 class="alert-heading"><i class="fa fa-exclamation-triangle me-2"></i>Une erreur est survenue</h5>
+        <p class="mb-0">{{ error }}</p>
       </div>
-      <div class="h-100 d-inline-flex align-items-center me-4">
-        <i class="far fa-envelope-open text-primary me-2"></i>
-        <p class="m-0">contact&#64;voyageexpress.tg</p>
-      </div>
-      <div class="h-100 d-inline-flex align-items-center">
-        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://facebook.com/voyageexpress" target="_blank">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://twitter.com/voyageexpress" target="_blank">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a class="btn btn-sm-square bg-white text-primary me-0" href="https://instagram.com/voyageexpress" target="_blank">
-          <i class="fab fa-instagram"></i>
-        </a>
-      </div>
+      <button class="btn btn-danger mt-3 mt-sm-0" (click)="retry()">
+        <i class="fa fa-sync-alt me-2"></i>Réessayer
+      </button>
     </div>
   </div>
-</div>
-<!-- Topbar End -->
+</section>
 
-<!-- Navbar Start -->
-<div class="container-fluid nav-bar bg-light">
-  <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
-    <a routerLink="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
-      <h1 class="text-primary m-0">VoyageExpress</h1>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-      <span class="fa fa-bars"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav me-auto">
-        <a routerLink="/" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-home me-2"></i>Accueil
-        </a>
-        <a routerLink="" class="nav-item nav-link active" routerLinkActive="active">
-          <i class="fa fa-tachometer-alt me-2"></i>Dashboard
-        </a>
-        <a routerLink="chambres" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-bed me-2"></i>Chambres
-        </a>
-        <a routerLink="reservations" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-calendar-check me-2"></i>Réservations
-        </a>
-        <a routerLink="types" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-tags me-2"></i>Tarifs
-        </a>
-        <a routerLink="statistiques" class="nav-item nav-link" routerLinkActive="active">
-          <i class="fa fa-chart-line me-2"></i>Statistiques
-        </a>
-      </div>
+<ng-container *ngIf="!isLoading && !hasError">
+  <!-- Dashboard Hero -->
+  <section class="dashboard-hero position-relative overflow-hidden py-5">
+    <div class="hero-bg"></div>
+    <div class="container position-relative">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <span class="hero-badge">Espace établissement</span>
+          <h1 class="hero-title">Gérez votre hébergement avec clarté</h1>
+          <p class="hero-text">
+            Suivez vos performances en temps réel, anticipez les réservations et améliorez l'expérience client
+            grâce aux données VoyageExpress.
+          </p>
 
-      <!-- Auth Buttons -->
-      <div class="d-flex align-items-center mt-4 mt-lg-0 me-lg-n4">
-        <a routerLink="/auth/login" class="btn btn-outline-primary me-2">
-          <i class="fa fa-sign-in-alt me-1"></i>Se Connecter
-        </a>
-        <a routerLink="/auth/register" class="btn btn-primary">
-          <i class="fa fa-user-plus me-1"></i>S'Inscrire
-        </a>
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <a routerLink="reservations" class="btn btn-primary btn-lg px-4">
+              <i class="fa fa-calendar-check me-2"></i>Voir les réservations
+            </a>
+            <a routerLink="chambres" class="btn btn-outline-light btn-lg px-4">
+              <i class="fa fa-plus-circle me-2"></i>Ajouter une chambre
+            </a>
+          </div>
+
+          <div class="hero-stats d-flex flex-wrap gap-4">
+            <div class="hero-stat">
+              <span class="stat-label">Taux d'occupation</span>
+              <span class="stat-value">{{ occupancyRate | number:'1.0-0' }}%</span>
+              <span class="stat-change" [class.positive]="occupancyRate >= 75" [class.warning]="occupancyRate < 75">
+                <i class="fa" [ngClass]="occupancyRate >= 75 ? 'fa-arrow-up' : 'fa-exclamation-triangle'"></i>
+                {{ formatNumber(occupiedRooms) }} chambres occupées
+              </span>
+            </div>
+            <div class="hero-stat">
+              <span class="stat-label">Chambres disponibles</span>
+              <span class="stat-value">{{ formatNumber(totalRooms - occupiedRooms) }}</span>
+              <span class="stat-change neutral">Total : {{ formatNumber(totalRooms) }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="hero-insights">
+            <div class="insight-card primary">
+              <div class="insight-title">
+                <i class="fa fa-calendar me-2"></i>Réservations du mois
+              </div>
+              <div class="insight-value">{{ formatNumber(monthlyReservationsMetric.value) }}</div>
+              <p class="insight-text" *ngIf="monthlyReservationsMetric.label; else noResMetric">
+                Période : {{ monthlyReservationsMetric.label }}
+              </p>
+              <ng-template #noResMetric>
+                <p class="insight-text">Aucune donnée de réservation mensuelle disponible pour l'instant.</p>
+              </ng-template>
+            </div>
+            <div class="insight-grid">
+              <div class="insight-mini success">
+                <span class="label">Check-in aujourd'hui</span>
+                <span class="value">{{ formatNumber(todayCheckins.length) }}</span>
+                <span class="trend positive"><i class="fa fa-door-open me-1"></i>Préparés</span>
+              </div>
+              <div class="insight-mini warning">
+                <span class="label">Check-out aujourd'hui</span>
+                <span class="value">{{ formatNumber(todayCheckouts.length) }}</span>
+                <span class="trend neutral">À finaliser</span>
+              </div>
+              <div class="insight-mini info">
+                <span class="label">Réservations en cours</span>
+                <span class="value">{{ formatNumber(stats?.reservationsEnCours) }}</span>
+                <span class="trend neutral">En validation</span>
+              </div>
+              <div class="insight-mini accent">
+                <span class="label">Revenus cumulés</span>
+                <span class="value">{{ formatCurrency(totalRevenue) }}</span>
+                <span class="trend positive"><i class="fa fa-chart-line me-1"></i>Depuis lancement</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </nav>
-</div>
-<!-- Navbar End -->
+  </section>
 
-<div class="container-fluid py-5">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h6 class="text-secondary text-uppercase">Gestion Hébergement</h6>
-      <h1 class="mb-3">🏨 Accueil Établissement</h1>
-      <p class="lead">Gérez efficacement votre hôtel, motel ou appartement avec notre plateforme complète de gestion des réservations et occupation.</p>
-    </div>
-
-    <!-- Métriques clés -->
-    <div class="row g-4 mb-5 dashboard-metrics">
-      <div class="col-md-3">
-        <div class="metric-card metric-primary">
-          <div class="d-flex align-items-center">
+  <!-- Dashboard Content -->
+  <section class="dashboard-content py-5">
+    <div class="container">
+      <div class="row g-4 dashboard-metrics mb-1">
+        <div class="col-sm-6 col-lg-3">
+          <div class="metric-card metric-primary">
             <div class="metric-icon"><i class="fa fa-bed"></i></div>
-            <div>
-              <div class="metric-number">89</div>
+            <div class="metric-body">
+              <div class="metric-number">{{ formatNumber(totalRooms) }}</div>
               <div class="metric-label">Chambres totales</div>
+              <small class="metric-hint">Adresse : {{ etablissement?.adresse || '—' }}</small>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-3">
-        <div class="metric-card metric-success">
-          <div class="d-flex align-items-center">
+        <div class="col-sm-6 col-lg-3">
+          <div class="metric-card metric-success">
             <div class="metric-icon"><i class="fa fa-check-circle"></i></div>
-            <div>
-              <div class="metric-number">67</div>
+            <div class="metric-body">
+              <div class="metric-number">{{ formatNumber(occupiedRooms) }}</div>
               <div class="metric-label">Chambres occupées</div>
+              <small class="metric-hint">Disponibles : {{ formatNumber(totalRooms - occupiedRooms) }}</small>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-3">
-        <div class="metric-card metric-warning">
-          <div class="d-flex align-items-center">
+        <div class="col-sm-6 col-lg-3">
+          <div class="metric-card metric-warning">
             <div class="metric-icon"><i class="fa fa-percentage"></i></div>
-            <div>
-              <div class="metric-number">75%</div>
-              <div class="metric-label">Taux occupation</div>
+            <div class="metric-body">
+              <div class="metric-number">{{ occupancyRate | number:'1.0-0' }}%</div>
+              <div class="metric-label">Taux d'occupation</div>
+              <small class="metric-hint">Objectif : 80%</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="metric-card metric-info">
+            <div class="metric-icon"><i class="fa fa-wallet"></i></div>
+            <div class="metric-body">
+              <div class="metric-number">{{ formatCurrency(monthlyRevenueMetric.value) }}</div>
+              <div class="metric-label">Revenus (mois)</div>
+              <small class="metric-hint" *ngIf="monthlyRevenueMetric.label">Période : {{ monthlyRevenueMetric.label }}</small>
+              <small class="metric-hint" *ngIf="!monthlyRevenueMetric.label">Aucune donnée récente</small>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="metric-card metric-info">
-          <div class="d-flex align-items-center">
-            <div class="metric-icon"><i class="fa fa-dollar-sign"></i></div>
-            <div>
-              <div class="metric-number">2.4M</div>
-              <div class="metric-label">Revenus (FCFA)</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Actions rapides -->
-    <div class="row g-4">
-      <div class="col-md-6">
-        <div class="action-card">
-          <div class="d-flex align-items-center mb-3">
-            <div class="action-icon text-primary"><i class="fa fa-chart-pie"></i></div>
-            <div>
-              <h5 class="action-title">Statistiques</h5>
-              <p class="action-description">Analyse occupation et revenus</p>
-            </div>
+      <div class="row g-4 quick-actions">
+        <div class="col-lg-3 col-sm-6">
+          <div class="quick-action-card primary">
+            <div class="icon"><i class="fa fa-calendar-plus"></i></div>
+            <h5>Créer une réservation</h5>
+            <p>Ajoutez une réservation manuelle pour un client présentiel.</p>
+            <a routerLink="reservations" class="btn btn-light btn-sm">Nouvelle réservation</a>
           </div>
-          <a routerLink="statistiques" class="btn btn-primary action-btn">Voir statistiques</a>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="quick-action-card success">
+            <div class="icon"><i class="fa fa-door-open"></i></div>
+            <h5>Planifier un check-in</h5>
+            <p>{{ formatNumber(todayCheckins.length) }} arrivées à préparer.</p>
+            <a routerLink="chambres" class="btn btn-light btn-sm">Voir chambres</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="quick-action-card warning">
+            <div class="icon"><i class="fa fa-tags"></i></div>
+            <h5>Mettre à jour les tarifs</h5>
+            <p>Optimisez vos tarifs saisonniers pour améliorer le taux d’occupation.</p>
+            <a routerLink="tarifs" class="btn btn-light btn-sm">Modifier tarifs</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="quick-action-card info">
+            <div class="icon"><i class="fa fa-chart-line"></i></div>
+            <h5>Analyser les performances</h5>
+            <p>Consultez vos KPI de revenus, occupation et satisfaction.</p>
+            <a routerLink="statistiques" class="btn btn-light btn-sm">Accéder aux stats</a>
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="action-card">
-          <div class="d-flex align-items-center mb-3">
-            <div class="action-icon text-success"><i class="fa fa-bed"></i></div>
-            <div>
-              <h5 class="action-title">Gestion Chambres</h5>
-              <p class="action-description">Gérer disponibilité et tarifs</p>
+
+      <div class="row g-4 dashboard-panels mt-1">
+        <div class="col-lg-6">
+          <div class="panel-card">
+            <div class="panel-heading">
+              <div class="title">
+                <i class="fa fa-calendar-day me-2"></i>Arrivées & départs du jour
+              </div>
+              <a routerLink="reservations" class="btn btn-outline-primary btn-sm">Tout voir</a>
             </div>
+            <ul class="panel-list" *ngIf="todayCheckins.length || todayCheckouts.length; else noDailyMovements">
+              <li *ngFor="let highlight of todayCheckins; trackBy: trackHighlight">
+                <div>
+                  <strong>Check-in {{ highlight.timeLabel }}</strong>
+                  <span class="text-muted">{{ highlight.local.description }} · {{ highlight.note || 'Préparer la chambre' }}</span>
+                </div>
+                <span class="badge bg-success">Prévu</span>
+              </li>
+              <li *ngFor="let highlight of todayCheckouts; trackBy: trackHighlight">
+                <div>
+                  <strong>Check-out {{ highlight.timeLabel }}</strong>
+                  <span class="text-muted">{{ highlight.local.description }} · {{ highlight.note || 'À confirmer' }}</span>
+                </div>
+                <span class="badge bg-warning text-dark">À traiter</span>
+              </li>
+            </ul>
+            <ng-template #noDailyMovements>
+              <div class="empty-state text-center py-4">
+                <p class="mb-2">Aucun mouvement prévu aujourd'hui.</p>
+                <a routerLink="reservations" class="btn btn-outline-primary btn-sm">Voir les réservations</a>
+              </div>
+            </ng-template>
           </div>
-          <a routerLink="chambres" class="btn btn-success action-btn">Gérer chambres</a>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="action-card">
-          <div class="d-flex align-items-center mb-3">
-            <div class="action-icon text-warning"><i class="fa fa-calendar-check"></i></div>
-            <div>
-              <h5 class="action-title">Réservations</h5>
-              <p class="action-description">Gérer les réservations clients</p>
+
+        <div class="col-lg-6">
+          <div class="panel-card">
+            <div class="panel-heading">
+              <div class="title">
+                <i class="fa fa-bell me-2"></i>Actions prioritaires
+              </div>
+              <a routerLink="statistiques" class="btn btn-outline-primary btn-sm">Historique</a>
             </div>
+            <ul class="panel-list" *ngIf="priorityActions.length; else noPriorityActionsTpl">
+              <li *ngFor="let action of priorityActions">
+                <div>
+                  <strong>{{ action.title }}</strong>
+                  <span class="text-muted">{{ action.description }}</span>
+                </div>
+                <a *ngIf="action.actionLink" [routerLink]="action.actionLink" class="btn btn-sm btn-outline-primary">{{ action.actionLabel || 'Voir' }}</a>
+              </li>
+            </ul>
+            <ng-template #noPriorityActionsTpl>
+              <div class="empty-state text-center py-4">
+                <p class="mb-0">Aucune action prioritaire à ce stade. Continuez vos bonnes pratiques !</p>
+              </div>
+            </ng-template>
           </div>
-          <a routerLink="reservations" class="btn btn-warning action-btn">Voir réservations</a>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="action-card">
-          <div class="d-flex align-items-center mb-3">
-            <div class="action-icon text-info"><i class="fa fa-hotel"></i></div>
-            <div>
-              <h5 class="action-title">Types Hébergement</h5>
-              <p class="action-description">Configurer Hôtel/Motel/Appart</p>
-            </div>
-          </div>
-          <a routerLink="types" class="btn btn-info action-btn">Configurer types</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

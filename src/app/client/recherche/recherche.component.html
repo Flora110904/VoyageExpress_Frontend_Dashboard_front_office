@@ -1,0 +1,286 @@
+<div class="recherche-container">
+  <div class="header">
+    <h1>Rechercher votre voyage</h1>
+    <p>Trouvez les meilleurs vols, bus et hébergements</p>
+  </div>
+
+  <!-- Onglets de sélection du type de recherche -->
+  <div class="search-tabs">
+    <button 
+      class="tab-btn" 
+      [class.active]="searchType === 'tous'"
+      (click)="selectSearchType('tous')">
+      <i class="bi bi-list"></i> Tous
+    </button>
+    <button 
+      class="tab-btn" 
+      [class.active]="searchType === 'vol'"
+      (click)="selectSearchType('vol')">
+      <i class="bi bi-airplane"></i> Vols
+    </button>
+    <button 
+      class="tab-btn" 
+      [class.active]="searchType === 'bus'"
+      (click)="selectSearchType('bus')">
+      <i class="bi bi-bus-front"></i> Bus
+    </button>
+    <button 
+      class="tab-btn" 
+      [class.active]="searchType === 'hebergement'"
+      (click)="selectSearchType('hebergement')">
+      <i class="bi bi-house-door"></i> Hébergements
+    </button>
+  </div>
+
+  <!-- Formulaire de recherche -->
+  <div class="search-form-card">
+    <form (ngSubmit)="search()" class="search-form">
+      
+      <!-- Recherche Vol/Bus -->
+      <div *ngIf="searchType !== 'hebergement'" class="form-grid">
+        <div class="form-group">
+          <label for="villeDepart">Ville de départ</label>
+          <input 
+            type="text" 
+            id="villeDepart" 
+            [(ngModel)]="villeDepart" 
+            name="villeDepart"
+            class="form-control"
+            placeholder="Ex: Yaoundé"
+            list="villesDepartList">
+          <datalist id="villesDepartList">
+            <option *ngFor="let ville of villesPopulaires" [value]="ville">
+          </datalist>
+        </div>
+
+        <div class="form-group">
+          <label for="villeArrivee">Ville d'arrivée</label>
+          <input 
+            type="text" 
+            id="villeArrivee" 
+            [(ngModel)]="villeArrivee" 
+            name="villeArrivee"
+            class="form-control"
+            placeholder="Ex: Douala"
+            list="villesArriveeList">
+          <datalist id="villesArriveeList">
+            <option *ngFor="let ville of villesPopulaires" [value]="ville">
+          </datalist>
+        </div>
+
+        <div class="form-group">
+          <label for="nombrePassagers">Nombre de passagers</label>
+          <input 
+            type="number" 
+            id="nombrePassagers" 
+            [(ngModel)]="nombrePassagers" 
+            name="nombrePassagers"
+            class="form-control"
+            min="1"
+            max="10">
+        </div>
+      </div>
+
+      <!-- Recherche Hébergement -->
+      <div *ngIf="searchType === 'hebergement'" class="form-grid">
+        <div class="form-group">
+          <label for="typeLocal">Type d'hébergement</label>
+          <select 
+            id="typeLocal" 
+            [(ngModel)]="typeLocal" 
+            name="typeLocal"
+            class="form-control">
+            <option value="">Tous les types</option>
+            <option value="CHAMBRE">Chambre</option>
+            <option value="SUITE">Suite</option>
+            <option value="SALLE_FETE">Salle de fête</option>
+            <option value="SALLE_REUNION">Salle de réunion</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="dateDepart">Date d'arrivée</label>
+          <input 
+            type="date" 
+            id="dateDepart" 
+            [(ngModel)]="dateDepart" 
+            name="dateDepart"
+            class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="dateRetour">Date de départ</label>
+          <input 
+            type="date" 
+            id="dateRetour" 
+            [(ngModel)]="dateRetour" 
+            name="dateRetour"
+            class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="nombrePassagers">Nombre de personnes</label>
+          <input 
+            type="number" 
+            id="nombrePassagers" 
+            [(ngModel)]="nombrePassagers" 
+            name="nombrePassagers"
+            class="form-control"
+            min="1">
+        </div>
+      </div>
+
+      <!-- Boutons d'action -->
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" (click)="resetFilters()">
+          <i class="bi bi-arrow-clockwise"></i> Réinitialiser
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="loading">
+          <i class="bi bi-search"></i> 
+          {{ loading ? 'Recherche en cours...' : 'Rechercher' }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Message d'erreur -->
+  <div *ngIf="errorMessage" class="alert alert-warning">
+    <i class="bi bi-exclamation-triangle"></i> {{ errorMessage }}
+  </div>
+
+  <!-- Résultats de recherche - Itinéraires -->
+  <div *ngIf="itineraires.length > 0" class="results-section">
+    <h2>{{ itineraires.length }} résultat(s) trouvé(s)</h2>
+    <div class="results-grid">
+      <div *ngFor="let itineraire of itineraires" class="result-card">
+        <div class="card-header">
+          <span class="badge">{{ getItineraryBadge(itineraire) }}</span>
+          <span class="price">{{ itineraire.prix | number:'1.0-0' }} XAF</span>
+        </div>
+        <div class="card-body">
+          <div class="route">
+            <div class="city">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>{{ itineraire.villeDepart }}</span>
+            </div>
+            <div class="arrow">
+              <i class="bi bi-arrow-right"></i>
+            </div>
+            <div class="city">
+              <i class="bi bi-geo-alt"></i>
+              <span>{{ itineraire.villeArrivee }}</span>
+            </div>
+          </div>
+          <div class="details">
+            <span><i class="bi bi-calendar"></i> {{ itineraire.dateDepart }}</span>
+            <span><i class="bi bi-clock"></i> {{ itineraire.heureDepart }}</span>
+            <span><i class="bi bi-person"></i> {{ itineraire.placeDisponible }} places</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-outline" (click)="viewDetails(itineraire)">Détails</button>
+          <button class="btn btn-primary" (click)="reserver(itineraire)">Réserver</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Résultats de recherche - Hébergements -->
+  <div *ngIf="locaux.length > 0" class="results-section">
+    <h2>{{ locaux.length }} hébergement(s) trouvé(s)</h2>
+    <div class="results-grid">
+      <div *ngFor="let local of locaux" class="result-card">
+  <div class="card-image" [style.background-image]="'url(' + (local.imageUrl || 'assets/placeholder.jpg') + ')'">
+          <span class="badge">{{ local.type }}</span>
+        </div>
+        <div class="card-body">
+          <h3>{{ local.description || 'Hébergement' }}</h3>
+          <div class="details">
+            <span><i class="bi bi-building"></i> Établissement</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-outline" (click)="viewDetails(local)">Détails</button>
+          <button class="btn btn-primary" (click)="reserver(local)">Réserver</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loader -->
+  <div *ngIf="loading" class="loader-container">
+    <div class="spinner"></div>
+    <p>Recherche en cours...</p>
+  </div>
+
+  <!-- Modal de réservation: choix du nombre de places -->
+  <div class="modal-backdrop" *ngIf="showReservationModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmer la réservation</h5>
+          <button type="button" class="btn-close" (click)="closeReservationModal()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="reservation-summary" *ngIf="selectedItem">
+            <div class="summary-header" *ngIf="'villeDepart' in selectedItem && 'villeArrivee' in selectedItem">
+              <div class="summary-title">Trajet</div>
+              <div class="summary-route">
+                <span>{{ selectedItem.villeDepart }}</span>
+                <i class="bi bi-arrow-right"></i>
+                <span>{{ selectedItem.villeArrivee }}</span>
+              </div>
+            </div>
+
+            <div class="summary-header" *ngIf="searchType === 'hebergement' && 'description' in selectedItem">
+              <div class="summary-title">Hébergement</div>
+              <div class="summary-route">
+                <span>{{ selectedItem.description || 'Hébergement' }}</span>
+              </div>
+            </div>
+
+            <div class="summary-meta">
+              <div *ngIf="'prix' in selectedItem">
+                <span class="label">Prix unitaire</span>
+                <span class="value">{{ selectedItem.prix | number:'1.0-0' }} XOF</span>
+              </div>
+              <div *ngIf="'placeDisponible' in selectedItem">
+                <span class="label">Places disponibles</span>
+                <span class="value">{{ selectedItem.placeDisponible }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mt-3">
+            <label for="nbPlacesModal">Nombre de place(s)</label>
+            <input
+              id="nbPlacesModal"
+              type="number"
+              class="form-control"
+              [(ngModel)]="selectedSeats"
+              name="selectedSeats"
+              min="1"
+            />
+          </div>
+
+          <div class="reservation-total" *ngIf="selectedItem && 'prix' in selectedItem">
+            <span>Total</span>
+            <strong>{{ (selectedItem.prix || 0) * selectedSeats | number:'1.0-0' }} XOF</strong>
+          </div>
+
+          <div *ngIf="reservationModalError" class="alert alert-warning mt-2">
+            {{ reservationModalError }}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeReservationModal()">
+            Annuler
+          </button>
+          <button type="button" class="btn btn-primary" (click)="confirmReservation()" [disabled]="creatingReservation">
+            Confirmer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
