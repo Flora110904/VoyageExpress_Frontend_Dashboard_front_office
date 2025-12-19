@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
@@ -13,11 +13,19 @@ import { Role } from '../../models/enums.model';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isLoading = false;
   showPassword = false;
   errorMessage: string = '';
+  registrationSuccess = false;
+  registrationMessage = '';
+
+  private readonly pendingValidationRoles = new Set<Role>([
+    Role.COMPAGNIE_BUS,
+    Role.COMPAGNIE_AERIEN,
+    Role.ETABLISSEMENT
+  ]);
 
   constructor(
     private fb: FormBuilder,
@@ -29,6 +37,38 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       rememberMe: [false]
+    });
+  }
+
+  ngOnInit(): void {
+    this.route.queryParamMap.subscribe(params => {
+      const registered = params.get('registered');
+      if (registered === 'true') {
+        const pendingRoleParam = params.get('pendingRole') as Role | null;
+        const pendingRole = pendingRoleParam && Object.values(Role).includes(pendingRoleParam as Role)
+          ? pendingRoleParam as Role
+          : null;
+
+        this.registrationSuccess = true;
+        this.registrationMessage = this.buildRegistrationMessage(pendingRole);
+
+        const remainingParams: Record<string, string> = {};
+        params.keys.forEach(key => {
+          if (key === 'registered' || key === 'pendingRole') {
+            return;
+          }
+          const value = params.get(key);
+          if (value !== null) {
+            remainingParams[key] = value;
+          }
+        });
+
+        this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams: remainingParams,
+          replaceUrl: true
+        });
+      }
     });
   }
 
@@ -108,5 +148,27 @@ export class LoginComponent {
 
   goToRegister() {
     this.router.navigate(['/auth/register']);
+  }
+
+  private buildRegistrationMessage(pendingRole: Role | null): string {
+    if (pendingRole && this.pendingValidationRoles.has(pendingRole)) {
+      const roleLabel = this.getRoleLabel(pendingRole);
+      return `Votre compte ${roleLabel} a été créé et est en attente de validation par un administrateur. Vous pouvez déjà vous connecter pour accéder à l'espace client.`;
+    }
+    return 'Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter.';
+  }
+
+  private getRoleLabel(role: Role): string {
+    switch (role) {
+      case Role.COMPAGNIE_BUS:
+        return 'compagnie de bus';
+      case Role.COMPAGNIE_AERIEN:
+        return 'compagnie aérienne';
+      case Role.ETABLISSEMENT:
+        return 'hébergement';
+      case Role.CLIENT:
+      default:
+        return 'client';
+    }
   }
 }

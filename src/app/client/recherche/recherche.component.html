@@ -79,6 +79,34 @@
             min="1"
             max="10">
         </div>
+
+        <div class="form-group">
+          <label for="compagnieSelect">Compagnie</label>
+          <select
+            id="compagnieSelect"
+            class="form-control"
+            [(ngModel)]="selectedCompagnieId"
+            name="selectedCompagnieId"
+            (ngModelChange)="compagnieNomQuery = '';">
+            <option value="">Toutes les compagnies</option>
+            <option *ngFor="let compagnie of compagnies" [value]="compagnie.trackingId">
+              {{ compagnie.nom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="compagnieNomQuery">Recherche par nom</label>
+          <input
+            type="text"
+            id="compagnieNomQuery"
+            class="form-control"
+            [(ngModel)]="compagnieNomQuery"
+            name="compagnieNomQuery"
+            placeholder="Nom de la compagnie"
+            [disabled]="selectedCompagnieId"
+            (ngModelChange)="selectedCompagnieId = '';" />
+        </div>
       </div>
 
       <!-- Recherche Hébergement -->
@@ -175,6 +203,7 @@
             <span><i class="bi bi-calendar"></i> {{ itineraire.dateDepart }}</span>
             <span><i class="bi bi-clock"></i> {{ itineraire.heureDepart }}</span>
             <span><i class="bi bi-person"></i> {{ itineraire.placeDisponible }} places</span>
+            <span *ngIf="itineraire.compagnieNom"><i class="bi bi-building"></i> {{ itineraire.compagnieNom }}</span>
           </div>
         </div>
         <div class="card-footer">
@@ -187,7 +216,15 @@
 
   <!-- Résultats de recherche - Hébergements -->
   <div *ngIf="locaux.length > 0" class="results-section">
-    <h2>{{ locaux.length }} hébergement(s) trouvé(s)</h2>
+    <div class="results-header">
+      <h2>{{ locaux.length }} hébergement(s) trouvé(s)</h2>
+      <div class="sort-controls">
+        <button class="btn btn-outline btn-sm" (click)="togglePriceSort()">
+          <i class="bi" [class.bi-sort-numeric-down]="sortOrder === 'asc'" [class.bi-sort-numeric-up]="sortOrder === 'desc'"></i>
+          Prix {{ sortOrder === 'asc' ? 'croissant' : 'décroissant' }}
+        </button>
+      </div>
+    </div>
     <div class="results-grid">
       <div *ngFor="let local of locaux" class="result-card">
   <div class="card-image" [style.background-image]="'url(' + (local.imageUrl || 'assets/placeholder.jpg') + ')'">
@@ -197,6 +234,17 @@
           <h3>{{ local.description || 'Hébergement' }}</h3>
           <div class="details">
             <span><i class="bi bi-building"></i> Établissement</span>
+          </div>
+          <div class="tarif-info">
+            <div *ngIf="local.tarifPrixTtc" class="tarif-price">
+              <span class="price" [class.text-muted]="!local.tarifActif">
+                {{ local.tarifPrixTtc | number:'1.0-0' }} XOF<span class="per-night"> / nuit</span>
+              </span>
+              <span *ngIf="!local.tarifActif" class="badge bg-warning text-dark ms-2">Tarif inactif</span>
+            </div>
+            <div *ngIf="!local.tarifPrixTtc" class="tarif-unavailable">
+              <span class="text-muted">Tarif indisponible</span>
+            </div>
           </div>
         </div>
         <div class="card-footer">
@@ -213,7 +261,7 @@
     <p>Recherche en cours...</p>
   </div>
 
-  <!-- Modal de réservation: choix du nombre de places -->
+  <!-- Modal de réservation multi-étapes -->
   <div class="modal-backdrop" *ngIf="showReservationModal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -221,54 +269,263 @@
           <h5 class="modal-title">Confirmer la réservation</h5>
           <button type="button" class="btn-close" (click)="closeReservationModal()"></button>
         </div>
-        <div class="modal-body">
-          <div class="reservation-summary" *ngIf="selectedItem">
-            <div class="summary-header" *ngIf="'villeDepart' in selectedItem && 'villeArrivee' in selectedItem">
-              <div class="summary-title">Trajet</div>
-              <div class="summary-route">
-                <span>{{ selectedItem.villeDepart }}</span>
-                <i class="bi bi-arrow-right"></i>
-                <span>{{ selectedItem.villeArrivee }}</span>
+        <div class="modal-body reservation-modal-body">
+          <div class="reservation-layout">
+            <aside class="reservation-summary" *ngIf="selectedItem">
+              <div class="summary-header" *ngIf="'villeDepart' in selectedItem && 'villeArrivee' in selectedItem">
+                <div class="summary-title">Trajet</div>
+                <div class="summary-route">
+                  <span>{{ selectedItem.villeDepart }}</span>
+                  <i class="bi bi-arrow-right"></i>
+                  <span>{{ selectedItem.villeArrivee }}</span>
+                </div>
               </div>
-            </div>
 
-            <div class="summary-header" *ngIf="searchType === 'hebergement' && 'description' in selectedItem">
-              <div class="summary-title">Hébergement</div>
-              <div class="summary-route">
-                <span>{{ selectedItem.description || 'Hébergement' }}</span>
+              <div class="summary-header" *ngIf="searchType === 'hebergement' && 'description' in selectedItem">
+                <div class="summary-title">Hébergement</div>
+                <div class="summary-route">
+                  <span>{{ selectedItem.description || 'Hébergement' }}</span>
+                </div>
               </div>
-            </div>
 
-            <div class="summary-meta">
-              <div *ngIf="'prix' in selectedItem">
-                <span class="label">Prix unitaire</span>
-                <span class="value">{{ selectedItem.prix | number:'1.0-0' }} XOF</span>
+              <div class="summary-meta">
+                <div *ngIf="'prix' in selectedItem">
+                  <span class="label">Prix unitaire</span>
+                  <span class="value">{{ selectedItem.prix | number:'1.0-0' }} XOF</span>
+                </div>
+                <div *ngIf="'placeDisponible' in selectedItem">
+                  <span class="label">Places disponibles</span>
+                  <span class="value">{{ selectedItem.placeDisponible }}</span>
+                </div>
               </div>
-              <div *ngIf="'placeDisponible' in selectedItem">
-                <span class="label">Places disponibles</span>
-                <span class="value">{{ selectedItem.placeDisponible }}</span>
+            </aside>
+
+            <div class="reservation-main">
+              <div class="wizard-progress">
+                <div
+                  class="wizard-step"
+                  *ngFor="let step of wizardSteps; let i = index"
+                  [class.active]="currentStep === step.key"
+                  [class.completed]="isStepCompleted(step.key)"
+                >
+                  <span class="wizard-step-index">{{ i + 1 }}</span>
+                  <span class="wizard-step-label">{{ step.label }}</span>
+                </div>
+              </div>
+
+              <div class="reservation-steps">
+                <ng-container [ngSwitch]="currentStep">
+                  <div *ngSwitchCase="ReservationWizardStep.DETAILS" class="wizard-step-content">
+                    <div class="form-group">
+                      <label for="nbPlacesModal">Nombre de place(s)</label>
+                      <input
+                        id="nbPlacesModal"
+                        type="number"
+                        class="form-control"
+                        [(ngModel)]="selectedSeats"
+                        name="selectedSeats"
+                        min="1"
+                        (ngModelChange)="onSelectedSeatsChange()"
+                      />
+                    </div>
+
+                    <div *ngIf="isFlightSelection()" class="form-group">
+                      <label for="classeVoyage" class="form-label">Classe de voyage</label>
+                      <select
+                        id="classeVoyage"
+                        class="form-select"
+                        [(ngModel)]="selectedClass"
+                        name="selectedClass"
+                        (change)="onClassChange()"
+                      >
+                        <option *ngFor="let option of flightClassOptions" [value]="option.value">
+                          {{ option.label }}
+                        </option>
+                      </select>
+                      <small class="text-muted d-block mt-1">
+                        Tarif estimé pour {{ getSelectedClassLabel() }} :
+                        {{ getUnitPriceForSelection() | number:'1.0-0' }} XOF / siège
+                      </small>
+                    </div>
+
+                    <div class="info-banner" *ngIf="isFlightSelection()">
+                      <i class="bi bi-info-circle"></i>
+                      <span>Sélectionnez votre classe puis passez à l'étape suivante pour choisir vos sièges.</span>
+                    </div>
+                  </div>
+
+                  <div *ngSwitchCase="ReservationWizardStep.SEAT_PLAN" class="wizard-step-content">
+                    <div *ngIf="hasGeneratedSeatLayout" class="alert alert-warning">
+                      Configuration des sièges non disponible pour ce vol. Les sièges affichés sont visuels et non persistés.
+                    </div>
+                    <div *ngIf="seatAvailabilityLoading" class="alert alert-info">
+                      Chargement des sièges disponibles...
+                    </div>
+                    <div *ngIf="seatAvailabilityError" class="alert alert-warning">
+                      {{ seatAvailabilityError }}
+                    </div>
+
+                    <div *ngIf="!seatAvailabilityLoading && !seatAvailabilityError" class="seat-plan">
+                      <ng-container *ngIf="seatAvailability.length > 0; else noSeatsTemplate">
+                        <div class="seat-plan-header">
+                          <span>Sièges sélectionnés : {{ selectedSeatIds.length }}/{{ seatsCount }}</span>
+                          <span>Classe : {{ getSelectedClassLabel() }}</span>
+                        </div>
+
+                        <div class="plane-wrapper">
+                          <div class="plane-layout">
+                            <div class="plane-deck" *ngFor="let deck of seatDeckLayouts">
+                              <div class="deck-title">{{ deck.deckLabel }}</div>
+                              <ng-container *ngIf="deck.rows?.length; else emptyDeckTemplate">
+                                <div class="plane-shell">
+                                  <div class="plane-nose"></div>
+                                  <div class="plane-body">
+                                    <div class="plane-door plane-door--front"></div>
+                                    <div class="plane-door plane-door--rear"></div>
+                                    <div class="deck-grid">
+                                      <ng-container *ngIf="splitSeatsByAisle(deck.rows[0]?.seats) as headerLayout">
+                                        <div class="deck-row header" *ngIf="(deck.rows[0]?.seats?.length ?? 0) > 0">
+                                          <div class="row-label spacer"></div>
+                                          <div class="seat-row">
+                                            <div class="seat-block">
+                                              <span class="column-label" *ngFor="let seat of headerLayout.left">{{ seat?.columnLabel }}</span>
+                                            </div>
+                                            <div class="aisle-label">Allée</div>
+                                            <div class="seat-block">
+                                              <span class="column-label" *ngFor="let seat of headerLayout.right">{{ seat?.columnLabel }}</span>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </ng-container>
+
+                                      <div class="deck-row" *ngFor="let row of deck.rows">
+                                        <div class="row-label">{{ row.label }}</div>
+                                        <ng-container *ngIf="splitSeatsByAisle(row.seats) as layout">
+                                          <div class="seat-row" [ngClass]="getRowCabinClass(row)">
+                                            <div class="seat-block">
+                                              <div class="seat-column" *ngFor="let seat of layout.left">
+                                                <button
+                                                  type="button"
+                                                  class="seat-btn"
+                                                  [ngClass]="getSeatClassModifiers(seat)"
+                                                  [class.reserved]="seat?.reserved"
+                                                  [class.selected]="isSeatSelected(seat)"
+                                                  [class.incompatible]="!seatMatchesSelectedClass(seat)"
+                                                  (click)="toggleSeatSelection(seat)"
+                                                  [disabled]="seat?.reserved || !seatMatchesSelectedClass(seat)"
+                                                >
+                                                  <span class="seat-code">{{ seat.code }}</span>
+                                                  <span *ngIf="seat.generatedLayout" class="seat-badge">Visuel</span>
+                                                  <small *ngIf="seat.classe" class="seat-classe">{{ seat.classe }}</small>
+                                                </button>
+                                              </div>
+                                            </div>
+
+                                            <div class="aisle"></div>
+
+                                            <div class="seat-block">
+                                              <div class="seat-column" *ngFor="let seat of layout.right">
+                                                <button
+                                                  type="button"
+                                                  class="seat-btn"
+                                                  [ngClass]="getSeatClassModifiers(seat)"
+                                                  [class.reserved]="seat?.reserved"
+                                                  [class.selected]="isSeatSelected(seat)"
+                                                  [class.incompatible]="!seatMatchesSelectedClass(seat)"
+                                                  (click)="toggleSeatSelection(seat)"
+                                                  [disabled]="seat?.reserved || !seatMatchesSelectedClass(seat)"
+                                                >
+                                                  <span class="seat-code">{{ seat.code }}</span>
+                                                  <span *ngIf="seat.generatedLayout" class="seat-badge">Visuel</span>
+                                                  <small *ngIf="seat.classe" class="seat-classe">{{ seat.classe }}</small>
+                                                </button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </ng-container>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="plane-wing plane-wing--left"></div>
+                                  <div class="plane-wing plane-wing--right"></div>
+                                  <div class="plane-tail"></div>
+                                </div>
+                              </ng-container>
+                              <ng-template #emptyDeckTemplate>
+                                <div class="deck-empty">Aucune configuration disponible pour ce pont.</div>
+                              </ng-template>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="seat-legend">
+                          <div class="legend-group">
+                            <span class="legend-item"><span class="dot state available"></span>Disponible</span>
+                            <span class="legend-item"><span class="dot state selected"></span>Sélectionné</span>
+                            <span class="legend-item"><span class="dot state reserved"></span>Occupé</span>
+                            <span class="legend-item"><span class="dot state incompatible"></span>Autre classe</span>
+                          </div>
+                          <div class="legend-group legend-group--classes">
+                            <span class="legend-item"><span class="dot classe economique"></span>Économique</span>
+                            <span class="legend-item"><span class="dot classe premium-economy"></span>Éco Premium</span>
+                            <span class="legend-item"><span class="dot classe business"></span>Affaires</span>
+                            <span class="legend-item"><span class="dot classe first"></span>Première</span>
+                          </div>
+                        </div>
+                      </ng-container>
+                      <ng-template #noSeatsTemplate>
+                        <div class="seat-empty-alert">
+                          <i class="bi bi-exclamation-circle"></i>
+                          <span>
+                            Aucun plan de cabine n'est disponible pour ce vol. Veuillez vérifier la configuration des sièges du véhicule associé.
+                          </span>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+
+                  <div *ngSwitchCase="ReservationWizardStep.BAGGAGE" class="wizard-step-content">
+                    <div *ngIf="isTransportSelected()" class="form-group">
+                      <label for="bagageSupplementaireKg" class="form-label">Bagage supplémentaire (kg)</label>
+                      <input
+                        id="bagageSupplementaireKg"
+                        type="number"
+                        class="form-control"
+                        min="0"
+                        step="0.5"
+                        name="bagageSupplementaireKg"
+                        [(ngModel)]="bagageSupplementaireKg"
+                        (ngModelChange)="onFreightChange($event)"
+                      />
+                      <small class="text-muted d-block mt-1" *ngIf="isFlightSelection()">
+                        Franchise incluse : {{ currentItinerary?.bagageInclusKg ?? 50 }} kg • Prix / kg :
+                        {{ currentItinerary?.prixFreightParKg ?? 'N/A' }} XOF
+                      </small>
+                      <div *ngIf="freightError" class="text-danger small mt-1">{{ freightError }}</div>
+                      <div *ngIf="freightPricePreview" class="text-success small mt-1">
+                        Supplément estimé : {{ freightPricePreview | number:'1.0-0' }} XOF
+                      </div>
+                    </div>
+
+                    <div class="reservation-total" *ngIf="selectedItem && 'prix' in selectedItem">
+                      <div>
+                        <span>Total estimé</span>
+                        <strong>{{ reservationTotal | number:'1.0-0' }} XOF</strong>
+                      </div>
+                      <div class="total-details">
+                        <span>{{ seatsCount }} siège(s) × {{ getUnitPriceForSelection() | number:'1.0-0' }} XOF</span>
+                        <span *ngIf="freightPricePreview">+ Fret : {{ freightPricePreview | number:'1.0-0' }} XOF</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div *ngSwitchDefault>Étape inconnue</div>
+                </ng-container>
               </div>
             </div>
           </div>
 
-          <div class="form-group mt-3">
-            <label for="nbPlacesModal">Nombre de place(s)</label>
-            <input
-              id="nbPlacesModal"
-              type="number"
-              class="form-control"
-              [(ngModel)]="selectedSeats"
-              name="selectedSeats"
-              min="1"
-            />
-          </div>
-
-          <div class="reservation-total" *ngIf="selectedItem && 'prix' in selectedItem">
-            <span>Total</span>
-            <strong>{{ (selectedItem.prix || 0) * selectedSeats | number:'1.0-0' }} XOF</strong>
-          </div>
-
-          <div *ngIf="reservationModalError" class="alert alert-warning mt-2">
+          <div *ngIf="reservationModalError" class="alert alert-warning mt-3">
             {{ reservationModalError }}
           </div>
         </div>
@@ -276,7 +533,29 @@
           <button type="button" class="btn btn-secondary" (click)="closeReservationModal()">
             Annuler
           </button>
-          <button type="button" class="btn btn-primary" (click)="confirmReservation()" [disabled]="creatingReservation">
+          <button
+            type="button"
+            class="btn btn-outline"
+            *ngIf="hasPreviousStep"
+            (click)="goToPreviousStep()"
+          >
+            Précédent
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            *ngIf="hasNextStep"
+            (click)="goToNextStep()"
+          >
+            Suivant
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            *ngIf="isLastStep"
+            (click)="confirmReservation()"
+            [disabled]="creatingReservation"
+          >
             Confirmer
           </button>
         </div>
@@ -284,3 +563,11 @@
     </div>
   </div>
 </div>
+
+<app-payment-checkout-dialog
+  [visible]="showPaymentDialog"
+  [reservation]="paymentDialogReservation"
+  [paymentUrl]="paymentDialogUrl"
+  (closed)="closePaymentDialog()"
+  (openPaymentRequest)="openPaymentInNewTab()"
+></app-payment-checkout-dialog>

@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService, ReservationServiceApi, CompagnieServiceApi } from '../../services';
 import { CompagnieVolNavbarComponent } from '../shared/compagnie-vol-navbar/compagnie-vol-navbar.component';
-import { ReservationResponse } from '../../models';
+import { ReservationResponse, ReservationDetailResponse } from '../../models';
 
 @Component({
   selector: 'app-reservations',
@@ -24,6 +24,12 @@ export class Reservations implements OnInit, OnDestroy {
   searchTerm = '';
   statusFilter: 'all' | 'CONFIRMEE' | 'EN_ATTENTE_PAIEMENT' | 'ANNULEE' = 'all';
   dateFilter: string | null = null;
+
+  showDetailModal = false;
+  detailLoading = false;
+  detailError: string | null = null;
+  selectedReservationDetail: ReservationDetailResponse | null = null;
+  private compagnieTrackingId: string | null = null;
 
   private subscriptions = new Subscription();
 
@@ -151,16 +157,14 @@ export class Reservations implements OnInit, OnDestroy {
 
     const sub = this.compagnieService.getByProprietaire(currentUser.trackingId).subscribe({
       next: (compagnie) => {
-        const compagnieTrackingId = compagnie?.trackingId;
-        if (!compagnieTrackingId) {
+        this.compagnieTrackingId = compagnie?.trackingId ?? null;
+        if (!this.compagnieTrackingId) {
           this.error = "Aucune compagnie aérienne associée à ce compte.";
-          this.isLoading = false;
-          this.reservations = [];
-          this.filteredReservations = [];
+          this.resetState();
           return;
         }
 
-        const reservationsSub = this.reservationService.listByCompagnie(compagnieTrackingId).subscribe({
+        const reservationsSub = this.reservationService.listByCompagnie(this.compagnieTrackingId).subscribe({
           next: (reservations) => {
             this.reservations = reservations ?? [];
             this.applyFilters();
@@ -169,9 +173,7 @@ export class Reservations implements OnInit, OnDestroy {
           error: (err) => {
             console.error('Erreur lors du chargement des réservations:', err);
             this.error = 'Impossible de récupérer les réservations pour le moment.';
-            this.reservations = [];
-            this.filteredReservations = [];
-            this.isLoading = false;
+            this.resetState();
           }
         });
 
@@ -180,9 +182,7 @@ export class Reservations implements OnInit, OnDestroy {
       error: (err) => {
         console.error('Erreur lors de la récupération de la compagnie:', err);
         this.error = "Impossible de déterminer la compagnie associée.";
-        this.isLoading = false;
-        this.reservations = [];
-        this.filteredReservations = [];
+        this.resetState();
       }
     });
 
@@ -213,5 +213,55 @@ export class Reservations implements OnInit, OnDestroy {
     }
 
     this.filteredReservations = filtered;
+  }
+
+  openReservationDetail(reservation: ReservationResponse): void {
+    if (!this.compagnieTrackingId) {
+      return;
+    }
+
+    this.detailError = null;
+    this.selectedReservationDetail = null;
+    this.showDetailModal = true;
+    this.detailLoading = true;
+
+    const sub = this.reservationService
+      .detailForCompagnie(this.compagnieTrackingId, reservation.trackingId)
+      .subscribe({
+        next: (detail) => {
+          this.selectedReservationDetail = detail;
+          this.detailLoading = false;
+        },
+        error: (error) => {
+          console.error('Erreur lors du chargement du détail de la réservation:', error);
+          this.detailError = "Impossible de charger le détail de la réservation.";
+          this.detailLoading = false;
+        }
+      });
+
+    this.subscriptions.add(sub);
+  }
+
+  closeReservationDetail(): void {
+    this.showDetailModal = false;
+    this.detailError = null;
+    this.selectedReservationDetail = null;
+    this.detailLoading = false;
+  }
+
+  getSeatSummary(detail: ReservationDetailResponse | null): string | null {
+    if (!detail || !detail.seatSelections || detail.seatSelections.length === 0) {
+      return null;
+    }
+    return detail.seatSelections
+      .map((seat) => seat.seatCode || seat.seatTrackingId)
+      .filter((value): value is string => !!value)
+      .join(', ');
+  }
+
+  private resetState(): void {
+    this.reservations = [];
+    this.filteredReservations = [];
+    this.isLoading = false;
   }
 }

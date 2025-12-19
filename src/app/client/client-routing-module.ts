@@ -11,7 +11,7 @@ import { PaiementSuccessComponent } from './paiements/success/paiement-success';
 import { PaiementCancelComponent } from './paiements/cancel/paiement-cancel';
 import { ItineraireDetailComponent } from './itineraire-detail/itineraire-detail.component';
 import { HebergementDetailComponent } from './hebergement-detail/hebergement-detail.component';
-import { ReservationDetailComponent } from './reservation-detail/reservation-detail.component';
+import { ReservationDetailsComponent } from './reservation-details/reservation-details.component';
 
 const routes: Routes = [
   {
@@ -28,8 +28,7 @@ const routes: Routes = [
       { path: 'paiements/success', component: PaiementSuccessComponent },
       { path: 'paiements/cancel', component: PaiementCancelComponent },
       { path: 'itineraire/:trackingId', component: ItineraireDetailComponent },
-      { path: 'hebergement/:trackingId', component: HebergementDetailComponent },
-      { path: 'reservation/:trackingId', component: ReservationDetailComponent }
+      { path: 'reservation/:trackingId', component: ReservationDetailsComponent }
     ]
   }
 ];

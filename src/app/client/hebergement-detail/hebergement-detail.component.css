@@ -42,6 +42,50 @@
   box-shadow: 0 10px 30px rgba(31, 61, 90, 0.08);
 }
 
+.tarif-block {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(31, 61, 90, 0.08);
+  border-left: 4px solid #00a8cc;
+}
+
+.tarif-details {
+  margin-bottom: 1rem;
+}
+
+.tarif-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.tarif-price .price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00a8cc;
+}
+
+.tarif-price .price.text-muted {
+  color: #6c757d !important;
+}
+
+.per-night {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #666;
+}
+
+.tarif-meta {
+  font-size: 0.875rem;
+}
+
+.tarif-unavailable {
+  color: #6c757d;
+  font-style: italic;
+}
+
 .loading {
   display: flex;
   flex-direction: column;

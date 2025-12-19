@@ -1,0 +1,287 @@
+.reservation-details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.page-header {
+  margin-bottom: 30px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-info h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.header-info p {
+  margin: 5px 0 0 0;
+  color: #6c757d;
+  font-size: 1rem;
+}
+
+.loading-container {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.loading-container .spinner-border {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 20px;
+}
+
+.details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Status Card */
+.status-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.badge-warning { background-color: #ffc107; color: #212529; }
+.badge-success { background-color: #28a745; }
+.badge-danger { background-color: #dc3545; }
+.badge-info { background-color: #17a2b8; }
+.badge-secondary { background-color: #6c757d; }
+
+.reservation-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.9;
+}
+
+.total-amount {
+  text-align: center;
+}
+
+.total-amount .label {
+  display: block;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 5px;
+}
+
+.total-amount .amount {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+/* Cards */
+.journey-card, .passengers-card, .client-card, .actions-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.card-header {
+  background: #f8f9fa;
+  padding: 20px 25px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-body {
+  padding: 25px;
+}
+
+/* Journey Details */
+.journey-route {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.route-point {
+  flex: 1;
+  text-align: center;
+}
+
+.route-point.departure {
+  text-align: right;
+}
+
+.route-point.arrival {
+  text-align: left;
+}
+
+.route-point .city {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.route-point .point {
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+.route-point .datetime {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.route-point .date {
+  font-weight: 500;
+  color: #495057;
+}
+
+.route-point .time {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #007bff;
+}
+
+.route-arrow {
+  font-size: 2rem;
+  color: #007bff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.journey-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.info-item .label {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.info-item .value {
+  font-size: 1rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* Passenger List */
+.passenger-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.passenger-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+}
+
+.passenger-name {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.passenger-document {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.seat-number {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #007bff;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+  min-width: 150px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .journey-route {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .route-point.departure,
+  .route-point.arrival {
+    text-align: center;
+  }
+  
+  .route-arrow {
+    transform: rotate(90deg);
+  }
+  
+  .passenger-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+  
+  .action-buttons .btn {
+    width: 100%;
+  }
+}

@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
     { value: Role.CLIENT, label: 'Client' },
     { value: Role.COMPAGNIE_BUS, label: 'Compagnie de bus' },
     { value: Role.COMPAGNIE_AERIEN, label: 'Compagnie aérienne' },
-    { value: Role.ETABLISSEMENT, label: 'Établissement' }
+    { value: Role.ETABLISSEMENT, label: 'Hébergement' }
   ];
 
   typesCompagnie = [
@@ -71,7 +71,7 @@ export class RegisterComponent implements OnInit {
 
   updateFormFields(role: Role): void {
     // Supprimer tous les champs conditionnels
-    ['nomCompagnie', 'typeCompagnie', 'adresse', 'typeEtablissement', 'siteWeb', 'description', 'numeroLicence'].forEach(field => {
+    ['nomCompagnie', 'typeCompagnie', 'adresse', 'typeEtablissement', 'siteWeb', 'description', 'numeroLicence', 'nomEtablissement'].forEach(field => {
       if (this.registerForm.get(field)) {
         this.registerForm.removeControl(field);
       }
@@ -85,11 +85,12 @@ export class RegisterComponent implements OnInit {
 
       this.registerForm.addControl('nomCompagnie', this.fb.control('', [Validators.required, Validators.minLength(2)]));
       this.registerForm.addControl('typeCompagnie', this.fb.control(defaultType, [Validators.required]));
-      this.registerForm.addControl('numeroLicence', this.fb.control(''));
+      this.registerForm.addControl('numeroLicence', this.fb.control('', [Validators.required, Validators.minLength(3)]));
       this.registerForm.addControl('siteWeb', this.fb.control(''));
       this.registerForm.addControl('adresse', this.fb.control(''));
       this.registerForm.addControl('description', this.fb.control(''));
     } else if (role === Role.ETABLISSEMENT) {
+      this.registerForm.addControl('nomEtablissement', this.fb.control('', [Validators.required, Validators.minLength(2)]));
       this.registerForm.addControl('adresse', this.fb.control('', [Validators.required, Validators.minLength(5)]));
       this.registerForm.addControl('typeEtablissement', this.fb.control(TypeEtablissement.Hotel, [Validators.required]));
       this.registerForm.addControl('description', this.fb.control(''));
@@ -100,12 +101,38 @@ export class RegisterComponent implements OnInit {
     return this.selectedRole === Role.COMPAGNIE_BUS || this.selectedRole === Role.COMPAGNIE_AERIEN;
   }
 
-  isEtablissement(): boolean {
+  isHebergement(): boolean {
     return this.selectedRole === Role.ETABLISSEMENT;
   }
 
   isClient(): boolean {
     return this.selectedRole === Role.CLIENT;
+  }
+
+  get isOrganisation(): boolean {
+    return this.isCompagnie() || this.isHebergement();
+  }
+
+  get prenomLabel(): string {
+    return this.isOrganisation ? 'Prénom du gérant' : 'Prénom';
+  }
+
+  get nomLabel(): string {
+    return this.isOrganisation ? 'Nom du gérant' : 'Nom';
+  }
+
+  get telephoneLabel(): string {
+    return this.isOrganisation ? 'Téléphone du gérant' : 'Téléphone';
+  }
+
+  get infoNote(): string {
+    if (this.isCompagnie()) {
+      return 'Les informations Nom / Prénom concernent le gérant de la compagnie. Veillez à renseigner également les détails officiels de la structure.';
+    }
+    if (this.isHebergement()) {
+      return 'Les informations Nom / Prénom concernent le gérant de l’hébergement. Renseignez ensuite les détails de l’établissement.';
+    }
+    return 'Renseignez vos informations personnelles pour accéder aux services VoyageExpress en tant que client.';
   }
 
   passwordValidator(control: any) {
@@ -175,10 +202,10 @@ export class RegisterComponent implements OnInit {
 
         if (this.isCompagnie()) {
           this.createCompagnie(formValue, userResponse.trackingId);
-        } else if (this.isEtablissement()) {
+        } else if (this.isHebergement()) {
           this.createEtablissement(formValue, userResponse);
         } else {
-          this.handleRegistrationSuccess();
+          this.handleRegistrationSuccess(this.selectedRole);
         }
       },
       error: (error) => {
@@ -207,7 +234,7 @@ export class RegisterComponent implements OnInit {
     this.compagnieService.create(compagnieRequest).subscribe({
       next: () => {
         console.debug('[Register] Compagnie créée');
-        this.handleRegistrationSuccess();
+        this.handleRegistrationSuccess(this.selectedRole);
       },
       error: (error) => this.handleCompagnieCreationError(error)
     });
@@ -215,6 +242,7 @@ export class RegisterComponent implements OnInit {
 
   private createEtablissement(formValue: any, userResponse: any) {
     const etablissementRequest = {
+      nom: formValue.nomEtablissement,
       adresse: formValue.adresse,
       type: formValue.typeEtablissement,
       proprietaireId: userResponse.trackingId,
@@ -226,17 +254,22 @@ export class RegisterComponent implements OnInit {
     this.etablissementService.create(etablissementRequest).subscribe({
       next: () => {
         console.debug('[Register] Établissement créé');
-        this.handleRegistrationSuccess();
+        this.handleRegistrationSuccess(this.selectedRole);
       },
       error: (error) => this.handleEtablissementCreationError(error)
     });
   }
 
-  private handleRegistrationSuccess() {
+  private handleRegistrationSuccess(role: Role) {
     this.isLoading = false;
     this.errorMessage = '';
-    alert('Inscription réussie ! Votre compte sera activé après validation.');
-    this.router.navigate(['/auth/login']);
+    const queryParams: Record<string, string> = { registered: 'true' };
+
+    if (role === Role.COMPAGNIE_AERIEN || role === Role.COMPAGNIE_BUS || role === Role.ETABLISSEMENT) {
+      queryParams['pendingRole'] = role;
+    }
+
+    this.router.navigate(['/auth/login'], { queryParams });
   }
 
   private handleCompagnieCreationError(error: any) {

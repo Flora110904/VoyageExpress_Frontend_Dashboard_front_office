@@ -76,6 +76,83 @@ export class ReservationDetailComponent implements OnInit, OnDestroy {
     }
   }
 
+  get bagageInclusKg(): number | null {
+    if (!this.reservation) {
+      return null;
+    }
+    return this.reservation.bagageInclusKg ?? null;
+  }
+
+  get bagageSupplementaireKg(): number | null {
+    return this.reservation?.bagageSupplementaireKg ?? null;
+  }
+
+  get bagageSupplementaireMontant(): number | null {
+    return this.reservation?.bagageSupplementaireMontant ?? null;
+  }
+
+  get hasFreightSupplement(): boolean {
+    return !!this.bagageSupplementaireKg && !!this.bagageSupplementaireMontant;
+  }
+
+  get totalBagageKg(): number | null {
+    if (!this.reservation) {
+      return null;
+    }
+    const inclus = this.reservation.bagageInclusKg ?? 0;
+    const supplement = this.reservation.bagageSupplementaireKg ?? 0;
+    const total = inclus + supplement;
+    return Number.isFinite(total) ? total : null;
+  }
+
+  get classeVoyage(): string | null {
+    return this.reservation?.classeVoyage ?? null;
+  }
+
+  get seatSelections(): ReservationResponse['seatSelections'] {
+    return this.reservation?.seatSelections ?? [];
+  }
+
+  get hasSeatSelections(): boolean {
+    return (this.seatSelections?.length ?? 0) > 0;
+  }
+
+  get companyName(): string | null {
+    return this.reservation?.compagnieNom ?? null;
+  }
+
+  get seatCodeList(): string | null {
+    if (!this.hasSeatSelections) {
+      return null;
+    }
+    const selections = this.seatSelections ?? [];
+    const codes = selections
+      .map((seat) => seat.seatCode ?? seat.seatTrackingId)
+      .filter(Boolean)
+      .join(', ');
+    return codes || null;
+  }
+
+  get itineraire(): { depart: string; arrivee: string; duree: string } | null {
+    const itineraire = this.reservation?.itineraire;
+    if (!itineraire) {
+      return null;
+    }
+
+    const depart = itineraire.villeDepart ?? 'N/A';
+    const arrivee = itineraire.villeArrivee ?? 'N/A';
+
+    const dateDepart = itineraire.dateDepart ?? '';
+    const heureDepart = itineraire.heureDepart ?? '';
+    const duree = [dateDepart, heureDepart].filter(Boolean).join(' • ');
+
+    return {
+      depart,
+      arrivee,
+      duree: duree || 'Non renseigné'
+    };
+  }
+
   private loadReservation(id: string, showLoader = true): void {
     if (showLoader) {
       this.loading = true;

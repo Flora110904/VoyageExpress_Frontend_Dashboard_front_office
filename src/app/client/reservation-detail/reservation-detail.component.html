@@ -28,17 +28,70 @@
                 <h5>Détails</h5>
                 <p class="mb-2"><i class="fa fa-calendar me-2"></i>Date : {{ reservation.dateReservation | date:'longDate' }}</p>
                 <p class="mb-2"><i class="fa fa-coins me-2"></i>Montant : {{ reservation.montantTotal | number:'1.0-0' }} XAF</p>
+                <p class="mb-2" *ngIf="classeVoyage">
+                  <i class="fa fa-chair me-2"></i>Classe de voyage : {{ classeVoyage }}
+                </p>
                 <p class="mb-0" *ngIf="reservation.paymentUrl">
                   <i class="fa fa-external-link-square-alt me-2"></i>
                   <a [href]="reservation.paymentUrl" target="_blank" rel="noopener">Accéder au paiement</a>
                 </p>
               </div>
-              <div class="info-block mt-3" *ngIf="reservation.ticketHebergementUrl">
-                <h5>Ticket</h5>
-                <p class="mb-0">
-                  <i class="fa fa-ticket-alt me-2"></i>
-                  <a [href]="reservation.ticketHebergementUrl" target="_blank" rel="noopener">Télécharger le ticket</a>
-                </p>
+              <div class="info-block mt-3" *ngIf="bagageInclusKg !== null">
+                <h5>Bagages</h5>
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <i class="fa fa-suitcase-rolling me-2"></i>
+                    Inclus : {{ bagageInclusKg | number:'1.0-1' }} kg
+                  </li>
+                  <li *ngIf="hasFreightSupplement">
+                    <i class="fa fa-box me-2"></i>
+                    Supplément : {{ bagageSupplementaireKg | number:'1.0-1' }} kg ({{ bagageSupplementaireMontant | number:'1.0-0' }} XAF)
+                  </li>
+                  <li *ngIf="totalBagageKg !== null">
+                    <i class="fa fa-weight me-2"></i>
+                    Total transporté : {{ totalBagageKg | number:'1.0-1' }} kg
+                  </li>
+                </ul>
+              </div>
+              <div class="info-block mt-3" *ngIf="hasSeatSelections">
+                <h5>Sièges réservés</h5>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="badge bg-primary-subtle text-primary border" *ngFor="let seat of seatSelections">
+                    <i class="fa fa-chair me-1"></i>{{ seat.seatCode || seat.seatTrackingId }}
+                    <span *ngIf="seat.passagerNom || seat.passagerPrenom" class="small d-block text-muted">
+                      {{ seat.passagerPrenom }} {{ seat.passagerNom }}
+                    </span>
+                  </span>
+                </div>
+              </div>
+              <div class="info-block mt-3" *ngIf="itineraire">
+                <h5>Itinéraire</h5>
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <i class="fa fa-map-marker-alt me-2"></i>
+                    Départ : {{ itineraire.depart }}
+                  </li>
+                  <li>
+                    <i class="fa fa-map-marker-alt me-2"></i>
+                    Arrivée : {{ itineraire.arrivee }}
+                  </li>
+                  <li>
+                    <i class="fa fa-clock me-2"></i>
+                    Durée : {{ itineraire.duree }}
+                  </li>
+                </ul>
+              </div>
+              <div class="info-block mt-3" *ngIf="companyName || seatCodeList">
+                <div class="d-flex flex-column gap-1">
+                  <div *ngIf="companyName">
+                    <span class="text-muted d-block">Compagnie</span>
+                    <strong>{{ companyName }}</strong>
+                  </div>
+                  <div *ngIf="seatCodeList">
+                    <span class="text-muted d-block">Siège(s) choisi(s)</span>
+                    <strong>{{ seatCodeList }}</strong>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-md-6">
@@ -55,6 +108,17 @@
                   <a class="btn btn-outline-dark" [routerLink]="['/client/mes-reservations']">
                     <i class="fa fa-arrow-left me-2"></i>Retour à la liste
                   </a>
+                </div>
+              </div>
+              <div class="info-block mt-3" *ngIf="hasSeatSelections">
+                <h5>Sièges réservés</h5>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="badge bg-primary-subtle text-primary border" *ngFor="let seat of seatSelections">
+                    <i class="fa fa-chair me-1"></i>{{ seat.seatCode || seat.seatTrackingId }}
+                    <span *ngIf="seat.passagerNom || seat.passagerPrenom" class="small d-block text-muted">
+                      {{ seat.passagerPrenom }} {{ seat.passagerNom }}
+                    </span>
+                  </span>
                 </div>
               </div>
             </div>

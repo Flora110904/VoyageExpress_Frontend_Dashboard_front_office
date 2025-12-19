@@ -41,6 +41,22 @@ import { AuthService, CompagnieServiceApi, ItineraireServiceApi, VehiculeService
                 <input type="number" min="0" formControlName="prix" />
               </label>
               <label>
+                <span>Prix classe Économique</span>
+                <input type="number" min="0" formControlName="prixEconomique" placeholder="Laisser vide pour utiliser le prix de base" />
+              </label>
+              <label>
+                <span>Prix Éco Premium</span>
+                <input type="number" min="0" formControlName="prixEconomiquePremium" placeholder="Optionnel" />
+              </label>
+              <label>
+                <span>Prix Affaires</span>
+                <input type="number" min="0" formControlName="prixAffaires" placeholder="Optionnel" />
+              </label>
+              <label>
+                <span>Prix Première</span>
+                <input type="number" min="0" formControlName="prixPremiere" placeholder="Optionnel" />
+              </label>
+              <label>
                 <span>Véhicule *</span>
                 <select formControlName="vehiculeId" (change)="onVehicleChange($event)">
                   <option value="" disabled>Sélectionner un véhicule</option>
@@ -48,6 +64,21 @@ import { AuthService, CompagnieServiceApi, ItineraireServiceApi, VehiculeService
                     {{ vehicule.immatriculation || ('Véhicule ' + vehicule.trackingId) }} — {{ vehicule.nombrePlace }} places
                   </option>
                 </select>
+              </label>
+            </div>
+
+            <div class="grid grid-secondary">
+              <label>
+                <span>Bagage inclus (kg)</span>
+                <input type="number" min="0" formControlName="bagageInclusKg" />
+              </label>
+              <label>
+                <span>Poids sup. max autorisé (kg)</span>
+                <input type="number" min="0" formControlName="bagageSupplementaireMaxKg" />
+              </label>
+              <label>
+                <span>Prix du kilo supplémentaire (XOF)</span>
+                <input type="number" min="0" formControlName="prixFreightParKg" />
               </label>
             </div>
 
@@ -205,6 +236,13 @@ export class ItineraireFormModalComponent implements OnInit, OnChanges, OnDestro
     dateDepart: ['', Validators.required],
     heureDepart: ['', Validators.required],
     prix: [0, [Validators.required, Validators.min(0)]],
+    prixEconomique: [null, [Validators.min(0)]],
+    prixEconomiquePremium: [null, [Validators.min(0)]],
+    prixAffaires: [null, [Validators.min(0)]],
+    prixPremiere: [null, [Validators.min(0)]],
+    bagageInclusKg: [50, [Validators.min(0)]],
+    bagageSupplementaireMaxKg: [null, [Validators.min(0)]],
+    prixFreightParKg: [null, [Validators.min(0)]],
     vehiculeId: ['', Validators.required]
   });
 
@@ -324,8 +362,15 @@ export class ItineraireFormModalComponent implements OnInit, OnChanges, OnDestro
       dateDepart: formValue.dateDepart ?? '',
       heureDepart: formValue.heureDepart ?? '',
       prix: Number(formValue.prix ?? 0),
+      prixEconomique: this.toNullableNumber(formValue.prixEconomique),
+      prixEconomiquePremium: this.toNullableNumber(formValue.prixEconomiquePremium),
+      prixAffaires: this.toNullableNumber(formValue.prixAffaires),
+      prixPremiere: this.toNullableNumber(formValue.prixPremiere),
       compagnieId: this.compagnieTrackingId,
-      vehiculeId: formValue.vehiculeId ?? ''
+      vehiculeId: formValue.vehiculeId ?? '',
+      bagageInclusKg: this.toNullableNumber(formValue.bagageInclusKg),
+      prixFreightParKg: this.toNullableNumber(formValue.prixFreightParKg),
+      bagageSupplementaireMaxKg: this.toNullableNumber(formValue.bagageSupplementaireMaxKg)
     };
 
     const sub = this.itineraireService.create(payload).subscribe({
@@ -358,6 +403,13 @@ export class ItineraireFormModalComponent implements OnInit, OnChanges, OnDestro
       dateDepart: '',
       heureDepart: '',
       prix: 0,
+      prixEconomique: null,
+      prixEconomiquePremium: null,
+      prixAffaires: null,
+      prixPremiere: null,
+      bagageInclusKg: 50,
+      bagageSupplementaireMaxKg: null,
+      prixFreightParKg: null,
       vehiculeId: ''
     });
     this.selectedVehicleCapacity = null;
@@ -376,5 +428,13 @@ export class ItineraireFormModalComponent implements OnInit, OnChanges, OnDestro
     const vehicleId = this.form.get('vehiculeId')?.value;
     const vehicule = this.vehicules.find((v) => v.trackingId === vehicleId);
     this.selectedVehicleCapacity = vehicule ? vehicule.nombrePlace : null;
+  }
+
+  private toNullableNumber(value: unknown): number | null {
+    if (value === null || value === undefined || value === '') {
+      return null;
+    }
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : null;
   }
 }

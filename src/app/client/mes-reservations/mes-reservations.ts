@@ -112,6 +112,33 @@ export class MesReservations implements OnInit, OnDestroy {
     });
   }
 
+  getBagageInclus(reservation: ReservationResponse): number | null {
+    return reservation.bagageInclusKg ?? null;
+  }
+
+  getBagageSupplementaire(reservation: ReservationResponse): { poids: number; montant: number } | null {
+    const poids = reservation.bagageSupplementaireKg ?? 0;
+    const montant = reservation.bagageSupplementaireMontant ?? 0;
+    if (!poids || poids <= 0 || !montant || montant <= 0) {
+      return null;
+    }
+    return { poids, montant };
+  }
+
+  hasSeatSelections(reservation: ReservationResponse): boolean {
+    return (reservation.seatSelections?.length ?? 0) > 0;
+  }
+
+  getSeatCodes(reservation: ReservationResponse): string {
+    if (!this.hasSeatSelections(reservation)) {
+      return '';
+    }
+    return reservation.seatSelections!
+      .map((seat) => seat.seatCode || seat.seatTrackingId)
+      .filter((code): code is string => !!code)
+      .join(', ');
+  }
+
   getStatutLabel(statut: string): string {
     switch (statut) {
       case 'CONFIRMEE':

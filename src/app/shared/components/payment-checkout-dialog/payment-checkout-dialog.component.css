@@ -1,0 +1,134 @@
+.payment-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.payment-dialog {
+  background: #fff;
+  border-radius: 16px;
+  width: min(900px, 100%);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 55px rgba(15, 23, 42, 0.35);
+  overflow: hidden;
+}
+
+.dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.dialog-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0;
+  color: #0f172a;
+}
+
+.dialog-subtitle {
+  margin: 0.35rem 0 0;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.dialog-body {
+  padding: 1.5rem;
+  overflow: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.payment-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.payment-summary .label {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #1d4ed8;
+}
+
+.payment-summary .price {
+  font-size: 1.2rem;
+}
+
+.payment-frame {
+  width: 100%;
+  min-height: 520px;
+  border: none;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.link-section {
+  background: rgba(15, 23, 42, 0.03);
+  border: 1px dashed rgba(15, 23, 42, 0.15);
+  border-radius: 12px;
+  padding: 1.25rem;
+  color: #475569;
+}
+
+.dialog-footer {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 1rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.feedback {
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.loading-state {
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  color: #1e293b;
+}
+
+@media (max-width: 768px) {
+  .payment-dialog {
+    max-height: 95vh;
+  }
+
+  .payment-frame {
+    min-height: 420px;
+  }
+
+  .dialog-body {
+    padding: 1rem;
+  }
+
+  .dialog-footer {
+    padding: 1rem;
+  }
+}

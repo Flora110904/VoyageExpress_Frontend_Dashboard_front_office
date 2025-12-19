@@ -7,7 +7,8 @@
         <i class="fa fa-user-plus fa-3x text-primary"></i>
       </div>
       <h2 class="fw-bold text-primary mb-2">Créer votre compte VoyageExpress</h2>
-      <p class="text-muted">Rejoignez notre communauté de voyageurs</p>
+      <p class="text-muted mb-1">Rejoignez notre communauté de voyageurs</p>
+      <p class="text-muted small">{{ infoNote }}</p>
     </div>
 
     <!-- Error Message -->
@@ -22,7 +23,7 @@
         <!-- First Name -->
         <div class="col-md-6 mb-4">
           <label for="prenom" class="form-label fw-semibold">
-            <i class="fa fa-user me-2 text-primary"></i>Prénom
+            <i class="fa fa-user me-2 text-primary"></i>{{ prenomLabel }}
           </label>
           <input
             type="text"
@@ -40,7 +41,7 @@
         <!-- Last Name -->
         <div class="col-md-6 mb-4">
           <label for="nom" class="form-label fw-semibold">
-            <i class="fa fa-user me-2 text-primary"></i>Nom
+            <i class="fa fa-user me-2 text-primary"></i>{{ nomLabel }}
           </label>
           <input
             type="text"
@@ -77,7 +78,7 @@
       <!-- Phone -->
       <div class="mb-4">
         <label for="telephone" class="form-label fw-semibold">
-          <i class="fa fa-phone me-2 text-primary"></i>Téléphone
+          <i class="fa fa-phone me-2 text-primary"></i>{{ telephoneLabel }}
         </label>
         <input
           type="tel"
@@ -95,7 +96,7 @@
       <!-- Role -->
       <div class="mb-4">
         <label for="role" class="form-label fw-semibold">
-          <i class="fa fa-tag me-2 text-primary"></i>Type de Compte
+          <i class="fa fa-tag me-2 text-primary"></i>Type de compte
         </label>
         <select
           class="form-select form-select-lg"
@@ -111,10 +112,16 @@
 
       <!-- Champs pour Compagnie -->
       <div *ngIf="isCompagnie()">
+        <!-- Intro -->
+        <div class="alert alert-info mb-4">
+          <i class="fa fa-info-circle me-2"></i>
+          Renseignez les informations officielles de votre compagnie.
+        </div>
+
         <!-- Nom de la Compagnie -->
         <div class="mb-4">
           <label for="nomCompagnie" class="form-label fw-semibold">
-            <i class="fa fa-building me-2 text-primary"></i>Nom de la Compagnie
+            <i class="fa fa-building me-2 text-primary"></i>Nom de la compagnie
           </label>
           <input
             type="text"
@@ -129,10 +136,28 @@
           </div>
         </div>
 
+        <!-- Numéro de licence -->
+        <div class="mb-4">
+          <label for="numeroLicence" class="form-label fw-semibold">
+            <i class="fa fa-id-card me-2 text-primary"></i>Numéro de licence
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-lg"
+            id="numeroLicence"
+            formControlName="numeroLicence"
+            placeholder="Numéro d'exploitation ou de licence"
+            [class.is-invalid]="registerForm.get('numeroLicence')?.invalid && registerForm.get('numeroLicence')?.touched">
+          <div *ngIf="registerForm.get('numeroLicence')?.invalid && registerForm.get('numeroLicence')?.touched" class="invalid-feedback">
+            <span *ngIf="registerForm.get('numeroLicence')?.errors?.['required']">Le numéro de licence est requis</span>
+            <span *ngIf="registerForm.get('numeroLicence')?.errors?.['minlength']">Le numéro doit contenir au moins 3 caractères</span>
+          </div>
+        </div>
+
         <!-- Type de Compagnie -->
         <div class="mb-4">
           <label for="typeCompagnie" class="form-label fw-semibold">
-            <i class="fa fa-list me-2 text-primary"></i>Type de Compagnie
+            <i class="fa fa-list me-2 text-primary"></i>Type de compagnie
           </label>
           <select
             class="form-select form-select-lg"
@@ -147,12 +172,35 @@
         </div>
       </div>
 
-      <!-- Champs pour Établissement -->
-      <div *ngIf="isEtablissement()">
+      <!-- Champs pour Hébergement -->
+      <div *ngIf="isHebergement()">
+        <div class="alert alert-info mb-4">
+          <i class="fa fa-info-circle me-2"></i>
+          Indiquez ici les informations de votre hébergement.
+        </div>
+
+        <!-- Nom de l'hébergement -->
+        <div class="mb-4">
+          <label for="nomEtablissement" class="form-label fw-semibold">
+            <i class="fa fa-hotel me-2 text-primary"></i>Nom de l'hébergement
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-lg"
+            id="nomEtablissement"
+            formControlName="nomEtablissement"
+            placeholder="Nom commercial de l'hébergement"
+            [class.is-invalid]="registerForm.get('nomEtablissement')?.invalid && registerForm.get('nomEtablissement')?.touched">
+          <div *ngIf="registerForm.get('nomEtablissement')?.invalid && registerForm.get('nomEtablissement')?.touched" class="invalid-feedback">
+            <span *ngIf="registerForm.get('nomEtablissement')?.errors?.['required']">Le nom de l'hébergement est requis</span>
+            <span *ngIf="registerForm.get('nomEtablissement')?.errors?.['minlength']">Le nom doit contenir au moins 2 caractères</span>
+          </div>
+        </div>
+
         <!-- Adresse -->
         <div class="mb-4">
           <label for="adresse" class="form-label fw-semibold">
-            <i class="fa fa-map-marker me-2 text-primary"></i>Adresse
+            <i class="fa fa-map-marker me-2 text-primary"></i>Adresse de l'hébergement
           </label>
           <input
             type="text"
@@ -167,10 +215,10 @@
           </div>
         </div>
 
-        <!-- Type d'Établissement -->
+        <!-- Type d'hébergement -->
         <div class="mb-4">
           <label for="typeEtablissement" class="form-label fw-semibold">
-            <i class="fa fa-home me-2 text-primary"></i>Type d'Établissement
+            <i class="fa fa-home me-2 text-primary"></i>Type d'hébergement
           </label>
           <select
             class="form-select form-select-lg"
@@ -188,7 +236,7 @@
       <!-- Password -->
       <div class="mb-4">
         <label for="password" class="form-label fw-semibold">
-          <i class="fa fa-lock me-2 text-primary"></i>Mot de Passe
+          <i class="fa fa-lock me-2 text-primary"></i>Mot de passe
         </label>
         <div class="input-group input-group-lg">
           <input
@@ -235,7 +283,7 @@
       <!-- Confirm Password -->
       <div class="mb-4">
         <label for="confirmPassword" class="form-label fw-semibold">
-          <i class="fa fa-lock me-2 text-primary"></i>Confirmer le Mot de Passe
+          <i class="fa fa-lock me-2 text-primary"></i>Confirmer le mot de passe
         </label>
         <div class="input-group input-group-lg">
           <input

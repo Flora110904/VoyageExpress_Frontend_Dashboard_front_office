@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ItineraireRequest, ItineraireResponse } from '../models';
+import { ItineraireRequest, ItineraireResponse, SeatAvailabilityResponse } from '../models';
 import { environment } from '../../environments/environment';
 
 const API = environment.apiUrl;
@@ -27,6 +27,10 @@ export class ItineraireServiceApi {
     return this.http.get<ItineraireResponse[]>(`${this.base}/compagnie/${compagnieTrackingId}`);
   }
 
+  seatAvailability(itineraireTrackingId: string): Observable<SeatAvailabilityResponse[]> {
+    return this.http.get<SeatAvailabilityResponse[]>(`${this.base}/${itineraireTrackingId}/seats`);
+  }
+
   update(trackingId: string, body: ItineraireRequest): Observable<ItineraireResponse> {
     return this.http.put<ItineraireResponse>(`${this.base}/update/${trackingId}`, body);
   }
@@ -41,6 +45,8 @@ export class ItineraireServiceApi {
     dateDepart?: string;
     prixMin?: number;
     prixMax?: number;
+    compagnieId?: string;
+    compagnieNom?: string;
   }): Observable<ItineraireResponse[]> {
     let queryParams = new URLSearchParams();
     if (params.villeDepart) queryParams.set('villeDepart', params.villeDepart);
@@ -48,6 +54,8 @@ export class ItineraireServiceApi {
     if (params.dateDepart) queryParams.set('dateDepart', params.dateDepart);
     if (params.prixMin !== undefined) queryParams.set('prixMin', params.prixMin.toString());
     if (params.prixMax !== undefined) queryParams.set('prixMax', params.prixMax.toString());
+    if (params.compagnieId) queryParams.set('compagnieId', params.compagnieId);
+    if (params.compagnieNom) queryParams.set('compagnieNom', params.compagnieNom);
     
     return this.http.get<ItineraireResponse[]>(`${this.base}/search?${queryParams.toString()}`);
   }

@@ -10,6 +10,15 @@
       <p class="text-muted">Connectez-vous à votre compte</p>
     </div>
 
+    <!-- Registration success -->
+    <div *ngIf="registrationSuccess" class="alert alert-success d-flex align-items-start gap-3 mb-4" role="alert">
+      <i class="fa fa-check-circle fa-lg mt-1 text-success"></i>
+      <div>
+        <h6 class="fw-semibold mb-1 text-success">Inscription réussie</h6>
+        <p class="mb-0 text-success">{{ registrationMessage }}</p>
+      </div>
+    </div>
+
     <!-- Login Form -->
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
       <!-- Error Message -->

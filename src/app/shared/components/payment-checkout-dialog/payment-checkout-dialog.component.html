@@ -1,0 +1,59 @@
+<div class="payment-backdrop" *ngIf="visible">
+  <div class="payment-dialog" role="dialog" aria-modal="true">
+    <div class="dialog-header">
+      <div>
+        <h3 class="dialog-title">Finaliser votre paiement</h3>
+        <p class="dialog-subtitle" *ngIf="clientFullName">Client : <strong>{{ clientFullName }}</strong></p>
+      </div>
+      <button type="button" class="btn-close" aria-label="Fermer" (click)="onClose()"></button>
+    </div>
+
+    <div class="dialog-body" *ngIf="!loading; else loadingTpl">
+      <div class="payment-summary" *ngIf="montant !== null">
+        <span class="label">Montant dû</span>
+        <span class="price">{{ montant | number:'1.0-0' }} XOF</span>
+      </div>
+
+      <ng-container *ngIf="hasIframe; else linkOnlyTpl">
+        <iframe
+          class="payment-frame"
+          [src]="safePaymentUrl"
+          title="Formulaire de paiement CinetPay"
+          allowpaymentrequest
+        ></iframe>
+      </ng-container>
+
+      <ng-template #linkOnlyTpl>
+        <div class="link-section">
+          <p class="mb-2">
+            Ouvrez le formulaire de paiement dans un nouvel onglet à l'aide du bouton ci-dessous.
+          </p>
+        </div>
+      </ng-template>
+    </div>
+
+    <ng-template #loadingTpl>
+      <div class="loading-state">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p class="mt-3">Préparation du paiement en cours...</p>
+      </div>
+    </ng-template>
+
+    <div class="dialog-footer" *ngIf="!loading">
+      <div class="actions">
+        <button type="button" class="btn btn-outline-dark" (click)="copyLink()" [disabled]="!paymentUrl">
+          Copier le lien
+        </button>
+        <button type="button" class="btn btn-primary" (click)="onLaunchPayment()" [disabled]="!paymentUrl">
+          Ouvrir dans un nouvel onglet
+        </button>
+      </div>
+      <div class="feedback" *ngIf="copyFeedback === 'copied'">
+        <i class="fa fa-check-circle text-success me-2"></i>Lien copié !
+      </div>
+      <div class="feedback" *ngIf="copyFeedback === 'error'">
+        <i class="fa fa-exclamation-circle text-danger me-2"></i>Impossible de copier le lien.
+      </div>
+    </div>
+  </div>
+</div>

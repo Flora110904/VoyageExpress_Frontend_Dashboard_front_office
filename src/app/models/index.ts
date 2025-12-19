@@ -9,3 +9,4 @@ export * from './reservation.model';
 export * from './vehicule.model';
 export * from './vehicule-itineraire.model';
 export * from './billet.model';
+export * from './seat.model';

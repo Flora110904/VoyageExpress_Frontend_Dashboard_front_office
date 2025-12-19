@@ -130,6 +130,17 @@
                 <p class="mb-0 text-muted">
                   <i class="fa fa-money-bill me-2"></i>{{ (reservation.montantTotal || 0) | number:'1.0-0' }} XAF
                 </p>
+                <div class="mt-2 small text-muted" *ngIf="getBagageInclus(reservation) !== null">
+                  <i class="fa fa-suitcase-rolling me-1"></i>
+                  Inclus : {{ getBagageInclus(reservation) | number:'1.0-1' }} kg
+                  <span *ngIf="getBagageSupplementaire(reservation) as supplement">
+                    • Supplément : {{ supplement.poids | number:'1.0-1' }} kg ({{ supplement.montant | number:'1.0-0' }} XAF)
+                  </span>
+                </div>
+                <div class="mt-1 small text-muted" *ngIf="hasSeatSelections(reservation)">
+                  <i class="fa fa-chair me-1"></i>
+                  Sièges : {{ getSeatCodes(reservation) }}
+                </div>
               </div>
 
               <div class="actions d-flex flex-column flex-sm-row gap-2">

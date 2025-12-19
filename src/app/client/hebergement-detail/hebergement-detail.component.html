@@ -41,6 +41,25 @@
                 <p class="mb-2"><i class="fa fa-hashtag me-2"></i>Tracking établissement : {{ hebergement.etablissementTrackingId }}</p>
                 <p class="mb-0"><i class="fa fa-info-circle me-2"></i>{{ hebergement.description }}</p>
               </div>
+              <div class="tarif-block mt-4">
+                <h5>Informations tarifaires</h5>
+                <div *ngIf="hebergement.tarifPrixTtc" class="tarif-details">
+                  <div class="tarif-price">
+                    <span class="price" [class.text-muted]="!hebergement.tarifActif">
+                      {{ hebergement.tarifPrixTtc | number:'1.0-0' }} XOF<span class="per-night"> / nuit</span>
+                    </span>
+                    <span *ngIf="!hebergement.tarifActif" class="badge bg-warning text-dark ms-2">Tarif inactif</span>
+                  </div>
+                  <div class="tarif-meta mt-2">
+                    <small class="text-muted" *ngIf="hebergement.tarifTrackingId">
+                      <i class="fa fa-barcode me-1"></i>ID Tarif : {{ hebergement.tarifTrackingId }}
+                    </small>
+                  </div>
+                </div>
+                <div *ngIf="!hebergement.tarifPrixTtc" class="tarif-unavailable">
+                  <span class="text-muted"><i class="fa fa-exclamation-triangle me-2"></i>Tarif indisponible</span>
+                </div>
+              </div>
               <div class="mt-4 d-flex gap-2">
                 <a class="btn btn-outline-primary" [routerLink]="['/client/recherche']">
                   <i class="fa fa-search me-2"></i>Voir d'autres hébergements

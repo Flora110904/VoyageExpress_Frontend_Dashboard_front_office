@@ -7,6 +7,7 @@ import { ItineraireResponse } from '../../models';
 import { AuthService, CompagnieServiceApi, ItineraireServiceApi } from '../../services';
 import { CompagnieBusNavbarComponent } from '../shared/compagnie-bus-navbar/compagnie-bus-navbar.component';
 import { ItineraireFormModalComponent } from './itineraire-form-modal.component';
+import { ItineraireDetailModalComponent } from './itineraire-detail-modal.component';
 
 type ItineraryStatus = 'ALL' | 'TODAY' | 'UPCOMING' | 'PAST';
 
@@ -26,7 +27,7 @@ type BusItinerary = ItineraireResponse & {
 @Component({
   selector: 'app-itineraires',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, CompagnieBusNavbarComponent, ItineraireFormModalComponent],
+  imports: [CommonModule, RouterModule, FormsModule, CompagnieBusNavbarComponent, ItineraireFormModalComponent, ItineraireDetailModalComponent],
   templateUrl: './itineraires.html',
   styleUrl: './itineraires.css'
 })
@@ -35,6 +36,8 @@ export class Itineraires implements OnInit, OnDestroy {
   error: string | null = null;
 
   isCreateModalOpen = false;
+  isDetailModalOpen = false;
+  selectedItinerary: BusItinerary | null = null;
 
   itineraires: BusItinerary[] = [];
   filteredItineraires: BusItinerary[] = [];
@@ -93,6 +96,16 @@ export class Itineraires implements OnInit, OnDestroy {
   onItinerarySaved(_itinerary: ItineraireResponse): void {
     this.isCreateModalOpen = false;
     this.loadItineraires();
+  }
+
+  openDetailModal(itinerary: BusItinerary): void {
+    this.selectedItinerary = itinerary;
+    this.isDetailModalOpen = true;
+  }
+
+  closeDetailModal(): void {
+    this.isDetailModalOpen = false;
+    this.selectedItinerary = null;
   }
 
   trackItinerary(_index: number, itinerary: BusItinerary): string {

@@ -132,10 +132,10 @@
                 </td>
                 <td class="text-end">
                   <div class="btn-group">
-                    <button class="btn btn-sm btn-outline-primary" [disabled]="true">
+                    <button class="btn btn-sm btn-outline-primary" (click)="openReservationDetail(reservation)">
                       <i class="fa fa-eye"></i>
                     </button>
-                    <button class="btn btn-sm btn-outline-secondary" [disabled]="true">
+                    <button class="btn btn-sm btn-outline-secondary" disabled>
                       <i class="fa fa-print"></i>
                     </button>
                   </div>
@@ -143,6 +143,122 @@
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+
+      <!-- Detail Modal -->
+      <div class="modal-backdrop fade show" *ngIf="showDetailModal"></div>
+      <div class="modal fade show d-block" tabindex="-1" role="dialog" *ngIf="showDetailModal">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Détail de la réservation</h5>
+              <button type="button" class="btn-close" aria-label="Close" (click)="closeReservationDetail()"></button>
+            </div>
+            <div class="modal-body">
+              <div *ngIf="detailLoading" class="text-center py-4">
+                <div class="spinner-border text-primary" role="status"></div>
+                <p class="mt-3 mb-0">Chargement du détail...</p>
+              </div>
+
+              <div *ngIf="!detailLoading && detailError" class="alert alert-warning">
+                {{ detailError }}
+              </div>
+
+              <ng-container *ngIf="!detailLoading && !detailError && selectedReservationDetail">
+                <div class="row g-4">
+                  <div class="col-md-6">
+                    <h6 class="text-uppercase text-muted">Réservation</h6>
+                    <ul class="list-unstyled mb-3">
+                      <li><strong>Numéro :</strong> {{ selectedReservationDetail.numeroReservation }}</li>
+                      <li><strong>Statut :</strong> {{ selectedReservationDetail.statut }}</li>
+                      <li><strong>Date :</strong> {{ selectedReservationDetail.dateReservation | date:'medium' }}</li>
+                      <li><strong>Montant :</strong> {{ selectedReservationDetail.montantTotal | number:'1.0-0' }} XAF</li>
+                      <li *ngIf="selectedReservationDetail.classeVoyage"><strong>Classe :</strong> {{ selectedReservationDetail.classeVoyage }}</li>
+                      <li *ngIf="selectedReservationDetail.notes"><strong>Notes :</strong> {{ selectedReservationDetail.notes }}</li>
+                    </ul>
+
+                    <h6 class="text-uppercase text-muted">Client</h6>
+                    <ng-container *ngIf="selectedReservationDetail.client; else noClient">
+                      <ul class="list-unstyled mb-3">
+                        <li>
+                          <strong>Nom :</strong>
+                          {{ selectedReservationDetail.client.prenom }} {{ selectedReservationDetail.client.nom }}
+                        </li>
+                        <li *ngIf="selectedReservationDetail.client.genre"><strong>Genre :</strong> {{ selectedReservationDetail.client.genre }}</li>
+                        <li *ngIf="selectedReservationDetail.client.dateNaissance"><strong>Date de naissance :</strong> {{ selectedReservationDetail.client.dateNaissance | date:'longDate' }}</li>
+                        <li><strong>Email :</strong> {{ selectedReservationDetail.client.email }}</li>
+                        <li><strong>Téléphone :</strong> {{ selectedReservationDetail.client.telephone }}</li>
+                        <li *ngIf="selectedReservationDetail.client.adresse"><strong>Adresse :</strong> {{ selectedReservationDetail.client.adresse }}</li>
+                        <li *ngIf="selectedReservationDetail.client.paysResidence || selectedReservationDetail.client.villeResidence">
+                          <strong>Résidence :</strong>
+                          <span>
+                            {{ selectedReservationDetail.client.villeResidence || 'Ville inconnue' }},
+                            {{ selectedReservationDetail.client.paysResidence || 'Pays inconnu' }}
+                          </span>
+                        </li>
+                        <li *ngIf="selectedReservationDetail.client.typeDocument || selectedReservationDetail.client.numeroDocument">
+                          <strong>Document :</strong>
+                          <span>
+                            {{ selectedReservationDetail.client.typeDocument || 'Type inconnu' }}
+                            <span *ngIf="selectedReservationDetail.client.numeroDocument">
+                              ({{ selectedReservationDetail.client.numeroDocument }})
+                            </span>
+                          </span>
+                        </li>
+                      </ul>
+                    </ng-container>
+                    <ng-template #noClient>
+                      <p class="text-muted">Information client indisponible.</p>
+                    </ng-template>
+
+                    <h6 class="text-uppercase text-muted" *ngIf="selectedReservationDetail.seatSelections?.length">Sièges réservés</h6>
+                    <div class="d-flex flex-wrap gap-2 mb-3" *ngIf="selectedReservationDetail.seatSelections?.length">
+                      <span class="badge bg-primary-subtle text-primary border" *ngFor="let seat of selectedReservationDetail.seatSelections">
+                        <i class="fa fa-chair me-1"></i>{{ seat.seatCode || seat.seatTrackingId }}
+                        <span *ngIf="seat.passagerPrenom || seat.passagerNom" class="d-block small text-muted">
+                          {{ seat.passagerPrenom }} {{ seat.passagerNom }}
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <h6 class="text-uppercase text-muted">Compagnie</h6>
+                    <p class="mb-3" *ngIf="selectedReservationDetail.compagnie; else noCompany">
+                      <strong>{{ selectedReservationDetail.compagnie.nom }}</strong>
+                      <span class="d-block text-muted" *ngIf="selectedReservationDetail.compagnie.type">Type : {{ selectedReservationDetail.compagnie.type }}</span>
+                    </p>
+                    <ng-template #noCompany>
+                      <p class="text-muted">Compagnie non renseignée.</p>
+                    </ng-template>
+
+                    <h6 class="text-uppercase text-muted" *ngIf="selectedReservationDetail.itineraire">Itinéraire</h6>
+                    <ul class="list-unstyled mb-3" *ngIf="selectedReservationDetail.itineraire">
+                      <li><strong>Départ :</strong> {{ selectedReservationDetail.itineraire.villeDepart }} ({{ selectedReservationDetail.itineraire.pointDepart }})</li>
+                      <li><strong>Arrivée :</strong> {{ selectedReservationDetail.itineraire.villeArrivee }} ({{ selectedReservationDetail.itineraire.pointArrivee }})</li>
+                      <li><strong>Date / heure :</strong> {{ selectedReservationDetail.itineraire.dateDepart }} • {{ selectedReservationDetail.itineraire.heureDepart }}</li>
+                      <li *ngIf="selectedReservationDetail.itineraire.heureArrivee"><strong>Arrivée prévue :</strong> {{ selectedReservationDetail.itineraire.heureArrivee }}</li>
+                    </ul>
+
+                    <h6 class="text-uppercase text-muted" *ngIf="selectedReservationDetail.bagageInclusKg !== undefined">Bagages</h6>
+                    <ul class="list-unstyled mb-0" *ngIf="selectedReservationDetail.bagageInclusKg !== undefined">
+                      <li><strong>Franchise :</strong> {{ selectedReservationDetail.bagageInclusKg | number:'1.0-1' }} kg</li>
+                      <li *ngIf="selectedReservationDetail.bagageSupplementaireKg">
+                        <strong>Supplément :</strong> {{ selectedReservationDetail.bagageSupplementaireKg | number:'1.0-1' }} kg
+                        <span *ngIf="selectedReservationDetail.bagageSupplementaireMontant">
+                          ({{ selectedReservationDetail.bagageSupplementaireMontant | number:'1.0-0' }} XAF)
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="closeReservationDetail()">Fermer</button>
+            </div>
+          </div>
         </div>
       </div>
     </ng-container>

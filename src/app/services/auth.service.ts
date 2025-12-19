@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { LoginRequest, LoginResponse } from '../models';
+import { Role } from '../models/enums.model';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
@@ -97,19 +98,32 @@ export class AuthService {
 
   login(body: LoginRequest, remember: boolean = false): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.base}/login`, body).pipe(
-      tap((response: LoginResponse) => {
-        if (response && response.token) {
-          // Stockage selon choix "remember me"
-          if (remember) {
-            localStorage.setItem('token', response.token);
-            localStorage.setItem('currentUser', JSON.stringify(response));
-          } else {
-            sessionStorage.setItem('token', response.token);
-            sessionStorage.setItem('currentUser', JSON.stringify(response));
-          }
-          this.currentUserSubject.next(response);
+      map((response: LoginResponse) => {
+        const originalRole = response.role;
+        const isPendingValidationRole = [
+          Role.COMPAGNIE_AERIEN,
+          Role.COMPAGNIE_BUS,
+          Role.ETABLISSEMENT
+        ].includes(originalRole);
+
+        const shouldDowngrade = isPendingValidationRole && !response.actif;
+        const effectiveRole = shouldDowngrade ? Role.CLIENT : originalRole;
+
+        return {
+          ...response,
+          role: effectiveRole,
+          originalRole: shouldDowngrade ? originalRole : response.originalRole,
+          effectiveRole
+        } as LoginResponse;
+      }),
+      tap((normalized: LoginResponse) => {
+        if (normalized && normalized.token) {
+          const storage = remember ? localStorage : sessionStorage;
+          storage.setItem('token', normalized.token);
+          storage.setItem('currentUser', JSON.stringify(normalized));
+          this.currentUserSubject.next(normalized);
           // Démarrer timer d'expiration
-          this.startTokenTimer(response.token);
+          this.startTokenTimer(normalized.token);
         }
       })
     );

@@ -20,6 +20,8 @@ export interface LoginResponse {
   nom: string;
   prenom: string;
   actif: boolean;
+  originalRole?: Role;
+  effectiveRole?: Role;
 }
 
 export interface ErrorResponseDto {
